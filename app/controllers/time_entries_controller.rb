@@ -22,12 +22,12 @@ class TimeEntriesController < ApplicationController
   end
 
   def destroy
-  en
+  end
 
   private
 
     def set_time_entry
-      @time_entry = TimeEntry.find_by(id: params[:ida])
+      @time_entry = TimeEntry.find_by(id: params[:id])
     end
 
 end

@@ -1,4 +1,6 @@
 class LawyersController < ApplicationController
+  before_action :set_lawyer, only: [:show, :edit, :update]
+
   def index
     @lawyers = Lawyer.all
   end
@@ -8,6 +10,12 @@ class LawyersController < ApplicationController
   end
 
   def create
+    lawyer = Lawyer.new(params)
+    if lawyer.save
+      redirect_to lawyer_path(lawyer)
+    else
+      redirect_to new_lawyer_path
+    end
   end
 
   def edit
@@ -21,4 +29,11 @@ class LawyersController < ApplicationController
 
   def destroy
   end
+
+  private
+
+    def lawyer
+      @lawyer = Lawyer.find_by(id: params[:id])
+    end
+
 end
