@@ -2,7 +2,7 @@ class LawyersController < ApplicationController
   before_action :set_lawyer, only: [:show, :edit, :update]
 
   def index
-    @lawyers = Lawyer.all
+    @lawyers = Lawyers.all
   end
 
   def new
@@ -22,6 +22,8 @@ class LawyersController < ApplicationController
   end
 
   def update
+    @lawyer.update(params)
+    redirect_to @lawyer
   end
 
   def show
@@ -32,7 +34,7 @@ class LawyersController < ApplicationController
 
   private
 
-    def lawyer
+    def client
       @lawyer = Lawyer.find_by(id: params[:id])
     end
 

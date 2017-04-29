@@ -22,6 +22,8 @@ class ClientsController < ApplicationController
   end
 
   def update
+    @client.update(params)
+    redirect_to @client
   end
 
   def show

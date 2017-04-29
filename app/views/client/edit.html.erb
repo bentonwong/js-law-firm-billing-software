@@ -1,2 +1,15 @@
-<h1>Client#edit</h1>
-<p>Find me in app/views/client/edit.html.erb</p>
+<h1>Edit client</h1>
+
+<%= form_for(@client) do |f| %>
+
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :email %><br>
+  <%= f.text_area :email %><br>
+  <%= f.label :address %><br>
+  <%= f.text_area :address %><br>
+  <%= f.label :phone %><br>
+  <%= f.text_area :phone %><br>
+  <%= f.submit %>
+
+<% end %>
