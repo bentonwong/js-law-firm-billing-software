@@ -6,6 +6,7 @@ class CreateTimeEntries < ActiveRecord::Migration[5.0]
       t.decimal :duration
       t.text :description
       t.boolean :billable
+      t.boolean :paid
       t.integer :case_id
       t.integer :lawyer_id
 
