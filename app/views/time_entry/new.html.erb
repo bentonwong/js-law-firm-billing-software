@@ -1,2 +1,21 @@
-<h1>TimeEntry#new</h1>
-<p>Find me in app/views/time_entry/new.html.erb</p>
+<h1>New Time Entry</h1>
+
+<%= form_for(@time_entry) do |f| %>
+
+  <%= f.label :matter %><br>
+  <%= f.text_field :matter%><br>
+  <%= f.label :date %><br>
+  <%= f.text_field :date %><br>
+  <%= f.label :duration %><br>
+  <%= f.text_field :duration %><br>
+  <%= f.label :description %><br>
+  <%= f.text_field :description %><br>
+  <%= f.label :lawyer %><br>
+  <%= f.text_field :lawyer %><br>
+  <%= f.label :billable %><br>
+  <%= f.check_box :billable %><br>
+  <%= f.label :paid %><br>
+  <%= f.check_box :paid %><br>
+  <%= f.submit %>
+
+<% end %>

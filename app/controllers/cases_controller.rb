@@ -10,12 +10,20 @@ class CasesController < ApplicationController
   end
 
   def create
+    case = Case.new(params)
+    if case.save
+      redirect_to case_path(case)
+    else
+      redirect_to new_case_path
+    end
   end
 
   def edit
   end
 
   def update
+    @case.update(params)
+    redirect_to @case
   end
 
   def show

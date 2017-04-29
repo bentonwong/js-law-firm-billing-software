@@ -10,12 +10,20 @@ class TimeEntriesController < ApplicationController
   end
 
   def create
+    time_entry = TimeEntry.new(params)
+    if time_entry.save
+      redirect_to time_entry_path(time_entry)
+    else
+      redirect_to new_time_entry_path
+    end
   end
 
   def edit
   end
 
   def update
+    @time_entry.update(params)
+    redirect_to @time_entry
   end
 
   def show
