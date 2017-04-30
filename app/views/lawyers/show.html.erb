@@ -1,3 +1,4 @@
 <h3><%= @lawyer.name %></h3>
 <p><%= @lawyer.email %></p>
 <p>Rate: $<%= @lawyer.rate %>/hr.</p>
+<%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %>

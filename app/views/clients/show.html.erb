@@ -2,3 +2,4 @@
 <p><%= @client.email %></p>
 <p><%= @client.address %></p>
 <p><%= @client.phone %></p>
+<%= button_to 'Edit Client', edit_client_path(@client), method: "get" %>
