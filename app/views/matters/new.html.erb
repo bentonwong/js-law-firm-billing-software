@@ -2,12 +2,13 @@
 
 <%= form_for(@matter) do |f| %>
 
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :client %><br>
-  <%= f.text_area :client %><br>
-  <%= f.label :lawyer %><br>
-  <%= f.text_area :lawyer %><br>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+  <%= f.label :lawyer %>
+  <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
+  <%= f.label :client %>
+  <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br><br>
+
   <%= f.submit %>
 
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430053902) do
+ActiveRecord::Schema.define(version: 20170430060846) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -33,13 +33,12 @@ ActiveRecord::Schema.define(version: 20170430053902) do
   end
 
   create_table "time_entries", force: :cascade do |t|
-    t.string   "matter"
     t.date     "date"
     t.decimal  "duration"
     t.text     "description"
     t.boolean  "billable"
     t.boolean  "paid"
-    t.integer  "case_id"
+    t.integer  "matter_id"
     t.integer  "lawyer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

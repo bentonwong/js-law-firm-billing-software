@@ -1,24 +1,29 @@
-class LawCasesController < ApplicationController
-  before_action :set_case, only: [:show, :edit, :update]
+class MattersController < ApplicationController
+  before_action :set_matter, only: [:show, :edit, :update]
 
   def index
-    @cases = LawCases.all
+    @matters = Matter.all
   end
 
   def new
-    @case = LawCase.new
+    @matter = Matter.new
   end
 
   def create
-
+    matter = Matter.new(matter_params)
+    if matter.save
+      redirect_to matter_path(matter)
+    else
+      redirect_to new_matter_path
+    end
   end
 
   def edit
   end
 
   def update
-    @case.update(case_params)
-    redirect_to @case
+    @matter.update(matter_params)
+    redirect_to @matter
   end
 
   def show
@@ -29,11 +34,11 @@ class LawCasesController < ApplicationController
 
   private
 
-    def set_case
-      @case = Case.find_by(id: params[:id])
+    def set_matter
+      @matter = Matter.find_by(id: params[:id])
     end
 
-    def case_params
-      params.require(:case).permit(:name, :lawyer, :client)
+    def matter_params
+      params.require(:matter).permit(:name, :lawyer_id, :client_id)
     end
 end

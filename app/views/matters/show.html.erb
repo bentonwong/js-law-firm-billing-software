@@ -1,4 +1,5 @@
 <h3><%= @matter.name %></h3>
-<p><%= @matter.client %></p>
-<p><%= @matter.lawyer %></p>
+<p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
+<p>Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
 <%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %>
+<%= button_to 'Enter new time entry', new_time_entry_path, method: "get" %>
