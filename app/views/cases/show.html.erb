@@ -1,2 +1,4 @@
-<h1>Case#show</h1>
-<p>Find me in app/views/case/show.html.erb</p>
+<h3><%= @case.name %></h3>
+<p><%= @case.client %></p>
+<p><%= @client.lawyer %></p>
+<%= button_to 'Edit Case', edit_case_path(@case), method: "get" %>

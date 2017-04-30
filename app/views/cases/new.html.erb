@@ -1,2 +1,13 @@
-<h1>Case#new</h1>
-<p>Find me in app/views/case/new.html.erb</p>
+<h1>New case</h1>
+
+<%= form_for(@case) do |f| %>
+
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :client %><br>
+  <%= f.text_area :client %><br>
+  <%= f.label :lawyer %><br>
+  <%= f.text_area :lawyer %><br>
+  <%= f.submit %>
+
+<% end %>

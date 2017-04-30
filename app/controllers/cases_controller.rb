@@ -1,5 +1,5 @@
 class CasesController < ApplicationController
-  before_action :set_case, only: [:show, :edit]
+  before_action :set_case, only: [:show, :edit, :update]
 
   def index
     @cases = Case.all
@@ -10,19 +10,14 @@ class CasesController < ApplicationController
   end
 
   def create
-    case = Case.new(params)
-    if case.save
-      redirect_to case_path(case)
-    else
-      redirect_to new_case_path
-    end
+  
   end
 
   def edit
   end
 
   def update
-    @case.update(params)
+    @case.update(case_params)
     redirect_to @case
   end
 
@@ -38,4 +33,7 @@ class CasesController < ApplicationController
       @case = Case.find_by(id: params[:id])
     end
 
+    def case_params
+      params.require(:case).permit(:name, :lawyer, :client)
+    end
 end
