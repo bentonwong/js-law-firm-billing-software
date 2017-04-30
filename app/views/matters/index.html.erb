@@ -1,3 +1,6 @@
+<h3>Matters</h3>
+<%= button_to 'Enter new time entry', new_time_entry_path, method: "get" %>
+
 <ul><% @matters.each do |matter| %>
   <li><%= link_to "#{matter.name}", matter_path(matter) %></li>
 <% end %></ul>

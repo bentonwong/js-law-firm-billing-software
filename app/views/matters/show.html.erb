@@ -2,4 +2,13 @@
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
 <p>Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
 <%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %>
-<%= button_to 'Enter new time entry', new_time_entry_path, method: "get" %>
+
+<h4>Time Entries</h4>
+<% @matter.time_entries.each do |time_entry| %>
+  <p><%= link_to "#{time_entry.date}", time_entry_path(time_entry) %></p>
+  <li>Duration: <%= time_entry.duration %> hrs.</li>
+  <li>Description: <%= time_entry.description %></li>
+  <li>Attorney: <%= time_entry.lawyer.name %></li>
+  <li>Billable: <%= time_entry.billable %></li>
+  <li>Paid: <%= time_entry.paid %></li>
+<% end %>
