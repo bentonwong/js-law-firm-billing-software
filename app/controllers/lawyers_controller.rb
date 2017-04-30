@@ -2,7 +2,7 @@ class LawyersController < ApplicationController
   before_action :set_lawyer, only: [:show, :edit, :update]
 
   def index
-    @lawyers = Lawyers.all
+    @lawyers = Lawyer.all
   end
 
   def new
@@ -10,7 +10,7 @@ class LawyersController < ApplicationController
   end
 
   def create
-    lawyer = Lawyer.new(params)
+    lawyer = Lawyer.new(lawyer_params)
     if lawyer.save
       redirect_to lawyer_path(lawyer)
     else
@@ -22,7 +22,7 @@ class LawyersController < ApplicationController
   end
 
   def update
-    @lawyer.update(params)
+    @lawyer.update(lawyer_params)
     redirect_to @lawyer
   end
 
@@ -34,7 +34,11 @@ class LawyersController < ApplicationController
 
   private
 
-    def client
+    def lawyer_params
+      params.require(:lawyer).permit(:name, :email, :rate)
+    end
+
+    def set_lawyer
       @lawyer = Lawyer.find_by(id: params[:id])
     end
 

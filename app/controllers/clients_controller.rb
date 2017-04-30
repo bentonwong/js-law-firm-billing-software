@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update]
 
   def index
-    @clients = Clients.all
+    @clients = Client.all
   end
 
   def new
@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    client = Client.new(params)
+    client = Client.new(client_params)
     if client.save
       redirect_to client_path(client)
     else
@@ -22,7 +22,7 @@ class ClientsController < ApplicationController
   end
 
   def update
-    @client.update(params)
+    @client.update(client_params)
     redirect_to @client
   end
 
@@ -34,7 +34,11 @@ class ClientsController < ApplicationController
 
   private
 
-    def client
+    def client_params
+      params.require(:client).permit(:name, :email, :address, :phone)
+    end
+
+    def set_client
       @client = Client.find_by(id: params[:id])
     end
 
