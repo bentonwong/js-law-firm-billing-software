@@ -1,5 +1,5 @@
 class Client < ApplicationRecord
-  has_many :cases
-  has_many :lawyers, through: :cases
-  
+  has_many :matters
+  has_many :lawyers, through: :matters
+
 end

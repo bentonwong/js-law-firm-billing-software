@@ -1,16 +1,16 @@
-class CasesController < ApplicationController
+class LawCasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update]
 
   def index
-    @cases = Case.all
+    @cases = LawCases.all
   end
 
   def new
-    @case = Case.new
+    @case = LawCase.new
   end
 
   def create
-  
+
   end
 
   def edit

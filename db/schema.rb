@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430015644) do
-
-  create_table "cases", force: :cascade do |t|
-    t.integer "lawyer_id"
-    t.integer "client_id"
-    t.string  "name"
-  end
+ActiveRecord::Schema.define(version: 20170430053902) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -30,6 +24,12 @@ ActiveRecord::Schema.define(version: 20170430015644) do
     t.string "email"
     t.string "password_digest"
     t.string "rate"
+  end
+
+  create_table "matters", force: :cascade do |t|
+    t.integer "lawyer_id"
+    t.integer "client_id"
+    t.string  "name"
   end
 
   create_table "time_entries", force: :cascade do |t|

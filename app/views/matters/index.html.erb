@@ -1,0 +1,3 @@
+<ul><% @matters.each do |matter| %>
+  <li><%= link_to "#{matter.name}", matter_path(matter) %></li>
+<% end %></ul>
