@@ -3,7 +3,7 @@
 <%= form_for(@time_entry) do |f| %>
 
   <%= f.label :matter %><br>
-  <%= f.text_field :matter%><br>
+  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, include_blank: true %><br><br>
   <%= f.label :date %><br>
   <%= f.text_field :date %><br>
   <%= f.label :duration %><br>
@@ -11,7 +11,7 @@
   <%= f.label :description %><br>
   <%= f.text_area :description %><br>
   <%= f.label :lawyer %><br>
-  <%= f.text_field :lawyer %><br>
+  <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
   <%= f.label :billable %>
   <%= f.check_box :billable %>
   <%= f.label :paid %>
