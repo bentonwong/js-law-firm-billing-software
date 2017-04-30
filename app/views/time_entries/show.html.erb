@@ -1,2 +1,12 @@
-<h1>TimeEntry#show</h1>
-<p>Find me in app/views/time_entry/show.html.erb</p>
+<h3>Time Entry</h3>
+<h4>Matter: <%= @time_entry.matter.name %></h4>
+<h4>Client: <%= @client_name %></h4>
+
+<p>Date: <%= @time_entry.date %></p>
+<p>Description: <%= @time_entry.description %></p>
+<p>Duration: <%= @time_entry.duration %> hours</p>
+<p>Attorney: <%= @time_entry.lawyer.name %></p>
+<p>Billable: <%= @time_entry.billable %></p>
+<p>Paid: <%= @time_entry.paid %></p>
+
+<%= button_to 'Edit time entry', edit_time_entry_path(@time_entry), method: "get" %>

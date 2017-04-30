@@ -27,6 +27,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def show
+    @client_name = Client.find(@time_entry.matter.client_id).name
   end
 
   def destroy
