@@ -2,3 +2,11 @@
 <ul><% @time_entries.each do |time_entry| %>
   <li><%= link_to time_entry.id, time_entry_path(time_entry) %> | <%= time_entry.lawyer.name %> | <%= time_entry.matter.client.name %> | <%= time_entry.matter.name %> | <%= time_entry.date %> | <%= time_entry.duration %> hrs. | <%= time_entry.billable? ? "Billable" : "Non-billable" %></li>
 <% end %></ul>
+<hr>
+
+<h4>Clients with outstanding balances:</h4>
+<% TimeEntry.outstanding_clients.each do |client| %>
+  <li><%= link_to client.name, client_path(client) %></li>
+<% end %><br>
+<hr>
+<br><b>Current Accounts Receivable: <%= number_to_currency(TimeEntry.accounts_receivable) %></b>

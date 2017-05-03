@@ -1,3 +1,5 @@
-<ul><% @clients.each do |client| %>
+<h3>Clients</h3>
+
+<ol><% @clients.each do |client| %>
   <li><%= link_to "#{client.name}", client_path(client) %> | <%= client.address %> | <%= client.phone %> | <%= client.email %></li>
-<% end %></ul>
+<% end %></ol>
