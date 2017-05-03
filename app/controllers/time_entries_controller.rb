@@ -23,7 +23,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def update
-    @time_entry.rate ||= Lawyer.current_rate(params[:lawyer_id])
+    @time_entry.rate ||= Lawyer.current_rate(time_entry_params[:lawyer_id])
     @time_entry.update(time_entry_params)
     redirect_to @time_entry
   end

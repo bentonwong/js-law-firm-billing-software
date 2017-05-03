@@ -9,4 +9,7 @@
 <h4>Client Matters</h4>
 <ol><% @client.matters.each do |matter| %>
   <li><%= link_to matter.name, matter_path(matter) %></li>
-<% end %></ol>
+<% end %></ol><br>
+<hr>
+<h4>Client Billing</h4>
+<p>Outstanding Balance: <%= number_to_currency(@client.total_outstanding_balance) %></p>
