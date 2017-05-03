@@ -1,0 +1,3 @@
+<ul><% @cases.each do |case| %>
+  <li><%= link_to "#{case.name}", case_path(case) %></li>
+<% end %></ul>

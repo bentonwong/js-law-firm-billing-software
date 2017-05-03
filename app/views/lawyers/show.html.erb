@@ -1,5 +1,9 @@
 <h3><%= @lawyer.name %></h3>
-<p><%= @lawyer.email %></p>
-<p>$<%= @lawyer.rate %>/hr.</p>
-
-<%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %>
+<p>Email: <%= @lawyer.email %></p>
+<p>Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.</p>
+<%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %><br>
+<hr>
+<h4>Clients | Matters </h4>
+<ol><% @lawyer.matters.each do |matter| %>
+  <li><%= link_to matter.client.name, client_path(matter.client) %> • <%= link_to matter.name, matter_path(matter) %></li>
+<% end %></ol>
