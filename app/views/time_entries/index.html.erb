@@ -1,4 +1,4 @@
 <h3>Time Entries</h3>
 <ul><% @time_entries.each do |time_entry| %>
-  <li><%= link_to time_entry.id, time_entry_path(time_entry) %> | <%= time_entry.lawyer.name %> | <%= time_entry.matter.client.name %> | <%= time_entry.matter.name %> | <%= time_entry.duration %> | <%= time_entry.billable? ? "Billable" : "Non-billable" %></li>
+  <li><%= link_to time_entry.id, time_entry_path(time_entry) %> | <%= time_entry.lawyer.name %> | <%= time_entry.matter.client.name %> | <%= time_entry.matter.name %> | <%= time_entry.date %> | <%= time_entry.duration %> hrs. | <%= time_entry.billable? ? "Billable" : "Non-billable" %></li>
 <% end %></ul>

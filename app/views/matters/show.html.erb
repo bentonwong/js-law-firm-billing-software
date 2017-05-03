@@ -14,4 +14,4 @@
   <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
 <% end %>
 
-<h4>Outstanding balance: <%= number_to_currency(@matter.calculate_invoice) %></h4>
+<h4>Outstanding balance: <%= number_to_currency(@matter.calculate_matter_invoice) %></h4>
