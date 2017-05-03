@@ -8,8 +8,24 @@
 
 <% @client.matters.each do |matter| %>
   <h4>Matter: <%= matter.name %></h4>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Duration (hrs.)</th>
+      <th>Rate</th>
+      <th>Lawyer</th>
+      <th>Note</th>
+    </tr>
   <% matter.time_entries.each do |time_entry| %>
-    <li><%= time_entry.date %> | <%= time_entry.description %> | <%= time_entry.duration %> | <%= number_to_currency(time_entry.rate) %> | <%= time_entry.lawyer.name %> | <%= time_entry.billable? ? number_to_currency(time_entry.cost) : "(no charge)" %></li>
+    <tr>
+      <td><%= time_entry.date %></td></td>
+      <td><%= time_entry.description %></td>
+      <td><%= time_entry.duration %></td>
+      <td><%= number_to_currency(time_entry.rate) %></td>
+      <td><%= time_entry.lawyer.name %></td>
+      <td><%= time_entry.billable? ? number_to_currency(time_entry.cost) : "(no charge)" %></td>
+    </tr>
   <% end %>
 <% end %>
 <h4>Balance Due: <%= number_to_currency(@client.total_outstanding_balance) %></h4>

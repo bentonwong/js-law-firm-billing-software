@@ -1,12 +1,34 @@
 <h3>Time Entries</h3>
+<table>
+  <tr>
+    <th>id.</th>
+    <th>Lawyer</th>
+    <th>Client</th>
+    <th>Matter</th>
+    <th>Date</th>
+    <th>Duration</th>
+    <th>Billable?</th>
+  </tr>
 <ul><% @time_entries.each do |time_entry| %>
-  <li><%= link_to time_entry.id, time_entry_path(time_entry) %> | <%= time_entry.lawyer.name %> | <%= time_entry.matter.client.name %> | <%= time_entry.matter.name %> | <%= time_entry.date %> | <%= time_entry.duration %> hrs. | <%= time_entry.billable? ? "Billable" : "Non-billable" %></li>
+  <tr>
+    <td><%= link_to time_entry.id, time_entry_path(time_entry) %></td>
+    <td><%= time_entry.lawyer.name %></td>
+    <td><%= time_entry.matter.client.name %></td>
+    <td><%= time_entry.matter.name %></td>
+    <td><%= time_entry.date %></td>
+    <td><%= time_entry.duration %> hrs.</td>
+    <td><%= time_entry.billable? ? "Billable" : "Non-billable" %></td>
+  </tr
 <% end %></ul>
+</table>
+
+<hr>
+
+<b>Current Accounts Receivable: <%= number_to_currency(TimeEntry.accounts_receivable) %></b><br>
+
 <hr>
 
 <h4>Clients with outstanding balances:</h4>
-<% TimeEntry.outstanding_clients.each do |client| %>
+<ol><% TimeEntry.outstanding_clients.each do |client| %>
   <li><%= link_to client.name, client_path(client) %></li>
-<% end %><br>
-<hr>
-<br><b>Current Accounts Receivable: <%= number_to_currency(TimeEntry.accounts_receivable) %></b>
+<% end %>

@@ -2,5 +2,5 @@
 <%= button_to 'Enter new matter', new_matter_path, method: "get" %>
 
 <ol><% @matters.each do |matter| %>
-  <li><%= link_to "#{matter.name}", matter_path(matter) %></li>
+  <li><%= link_to matter.name, matter_path(matter) %> (Client: <%= link_to matter.client.name, client_path(matter.client) %>)</li>
 <% end %></ol>

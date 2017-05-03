@@ -3,9 +3,9 @@
 <%= form_for(@time_entry) do |f| %>
 
   <%= f.label :matter %><br>
-  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, include_blank: true %><br><br>
+  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, include_blank: true %><br>
   <%= f.label :date %><br>
-  <%= f.text_field :date %><br>
+  <%= f.date_select :date, :order => [:month, :day, :year] %><br>
   <%= f.label :duration %><br>
   <%= f.text_field :duration %><br>
   <%= f.label :description %><br>
