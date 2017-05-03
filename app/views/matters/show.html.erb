@@ -11,7 +11,7 @@
   <li><b>Description: </b><%= time_entry.description %></li>
   <li>Duration: <%= time_entry.duration %> hrs. | Rate: <%= number_to_currency(time_entry.rate) %>/hr.</li>
   <li>Attorney: <%= time_entry.lawyer.name %></li>
-  <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "Paid" : "Unpaid" %></li>
+  <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
 <% end %>
 
 <h4>Outstanding balance: <%= number_to_currency(@matter.calculate_invoice) %></h4>

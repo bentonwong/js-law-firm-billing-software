@@ -5,7 +5,7 @@ class Matter < ApplicationRecord
 
   def calculate_invoice
     billable_entries = self.time_entries.select {|time_entry| time_entry[:billable] && !time_entry[:paid]}
-    billable_entries.collect {|time_entry| time_entry[:rate] * time_entry[:duration]}.sum
+    billable_entries.sum {|time_entry| time_entry[:rate] * time_entry[:duration]}
   end
 
 end

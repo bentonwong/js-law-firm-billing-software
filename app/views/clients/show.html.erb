@@ -1,5 +1,12 @@
-<h3><%= @client.name %></h3>
-<p><%= @client.email %></p>
-<p><%= @client.address %></p>
-<p><%= @client.phone %></p>
-<%= button_to 'Edit Client', edit_client_path(@client), method: "get" %>
+<h3>Client Profile</h3>
+
+<p>Name: <%= @client.name %></p>
+<p>Email: <%= @client.email %></p>
+<p>Address: <%= @client.address %></p>
+<p>Phone: <%= @client.phone %></p>
+<%= button_to 'Edit Client', edit_client_path(@client), method: "get" %><br>
+<hr>
+<h4>Client Matters</h4>
+<ol><% @client.matters.each do |matter| %>
+  <li><%= link_to matter.name, matter_path(matter) %></li>
+<% end %></ol>
