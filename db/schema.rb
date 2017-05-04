@@ -10,19 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504163659) do
+ActiveRecord::Schema.define(version: 20170504172330) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "phone"
     t.string "email"
-  end
-
-  create_table "expenses", force: :cascade do |t|
-    t.date    "date"
-    t.text    "description"
-    t.decimal "amount",      precision: 8, scale: 2
   end
 
   create_table "lawyers", force: :cascade do |t|
@@ -32,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170504163659) do
     t.decimal "rate",            precision: 8, scale: 2
   end
 
-  create_table "matter_expenses", force: :cascade do |t|
+  create_table "matter_tags", force: :cascade do |t|
     t.integer "expense_id"
     t.integer "matter_id"
   end
@@ -41,6 +35,10 @@ ActiveRecord::Schema.define(version: 20170504163659) do
     t.integer "lawyer_id"
     t.integer "client_id"
     t.string  "name"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "time_entries", force: :cascade do |t|

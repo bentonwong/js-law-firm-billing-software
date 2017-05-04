@@ -1,5 +1,5 @@
 class MattersController < ApplicationController
-  before_action :set_matter, only: [:show, :edit, :update]
+  before_action :set_matter, only: [:show, :edit, :update, :new_expense]
 
   def index
     @matters = Matter.all

@@ -3,15 +3,16 @@
 <p>Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
 <p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
 
-
 <h4>Time Entries</h4>
-<%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
-<% @matter.time_entries.each do |time_entry| %>
-  <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
-  <li><b>Description: </b><%= time_entry.description %></li>
-  <li>Duration: <%= time_entry.duration %> hrs. | Rate: <%= number_to_currency(time_entry.rate) %>/hr.</li>
-  <li>Attorney: <%= time_entry.lawyer.name %></li>
-  <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
-<% end %>
+  <%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
+  <% @matter.time_entries.each do |time_entry| %>
+    <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
+    <li><b>Description: </b><%= time_entry.description %></li>
+    <li>Duration: <%= time_entry.duration %> hrs. | Rate: <%= number_to_currency(time_entry.rate) %>/hr.</li>
+    <li>Attorney: <%= time_entry.lawyer.name %></li>
+    <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
+  <% end %>
+
+<hr>
 
 <h4>Outstanding balance: <%= number_to_currency(@matter.calculate_matter_invoice) %></h4>
