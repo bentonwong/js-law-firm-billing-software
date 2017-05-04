@@ -1,2 +1,10 @@
-<h1>Expenses#show</h1>
-<p>Find me in app/views/expenses/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p> <%= @tag.name %> </p>
+<ul>
+    <% @tag.posts.each do |post| %>
+      <li> <%= link_to post.name, post_path(post) %> </li>
+    <% end %>
+</ul>
+
+<%= link_to 'Back', tags_path %>

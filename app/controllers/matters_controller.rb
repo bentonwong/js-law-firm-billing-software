@@ -12,7 +12,7 @@ class MattersController < ApplicationController
   def create
     matter = Matter.new(matter_params)
     if matter.save
-      redirect_to matter_path(matter)
+      redirect_to matter
     else
       redirect_to new_matter_path
     end
@@ -22,8 +22,11 @@ class MattersController < ApplicationController
   end
 
   def update
-    @matter.update(matter_params)
-    redirect_to @matter
+    if @matter.update(matter_params)
+      redirect_to @matter
+    else
+      redirect_to edit_matter_path(@matter)
+    end
   end
 
   def show
@@ -39,6 +42,6 @@ class MattersController < ApplicationController
     end
 
     def matter_params
-      params.require(:matter).permit(:name, :lawyer_id, :client_id)
+      params.require(:matter).permit(:name, :lawyer_id, :client_id, :tag_ids => [], tags_attributes: [:name])
     end
 end
