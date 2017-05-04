@@ -1,10 +1,10 @@
 <h3><%= @matter.name %></h3>
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
-<p>Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
+<p>Supervising Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
 <p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
 
 <h4>Time Entries</h4>
-  <%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
+  <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
   <% @matter.time_entries.each do |time_entry| %>
     <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
     <li><b>Description: </b><%= time_entry.description %></li>
@@ -12,6 +12,13 @@
     <li>Attorney: <%= time_entry.lawyer.name %></li>
     <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
   <% end %>
+
+<hr>
+
+<h4>Tags</h4>
+  <ul><% @matter.tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %></ul>
 
 <hr>
 

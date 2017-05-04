@@ -7,6 +7,9 @@ class TimeEntriesController < ApplicationController
 
   def new
     @time_entry = TimeEntry.new
+    if params[:id]
+      @matter = Matter.find_by(id: params[:id])
+    end
   end
 
   def create

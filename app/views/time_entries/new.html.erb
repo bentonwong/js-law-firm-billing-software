@@ -3,7 +3,7 @@
 <%= form_for(@time_entry) do |f| %>
 
   <%= f.label :matter %><br>
-  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, include_blank: true %><br>
+  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, !@matter.nil? ? {:selected => @matter.id} : {include_blank: true} %><br>
   <%= f.label :date %><br>
   <%= f.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br>
   <%= f.label :duration %><br>
