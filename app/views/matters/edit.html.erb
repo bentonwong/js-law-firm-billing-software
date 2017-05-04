@@ -4,7 +4,7 @@
 
   <%= f.label :name %>
   <%= f.text_field :name %><br><br>
-  <%= f.label :lawyer %>
+  <%= f.label :lawyer, "Supervising Lawyer" %>
   <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
   <%= f.label :client %>
   <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br><br>

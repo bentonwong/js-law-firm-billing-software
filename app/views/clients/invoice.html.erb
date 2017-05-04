@@ -18,7 +18,7 @@
         <th>Duration (hrs.)</th>
         <th>Rate</th>
         <th>Lawyer</th>
-        <th>Note</th>
+        <th>Fee</th>
       </tr>
       <% matter.time_entries.each do |time_entry| %>
         <tr>
@@ -31,7 +31,7 @@
         </tr>
       <% end %>
     </table>
-    <p>*Supervising Attorney: <%= matter.supervising_lawyer.name %> (<%= matter.supervising_lawyer.email %>)</p>
+    <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
   <% end %>
   <hr>
 <% end %>

@@ -1,5 +1,5 @@
 class Matter < ApplicationRecord
-  belongs_to :supervising_lawyer, :class_name => "Lawyer"
+  belongs_to :lawyer
   belongs_to :client
   has_many :time_entries
 
