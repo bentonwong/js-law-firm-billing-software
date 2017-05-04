@@ -42,6 +42,6 @@ class MattersController < ApplicationController
     end
 
     def matter_params
-      params.require(:matter).permit(:name, :lawyer_id, :client_id, :tag_ids => [], tags_attributes: [:name])
+      params.require(:matter).permit(:name, :lawyer_id, :client_id, :tag_ids => [], tags_attributes: [:name], notes_attributes: [:date, :content])
     end
 end

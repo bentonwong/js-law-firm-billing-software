@@ -5,7 +5,7 @@
   <%= f.label :matter %><br>
   <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, !@matter.nil? ? {:selected => @matter.id} : {include_blank: true} %><br>
   <%= f.label :date %><br>
-  <%= f.text_field :date %><br>
+  <%= f.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br> %><br>
   <%= f.label :duration %><br>
   <%= f.text_field :duration %><br>
   <%= f.label :description %><br>

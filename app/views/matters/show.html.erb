@@ -11,7 +11,7 @@
     <li>Duration: <%= time_entry.duration %> hrs. | Rate: <%= number_to_currency(time_entry.rate) %>/hr.</li>
     <li>Attorney: <%= time_entry.lawyer.name %></li>
     <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
-  <% end %>
+  <% end %><br>
 
 <hr>
 
@@ -19,6 +19,13 @@
   <ul><% @matter.tags.each do |tag| %>
     <li><%= tag.name %></li>
   <% end %></ul>
+
+<hr>
+
+<h4>Notes</h4>
+  <ol><% @matter.notes.reverse.each do |note| %>
+    <li><%= note.date %> -> <%= note.content %></li>
+  <% end %></ol>
 
 <hr>
 

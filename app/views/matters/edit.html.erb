@@ -21,6 +21,11 @@
     <% end %>
 
   <br>
+
+    <%= f.fields_for :notes, @matter.notes.build do |notes_field| %>
+      <p><%= notes_field.label :date %> <%= notes_field.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br></p>
+      <p><%= notes_field.label :content %> <%= notes_field.text_area :content %></p><br>
+   <% end %>
   <br>
 
   <%= f.submit %>

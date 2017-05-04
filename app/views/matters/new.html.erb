@@ -8,21 +8,13 @@
   <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
   <%= f.label :client %>
   <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br><br>
-
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |builder| %>
-      <p>
-        <%= builder.check_box %>
-        <%= builder.label %>
-      </p>
-    <% end %>
-    <%= f.fields_for :tags, @matter.tags.build do |tags_field| %>
-      <%= tags_field.label "Or add new tag:" %>
-      <%= tags_field.text_field :name, id: "Name" %>
-    <% end %>
-
-  <br>
-  <br>
-
+  <hr>
+  <%= f.label :note, "Add a note" %>
+  <%= f.fields_for :notes, @matter.notes.build do |notes_field| %>
+    <p><%= notes_field.label :date %> <%= notes_field.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br></p>
+    <p><%= notes_field.label :content %> <%= notes_field.text_area :content %></p>
+   <% end %>
+  <hr>
   <%= f.submit %>
 
 

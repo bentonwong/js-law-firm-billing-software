@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504175123) do
+ActiveRecord::Schema.define(version: 20170504220916) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20170504175123) do
     t.decimal "rate",            precision: 8, scale: 2
   end
 
+  create_table "matter_notes", force: :cascade do |t|
+    t.integer "matter_id"
+    t.integer "note_id"
+  end
+
   create_table "matter_tags", force: :cascade do |t|
     t.integer "tag_id"
     t.integer "matter_id"
@@ -35,6 +40,11 @@ ActiveRecord::Schema.define(version: 20170504175123) do
     t.integer "lawyer_id"
     t.integer "client_id"
     t.string  "name"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.date "date"
+    t.text "content"
   end
 
   create_table "tags", force: :cascade do |t|
