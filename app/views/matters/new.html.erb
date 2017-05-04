@@ -4,10 +4,17 @@
 
   <%= f.label :name %>
   <%= f.text_field :name %><br><br>
-  <%= f.label :lawyer %>
+
+  <%= f.fields_for :attributes do |attributes_form| %>
+    <%= attributes_form.label :supervising_lawyer %>
+    <%= attributes_form.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
+    <%= attributes_form.label :client %>
+    <%= attributes_form.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br><br>
+  <% end %>
+  <!--<%= f.label :supervising_lawyer, "Supervising Lawyer" %>
   <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
   <%= f.label :client %>
-  <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br><br>
+  <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br><br>-->
 
   <%= f.submit %>
 
