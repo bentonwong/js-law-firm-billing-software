@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :authorized?, except: [:new, :home]
+
   def home
     if session[:user_id]
       redirect_to matters_path

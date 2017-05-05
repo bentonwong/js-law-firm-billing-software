@@ -1,5 +1,6 @@
 class MattersController < ApplicationController
   before_action :set_matter, only: [:show, :edit, :update, :new_expense]
+  before_action :authorized?
 
   def index
     @matters = Matter.all

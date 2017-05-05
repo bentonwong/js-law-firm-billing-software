@@ -1,5 +1,6 @@
 class LawyersController < ApplicationController
   before_action :set_lawyer, only: [:show, :edit, :update]
+  before_action :authorized?, except: [:new]
 
   def index
     @lawyers = Lawyer.all
@@ -20,9 +21,7 @@ class LawyersController < ApplicationController
   end
 
   def edit
-    if session[:lawyer_id] != params[:id]
-      redirect_to lawyer_path(current_user)
-    end
+    redirect_to lawyer_path(current_user) if session[:lawyer_id] != params[:id].to_i
   end
 
   def update
