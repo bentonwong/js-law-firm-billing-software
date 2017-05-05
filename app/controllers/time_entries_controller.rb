@@ -13,12 +13,12 @@ class TimeEntriesController < ApplicationController
   end
 
   def create
-    time_entry = TimeEntry.new(time_entry_params)
-    time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
-    if time_entry.save
-      redirect_to time_entry_path(time_entry)
+    @time_entry = TimeEntry.new(time_entry_params)
+    if @time_entry.save
+      @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
+      redirect_to time_entry_path(@time_entry)
     else
-      redirect_to new_time_entry_path
+      render :new
     end
   end
 

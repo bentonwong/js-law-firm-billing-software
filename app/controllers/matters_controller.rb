@@ -10,11 +10,11 @@ class MattersController < ApplicationController
   end
 
   def create
-    matter = Matter.new(matter_params)
-    if matter.save
-      redirect_to matter
+    @matter = Matter.new(matter_params)
+    if @matter.save
+      redirect_to @matter
     else
-      redirect_to new_matter_path
+      render :new
     end
   end
 

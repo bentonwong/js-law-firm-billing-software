@@ -10,11 +10,11 @@ class LawyersController < ApplicationController
   end
 
   def create
-    lawyer = Lawyer.new(lawyer_params)
-    if lawyer.save
-      redirect_to lawyer_path(lawyer)
+    @lawyer = Lawyer.new(lawyer_params)
+    if @lawyer.save
+      redirect_to lawyer_path(@lawyer)
     else
-      redirect_to new_lawyer_path
+      render :new
     end
   end
 
