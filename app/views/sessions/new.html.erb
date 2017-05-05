@@ -1,7 +1,8 @@
+<h3>Lawyer Sign In</h3>
 <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
-  <label>Name </label><br>
-  <input name=user[email]><br><br>
+  <label>Email </label><br>
+  <input name=lawyer[email]><br><br>
   <label>Password </label><br>
-  <input name=user[password]><br><br><br>
+  <input name=lawyer[password]><br><br><br>
   <input type=submit value='Sign In' id='Sign In'>
 <% end %>

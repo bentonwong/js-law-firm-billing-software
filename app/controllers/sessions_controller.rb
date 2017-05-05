@@ -9,21 +9,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:user][:email].blank? || params[:user][:password].blank?
+    if params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
       redirect_to sessions_new_path
     else
-      @lawyer = Lawyer.find_by(name: params[:user][:email])
-      if !!@lawyer && @lawyer.authenticate(params[:user][:password])
-        session[:user_id] = @lawyer.id
+      @lawyer = Lawyer.find_by(name: params[:lawyer][:email])
+      if !!@lawyer && @lawyer.authenticate(params[:lawyer][:password])
+        session[:lawyer_id] = @lawyer.id
         redirect_to lawyer_path(@lawyer)
       else
-        redirect_to signin_path
+        render :'sessions/new'
       end
     end
   end
 
   def destroy
-    session.delete :user_id
+    session.delete :lawyer_id
     redirect_to root_path
   end
 

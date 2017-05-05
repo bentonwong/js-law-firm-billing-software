@@ -1,2 +1,14 @@
-<%= link_to "Sign Up", new_user_path, id: "Sign Up" %>
-<%= link_to "Sign In", "/signin", id: "Sign In" %>
+<h3>Law Firm Billing System</h3>
+
+<img src="http://i.imgur.com/oVhVBGu.jpg" alt="Time is money!">
+
+<div>
+    <div style="float:left;">
+      <%= button_to "Sign Up", "/signup", method: "get", id: "Sign Up" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to "Sign In", "/signin", method: "get", id: "Sign In" %>
+    </div>
+    <div style="clear:both;">
+    </div>
+</div>
