@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'sessions/home'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   resources :lawyers, only: [:index, :new, :create, :edit, :update, :show]
   resources :clients, only: [:index, :new, :create, :edit, :update, :show]
   resources :matters, only: [:index, :new, :create, :edit, :update, :show]
