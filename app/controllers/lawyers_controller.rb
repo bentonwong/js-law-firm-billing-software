@@ -20,6 +20,9 @@ class LawyersController < ApplicationController
   end
 
   def edit
+    if session[:lawyer_id] != params[:id]
+      redirect_to lawyer_path(current_user)
+    end
   end
 
   def update
