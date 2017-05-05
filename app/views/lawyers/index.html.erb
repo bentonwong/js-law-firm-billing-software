@@ -1,4 +1,19 @@
 <h3>Lawyers</h3>
+
+<div>
+    <div style="float:left;">
+      <%= button_to 'See All Matters', '/matters', method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'See All Clients', '/clients', method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'Logout', '/logout', method: "get" %>
+    </div>
+    <div style="clear:both;">
+    </div>
+</div>
+
 <ul><% @lawyers.each do |lawyer| %>
   <li><%= link_to "#{lawyer.name}", lawyer_path(lawyer) %></li>
 <% end %></ul>

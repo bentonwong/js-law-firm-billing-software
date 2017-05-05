@@ -1,17 +1,41 @@
 <h3><%= @lawyer.name %></h3>
 <p>Email: <%= @lawyer.email %></p>
 <p>Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.</p>
-<%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %><br>
-<%= button_to 'Logout', '/logout', method: "get" %><br>
+
+<div>
+    <div style="float:left;">
+      <%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'See All Lawyers', '/lawyers', method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'See All Matters', '/matters', method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'See All Clients', '/clients', method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'Logout', '/logout', method: "get" %>
+    </div>
+    <div style="clear:both;">
+    </div>
+</div>
+
 <hr>
-<table>
-  <tr>
-    <th>Client</th>
-    <th>Matter</th>
-  </tr>
-<% @lawyer.matters.each do |matter| %>
-  <tr>
-    <td><%= link_to matter.client.name, client_path(matter.client) %></td>
-    <td><%= link_to matter.name, matter_path(matter) %></td>
-  </tr>
+
+<% if !@lawyer.matters.blank? %>
+  <table>
+    <tr>
+      <th>Client</th>
+      <th>Matter</th>
+    </tr>
+  <% @lawyer.matters.each do |matter| %>
+    <tr>
+      <td><%= link_to matter.client.name, client_path(matter.client) %></td>
+      <td><%= link_to matter.name, matter_path(matter) %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <%= "*This lawyer is not supervising any matters at this time." %>
 <% end %>

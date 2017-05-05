@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'pry'
 gem 'validates_email_format_of'
+gem 'pundit'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
