@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :invoice]
+  before_action :authorized?
 
   def index
     @clients = Client.all
@@ -44,6 +45,5 @@ class ClientsController < ApplicationController
     def set_client
       @client = Client.find_by(id: params[:id])
     end
-
 
 end

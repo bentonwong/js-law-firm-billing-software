@@ -8,15 +8,13 @@ class TimeEntriesController < ApplicationController
 
   def new
     @time_entry = TimeEntry.new
-    if params[:id]
-      @matter = Matter.find_by(id: params[:id])
-    end
+    @matter = Matter.find_by(id: params[:id]) if params[:id]
   end
 
   def create
     @time_entry = TimeEntry.new(time_entry_params)
+    set_atty_rate
     if @time_entry.save
-      @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
       redirect_to time_entry_path(@time_entry)
     else
       render :new
@@ -27,7 +25,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def update
-    @time_entry.rate ||= Lawyer.current_rate(time_entry_params[:lawyer_id])
+    set_atty_rate
     @time_entry.update(time_entry_params)
     redirect_to @time_entry
   end
@@ -42,11 +40,15 @@ class TimeEntriesController < ApplicationController
   private
 
     def time_entry_params
-      params.require(:time_entry).permit(:matter_id, :date, :duration, :description, :lawyer_id, :billable, :paid)
+      params.require(:time_entry).permit(:matter_id, :date, :duration, :description, :lawyer_id, :rate, :billable, :paid)
     end
 
     def set_time_entry
       @time_entry = TimeEntry.find_by(id: params[:id])
+    end
+
+    def set_atty_rate
+      @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
     end
 
 end

@@ -7,8 +7,19 @@
 <hr>
   <p>Duration: <%= @time_entry.duration %> hours</p>
   <p>Attorney: <%= @time_entry.lawyer.name %></p>
+  <p>Rate: <%= @time_entry.rate %></p>
 <hr>
   <p>Billable: <%= @time_entry.billable? ? "Yes" : "No" %></p>
   <p>Paid: <%= @time_entry.paid? ? "PAID" : "UNPAID" %></p>
 <hr>
-<%= button_to 'Edit time entry', edit_time_entry_path(@time_entry), method: "get" %>
+
+<div>
+    <div style="float:left;">
+      <%= button_to 'Edit Time Entry', edit_time_entry_path(@time_entry), method: "get" %>
+    </div>
+    <div style="float:left;">
+      <%= button_to 'See Related Matter', matter_path(@time_entry.matter), method: "get" %>
+    </div>
+    <div style="clear:both;">
+    </div>
+</div>

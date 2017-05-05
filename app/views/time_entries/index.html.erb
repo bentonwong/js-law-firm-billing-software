@@ -1,4 +1,5 @@
 <h3>Time Entries</h3>
+<%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
 <table>
   <tr>
     <th>id.</th>
@@ -7,17 +8,20 @@
     <th>Matter</th>
     <th>Date</th>
     <th>Duration</th>
+    <th>Rate</th>
     <th>Billable?</th>
   </tr>
 <ul><% @time_entries.each do |time_entry| %>
   <tr>
     <td><%= link_to time_entry.id, time_entry_path(time_entry) %></td>
-    <td><%= time_entry.lawyer.name %></td>
-    <td><%= time_entry.matter.client.name %></td>
-    <td><%= time_entry.matter.name %></td>
+    <td><%= link_to time_entry.lawyer.name, time_entry.lawyer %></td>
+    <td><%= link_to time_entry.matter.client.name, time_entry.matter.client %></td>
+    <td><%= link_to time_entry.matter.name, time_entry.matter %></td>
     <td><%= time_entry.date %></td>
     <td><%= time_entry.duration %> hrs.</td>
+    <td><%= time_entry.rate %></td>
     <td><%= time_entry.billable? ? "Billable" : "Non-billable" %></td>
+
   </tr
 <% end %></ul>
 </table>

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authorized?, except: [:new, :home]
+  before_action :authorized?, only: [:destroy]
 
   def home
     if session[:user_id]
