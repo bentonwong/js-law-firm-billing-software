@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def home
     if session[:user_id]
-      redirect_to attractions_path
+      redirect_to matters_path
     end
   end
 
@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:user][:name].blank? || params[:user][:password].blank?
+    if params[:user][:email].blank? || params[:user][:password].blank?
       redirect_to sessions_new_path
     else
-      @user = User.find_by(name: params[:user][:name])
-      if !!@user && @user.authenticate(params[:user][:password])
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+      @lawyer = Lawyer.find_by(name: params[:user][:email])
+      if !!@lawyer && @lawyer.authenticate(params[:user][:password])
+        session[:user_id] = @lawyer.id
+        redirect_to lawyer_path(@lawyer)
       else
         redirect_to signin_path
       end
