@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
       redirect_to sessions_new_path
     else
-      @lawyer = Lawyer.find_by(name: params[:lawyer][:email])
+      @lawyer = Lawyer.find_by(email: params[:lawyer][:email])
       if !!@lawyer && @lawyer.authenticate(params[:lawyer][:password])
         session[:lawyer_id] = @lawyer.id
         redirect_to lawyer_path(@lawyer)

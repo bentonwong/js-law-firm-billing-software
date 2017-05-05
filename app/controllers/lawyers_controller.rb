@@ -12,6 +12,7 @@ class LawyersController < ApplicationController
   def create
     @lawyer = Lawyer.new(lawyer_params)
     if @lawyer.save
+      session[:lawyer_id] = @lawyer.id
       redirect_to lawyer_path(@lawyer)
     else
       render :new
@@ -35,7 +36,7 @@ class LawyersController < ApplicationController
   private
 
     def lawyer_params
-      params.require(:lawyer).permit(:name, :email, :rate)
+      params.require(:lawyer).permit(:name, :email, :password, :rate)
     end
 
     def set_lawyer
