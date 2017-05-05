@@ -2,6 +2,7 @@
 <p>Email: <%= @lawyer.email %></p>
 <p>Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.</p>
 <%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %><br>
+<%= button_to 'Logout', '/logout', method: "get" %><br>
 <hr>
 <table>
   <tr>
