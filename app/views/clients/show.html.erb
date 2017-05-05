@@ -1,19 +1,22 @@
 <h3>Client Profile</h3>
 
   <p>Name: <%= @client.name %></p>
-  <p>Email: <%= @client.email %></p>
   <p>Address: <%= @client.address %></p>
   <p>Phone: <%= @client.phone %></p>
+  <p>Email: <%= @client.email %></p>
 
   <%= button_to 'Edit Client', edit_client_path(@client), method: "get" %><br>
 
 <hr>
 
 <h4>Client Matters</h4>
-
+<% if !@client.matters.blank? %>
   <ol><% @client.matters.each do |matter| %>
     <li><%= link_to matter.name, matter_path(matter) %></li>
-  <% end %></ol><br>
+  <% end %></ol>
+<% else %>
+  <%= "N/A" %>
+<% end %><br>
 
 <hr>
 

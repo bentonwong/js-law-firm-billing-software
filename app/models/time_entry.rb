@@ -1,6 +1,7 @@
 class TimeEntry < ApplicationRecord
   belongs_to :matter
   belongs_to :lawyer
+  validates :date, :duration, :description, :matter_id, :lawyer_id, presence: :true
 
   def cost
     rate * duration

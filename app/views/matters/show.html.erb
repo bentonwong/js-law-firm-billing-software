@@ -23,10 +23,13 @@
 <hr>
 
 <h4>Notes</h4>
+<% if !@matter.notes.blank? %>
   <ol><% @matter.notes.reverse.each do |note| %>
     <li><%= note.date %> -> <%= note.content %></li>
   <% end %></ol>
-
+<% else %>
+  <%= "N/A" %>
+<% end %><br><br>
 <hr>
 
 <h4>Outstanding balance: <%= number_to_currency(@matter.calculate_matter_invoice) %></h4>

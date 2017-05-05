@@ -6,6 +6,7 @@ class Matter < ApplicationRecord
   has_many :tags, through: :matter_tags
   has_many :matter_notes
   has_many :notes, through: :matter_notes
+  validates :name, :lawyer_id, :client_id, presence: :true
 
   def calculate_matter_invoice
     billable_entries = time_entries.select {|time_entry| time_entry[:billable] && !time_entry[:paid]}
