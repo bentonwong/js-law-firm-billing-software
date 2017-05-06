@@ -1,5 +1,12 @@
 <h3>Lawyers</h3>
 
+<ul><% @lawyers.each do |lawyer| %>
+  <li><%= link_to "#{lawyer.name}", lawyer_path(lawyer) %></li>
+<% end %></ul>
+
+<hr>
+<br>
+
 <div>
     <div style="float:left;">
       <%= button_to 'See All Matters', '/matters', method: "get" %>
@@ -13,7 +20,3 @@
     <div style="clear:both;">
     </div>
 </div>
-
-<ul><% @lawyers.each do |lawyer| %>
-  <li><%= link_to "#{lawyer.name}", lawyer_path(lawyer) %></li>
-<% end %></ul>

@@ -34,6 +34,8 @@ gem 'bcrypt'
 gem 'pry'
 gem 'validates_email_format_of'
 gem 'pundit'
+gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'omniauth'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
