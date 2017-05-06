@@ -12,7 +12,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
+    if Lawyer.from_omniauth(env["omniauth.auth"])
+      session[:lawyer_id] = @lawyer.id
+      redirect_to lawyer_path(@lawyer)
+    elsif params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
       render :new
     else
       @lawyer = Lawyer.find_by(email: params[:lawyer][:email])

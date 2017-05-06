@@ -11,6 +11,7 @@ class Lawyer < ApplicationRecord
   has_secure_password
 
   def self.from_omniauth(auth)
+    raise auth.inspect
     where(provider: auth.provider, lawyer_id: auth.lawyer_id).first_or_initialize.tap do |lawyer|
       lawyer.provider = auth.provider
       lawyer.lawyer_id = auth.lawyer_id

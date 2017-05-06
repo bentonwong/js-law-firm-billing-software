@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def current_user
-    Lawyer.find_by(id: session[:lawyer_id])
+    @current_user ||= Lawyer.find_by(id: session[:lawyer_id]) if session[:lawyer_id]
   end
 
   def signed_in?
