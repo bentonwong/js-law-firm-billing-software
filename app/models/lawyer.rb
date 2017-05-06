@@ -11,13 +11,13 @@ class Lawyer < ApplicationRecord
   has_secure_password
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
+    where(provider: auth.provider, lawyer_id: auth.lawyer_id).first_or_initialize.tap do |lawyer|
+      lawyer.provider = auth.provider
+      lawyer.lawyer_id = auth.lawyer_id
+      lawyer.name = auth.info.name
+      lawyer.oauth_token = auth.credentials.token
+      lawyer.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      lawyer.save!
     end
   end
 
