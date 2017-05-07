@@ -1,18 +1,6 @@
 <h3>Matters</h3>
 
-<div>
-    <div style="float:left;">
-      <%= button_to 'Enter new matter', new_matter_path, method: "get" %>
-    </div>
-    <div style="float:left;">
-      <%= button_to 'See All Lawyers', '/lawyers', method: "get" %>
-    </div>
-    <div style="float:left;">
-      <%= button_to 'Logout', '/logout', method: "get" %>
-    </div>
-    <div style="clear:both;">
-    </div>
-</div>
+<%= button_to 'Enter new matter', new_matter_path, method: "get" %>
 
 <ol><% @matters.each do |matter| %>
   <li><%= link_to matter.name, matter_path(matter) %> (Client: <%= link_to matter.client.name, client_path(matter.client) %>)</li>

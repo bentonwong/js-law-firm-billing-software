@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   before_action :authorized?, only: [:destroy]
 
   def home
-    if session[:user_id]
+    if signed_in?
       redirect_to matters_path
     end
   end

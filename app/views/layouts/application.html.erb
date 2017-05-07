@@ -9,9 +9,14 @@
   </head>
 
   <body>
-    <% if signed_in? %>
-      <p>Welcome, <%= link_to current_user.name, current_user %>! (<a href=/logout>logout</a>)</p>
-    <% end %>
+    <h3 style="width:100%; background-color:#09C200; margin: -2mm 0 0 -5mm; padding: 7mm 7mm;">
+      <font face="Arial" color="white" size=4>Law Firm Billing Software</font>
+    </h3>
+      <% if signed_in? %>
+        <p align="right"><font face="Arial" color="black" size=2>Welcome, <%= link_to current_user.name, current_user %>! (<a href=/logout>logout</a>)</font></p>
+      <% end %>
+    </h3>
+
     <%= yield %>
   </body>
 </html>
