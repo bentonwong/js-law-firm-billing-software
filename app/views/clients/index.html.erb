@@ -1,5 +1,6 @@
 <h3>Clients</h3>
-<%= button_to 'Enter new client', new_client_path, method: "get" %>
+  <%= button_to 'Enter new client', new_client_path, method: "get" %><br>
+<hr>
 
 <ol><% @clients.each do |client| %>
   <li><%= link_to "#{client.name}", client_path(client) %> | <%= client.address %> | <%= client.phone %> | <%= client.email %></li>

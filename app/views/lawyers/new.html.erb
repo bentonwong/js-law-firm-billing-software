@@ -1,33 +1,3 @@
 <h1>Lawyer Sign Up</h1>
-
-<%= form_for(@lawyer) do |f| %>
-
-  <% if @lawyer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lawyer.errors.count, "error") %>
-        prohibited this matter from being saved:</h2>
-
-      <ul>
-      <% @lawyer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.label :password, "Confirm Password" %><br>
-  <%= f.password_field :password_confirmation %><br>
-  <%= f.label :rate, "Hourly Rate ($/hr.)" %><br>
-  <%= f.number_field :rate %><br><br>
-
-  <%= f.submit "Sign Up" %>
-
-<% end %><br>
-
+<%= render partial: "form", locals: {lawyer: @lawyer} %>
 <%= button_to "Go Back", root_path, method: "get" %><br>

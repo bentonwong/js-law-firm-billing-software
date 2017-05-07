@@ -1,22 +1,23 @@
 <h3>Client Profile</h3>
 
-  <p>Name: <%= @client.name %></p>
-  <p>Address: <%= @client.address %></p>
-  <p>Phone: <%= @client.phone %></p>
-  <p>Email: <%= @client.email %></p>
+  Name: <%= @client.name %><br>
+  Address: <%= @client.address %><br>
+  Phone: <%= @client.phone %><br>
+  Email: <%= @client.email %><br>
 
-  <%= button_to 'Edit Client', edit_client_path(@client), method: "get" %><br>
+  <br><%= button_to 'Edit Client', edit_client_path(@client), method: "get" %><br>
 
 <hr>
 
 <h4>Client Matters</h4>
-<% if !@client.matters.blank? %>
-  <ol><% @client.matters.each do |matter| %>
-    <li><%= link_to matter.name, matter_path(matter) %></li>
-  <% end %></ol>
-<% else %>
-  <%= "N/A" %>
-<% end %><br>
+
+  <% if !@client.matters.blank? %>
+    <ol><% @client.matters.each do |matter| %>
+      <li><%= link_to matter.name, matter_path(matter) %></li>
+    <% end %></ol>
+  <% else %>
+    <%= "N/A" %><br>
+  <% end %><br>
 
 <hr>
 

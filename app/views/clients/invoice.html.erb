@@ -1,10 +1,12 @@
 <h1>Client Invoice</h1>
 
 <h3>Bill to:</h3>
-<blockquote><%= @client.name %><br>
-<%= @client.address %><br>
-<%= @client.phone %><br>
-<%= @client.email %><br></blockquote>
+<blockquote>
+  <%= @client.name %><br>
+  <%= @client.address %><br>
+  <%= @client.phone %><br>
+  <%= @client.email %><br>
+</blockquote>
 
 <% @client.matters.each do |matter| %>
   <h4>Matter: <%= matter.name %></h4>
@@ -34,5 +36,6 @@
     <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
   <% end %>
   <hr>
+
 <% end %>
 <h4>Balance Due: <%= number_to_currency(@client.total_outstanding_balance) %></h4>
