@@ -12,17 +12,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if !params[:lawyer].nil?
-      @lawyer = Lawyer.find_by(email: params[:lawyer][:email])
-      if !!@lawyer && @lawyer.authenticate(params[:lawyer][:password])
+    if !params[:provider].nil?
+      @lawyer = Lawyer.update_or_create(env["omniauth.auth"])
+      if @lawyer
         session[:lawyer_id] = @lawyer.id
         redirect_to lawyer_path(@lawyer)
       else
-        render :new
+        redirect_to new_session_path
       end
+    elsif params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
+      redirect_to new_session_path
     else
-      @lawyer = Lawyer.update_or_create(env["omniauth.auth"])
-      if @lawyer
+      @lawyer = Lawyer.find_by(email: params[:lawyer][:email])
+      if !!@lawyer && @lawyer.authenticate(params[:lawyer][:password])
         session[:lawyer_id] = @lawyer.id
         redirect_to lawyer_path(@lawyer)
       else

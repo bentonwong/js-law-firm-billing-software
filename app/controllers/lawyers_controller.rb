@@ -1,6 +1,6 @@
 class LawyersController < ApplicationController
-  before_action :set_lawyer, only: [:show, :edit, :update]
-  before_action :authorized?, except: [:new]
+  before_action :set_lawyer, only: [:show, :edit, :update, :destroy]
+  before_action :authorized?, except: [:new, :create]
 
   def index
     @lawyers = Lawyer.all
@@ -33,6 +33,8 @@ class LawyersController < ApplicationController
   end
 
   def destroy
+    @lawyer.destroy
+    redirect_to matters_path
   end
 
   private

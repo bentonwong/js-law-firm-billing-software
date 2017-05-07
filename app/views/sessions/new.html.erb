@@ -1,11 +1,4 @@
 <h3>Lawyer Sign In</h3>
-<!--<%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
-  <label>Email </label><br>
-  <input name=lawyer[email]><br><br>
-  <label>Password </label><br>
-  <input name=lawyer[password] type="password"><br><br>
-  <input type=submit value='Sign In' id='Sign In'>
-<% end %> -->
 
 <%= form_for @lawyer, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
 

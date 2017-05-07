@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :sessions, only: [:home, :new, :create, :destroy]
-  resources :lawyers, only: [:index, :new, :create, :edit, :update, :show]
+  resources :lawyers
   resources :clients, only: [:index, :new, :create, :edit, :update, :show]
   resources :matters, only: [:index, :new, :create, :edit, :update, :show]
   resources :time_entries, only: [:index, :new, :create, :edit, :update, :show]
