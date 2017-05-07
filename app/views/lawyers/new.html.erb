@@ -24,8 +24,10 @@
   <%= f.label :password, "Confirm Password" %><br>
   <%= f.password_field :password_confirmation %><br>
   <%= f.label :rate, "Hourly Rate ($/hr.)" %><br>
-  <%= f.text_field :rate %><br><br>
+  <%= f.number_field :rate %><br><br>
 
   <%= f.submit "Sign Up" %>
 
-<% end %>
+<% end %><br>
+
+<%= button_to "Go Back", root_path, method: "get" %><br>

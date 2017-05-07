@@ -1,20 +1,7 @@
 <h3>Lawyer Sign In</h3>
 
+<%= @error if @error %><br><br>
 <%= form_for @lawyer, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
-
-  <% if @lawyer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lawyer.errors.count, "error") %>
-        prohibited this matter from being saved:</h2>
-
-      <ul>
-      <% @lawyer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <%= f.label :email %><br>
   <%= f.text_field :email %><br>
   <%= f.label :password %><br>
@@ -22,4 +9,6 @@
 
   <%= f.submit "Sign In"%>
 
-<% end %>
+<% end %><br>
+
+<%= button_to "Go Back", root_path, method: "get" %><br>
