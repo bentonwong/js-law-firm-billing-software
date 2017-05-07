@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506053522) do
+ActiveRecord::Schema.define(version: 20170507010355) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 20170506053522) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.decimal  "rate",             precision: 8, scale: 2
+    t.decimal  "rate",                        precision: 8, scale: 2, default: "0.0"
     t.string   "provider"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.integer  "uid",              limit: 16
   end
 
   create_table "matter_notes", force: :cascade do |t|

@@ -36,6 +36,7 @@ gem 'validates_email_format_of'
 gem 'pundit'
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'omniauth'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
