@@ -1,6 +1,11 @@
 <h3><%= @matter.name %></h3>
+<p>Name: <%= @matter.name %></p>
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
-<p>Supervising Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
+<% if time_entry.lawyer %>
+  <p>Supervising Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
+<% else %>
+  <li>Supervising Attorney: "N/A"</li>
+<% end %>
 <p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
 <hr>
 <h4>Time Entries</h4>
@@ -9,7 +14,11 @@
     <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
     <b>Description: </b><%= time_entry.description %>
     <li>Duration: <%= time_entry.duration %> hrs. | Rate: <%= number_to_currency(time_entry.rate) %>/hr.</li>
-    <li>Attorney: <%= link_to time_entry.lawyer.name, time_entry.lawyer %></li>
+    <% if time_entry.lawyer %>
+      <li>Attorney: <%= link_to time_entry.lawyer.name, time_entry.lawyer %></li>
+    <% else %>
+      <li>Attorney: "N/A"</li>
+    <% end %>
     <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
   <% end %><br>
 

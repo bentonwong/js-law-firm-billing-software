@@ -20,13 +20,18 @@
   <%= f.label :client %>
   <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br>
 
-  <br>
+  <br><hr>
 
+  <h4><i>Add Note</i></h4>
     <%= f.fields_for :notes, matter.notes.build do |notes_field| %>
-      <p><%= notes_field.label :date %> <%= notes_field.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br></p>
-      <p><%= notes_field.label :content %> <%= notes_field.text_area :content %></p><br>
+      <p><%= notes_field.label :date %></p>
+      <%= notes_field.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br>
+      <p><%= notes_field.label :content %></p>
+      <%= notes_field.text_area :content, cols: "60", rows: "7" %>
    <% end %>
-  <br>
+
+   <br>
+   <br>
 
   <%= f.submit %>
 

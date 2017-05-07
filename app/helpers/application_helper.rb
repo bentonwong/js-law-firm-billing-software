@@ -8,6 +8,16 @@ module ApplicationHelper
     !!current_user
   end
 
+  def save_lawyer
+    if @lawyer.save
+      session.clear
+      session[:lawyer_id] = @lawyer.id
+      redirect_to lawyer_path(@lawyer)
+    else
+      render :new
+    end
+  end
+
   private
 
     def authorized?

@@ -12,12 +12,7 @@ class LawyersController < ApplicationController
 
   def create
     @lawyer = Lawyer.new(lawyer_params)
-    if @lawyer.save
-      session[:lawyer_id] = @lawyer.id
-      redirect_to lawyer_path(@lawyer)
-    else
-      render :new
-    end
+    save_lawyer
   end
 
   def edit
