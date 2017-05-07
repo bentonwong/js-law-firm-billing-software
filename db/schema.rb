@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507045752) do
+ActiveRecord::Schema.define(version: 20170507221544) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -35,11 +35,6 @@ ActiveRecord::Schema.define(version: 20170507045752) do
     t.integer "note_id"
   end
 
-  create_table "matter_tags", force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "matter_id"
-  end
-
   create_table "matters", force: :cascade do |t|
     t.integer "lawyer_id"
     t.integer "client_id"
@@ -49,10 +44,6 @@ ActiveRecord::Schema.define(version: 20170507045752) do
   create_table "notes", force: :cascade do |t|
     t.date "date"
     t.text "content"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
   end
 
   create_table "time_entries", force: :cascade do |t|

@@ -15,13 +15,6 @@
 
 <hr>
 
-<h4>Tags</h4>
-  <ul><% @matter.tags.each do |tag| %>
-    <li><%= tag.name %></li>
-  <% end %></ul>
-
-<hr>
-
 <h4>Notes</h4>
 <% if !@matter.notes.blank? %>
   <ol><% @matter.notes.reverse.each do |note| %>

@@ -22,8 +22,7 @@ class Lawyer < ApplicationRecord
       email: auth[:info][:email],
       name: auth[:info][:name],
       oauth_token: auth[:credentials][:token],
-      oauth_expires_at: auth[:credentials][:expires_at],
-
+      oauth_expires_at: auth[:credentials][:expires_at]
     }
     lawyer.password = SecureRandom.hex(9) if !lawyer.password_digest
     lawyer.save!
