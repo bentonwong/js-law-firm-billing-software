@@ -12,22 +12,14 @@ class MattersController < ApplicationController
 
   def create
     @matter = Matter.new(matter_params)
-    if @matter.save
-      redirect_to @matter
-    else
-      render :new
-    end
+    save_matter
   end
 
   def edit
   end
 
   def update
-    if @matter.update(matter_params)
-      redirect_to @matter
-    else
-      redirect_to edit_matter_path(@matter)
-    end
+    update_matter
   end
 
   def show

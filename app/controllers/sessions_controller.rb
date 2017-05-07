@@ -2,9 +2,7 @@ class SessionsController < ApplicationController
   before_action :authorized?, only: [:destroy]
 
   def home
-    if signed_in?
-      redirect_to matters_path
-    end
+    redirect_to matters_path if signed_in?
   end
 
   def new
@@ -14,31 +12,12 @@ class SessionsController < ApplicationController
 
   def create
     if !params[:provider].nil?
-      @lawyer = Lawyer.update_or_create(env["omniauth.auth"])
-      if @lawyer
-        session.clear
-        session[:lawyer_id] = @lawyer.id
-        redirect_to lawyer_path(@lawyer)
-      else
-        @error = 'Alert: Invalid credentials!'
-        @lawyer = Lawyer.new
-        render :new
-      end
+      validate_oauth
     elsif params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
       @error = 'ALERT: Email or password cannot be left blank!'
-      @lawyer = Lawyer.new
-      render :new
+      redirect_to_signin_form_with_errors
     else
-      @lawyer = Lawyer.find_by(email: params[:lawyer][:email])
-      if !!@lawyer && @lawyer.authenticate(params[:lawyer][:password])
-        session.clear
-        session[:lawyer_id] = @lawyer.id
-        redirect_to lawyer_path(@lawyer)
-      else
-        @error = 'ALERT: Email or password are incorrect!'
-        @lawyer = Lawyer.new
-        render :new
-      end
+      validate_signin
     end
   end
 
