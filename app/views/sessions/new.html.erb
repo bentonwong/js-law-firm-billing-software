@@ -1,6 +1,9 @@
 <h3>Lawyer Sign In</h3>
 
-<%= @error if @error %><br><br>
+<% if @error %>
+  <%= @error %><br><br>
+<% end %>
+
 <%= form_for @lawyer, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
   <%= f.label :email %><br>
   <%= f.text_field :email %><br>
