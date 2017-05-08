@@ -7,6 +7,8 @@
 
 <h4>Time Entries for <%= @matter.name %></hr>
 
+<%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
+
 <% @matter.time_entries.each do |time_entry| %>
   <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
   <b>Description: </b><%= time_entry.description %>
