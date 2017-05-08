@@ -25,4 +25,4 @@
 
   <p>Outstanding Balance: <%= number_to_currency(@client.total_outstanding_balance) %></p>
 
-  <%= button_to 'Print Invoice', client_invoice_path(@client), method: "get" %><br>
+  <%= button_to 'View Current Invoice', client_invoice_path(@client), method: "get" %><br>

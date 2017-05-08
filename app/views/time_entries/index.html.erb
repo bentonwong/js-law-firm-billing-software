@@ -1,16 +1,9 @@
 <h3>Time Entries</h3>
 
-<div>
-  <div style="float:left;">
-    <%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
-  </div>
-  <div style="float:left;">
-    <%= button_to "View all matters", matters_path, method: 'get' %>
-  </div>
-  <div style="clear:both;">
-  </div>
-</div>
+<%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
 
+<br>
+<hr>
 
 <table>
   <tr>
@@ -48,4 +41,4 @@
 <h4>Clients with outstanding balances:</h4>
 <ol><% TimeEntry.outstanding_clients.each do |client| %>
   <li><%= link_to client.name, client_path(client) %></li>
-<% end %>
+<% end %></ol>

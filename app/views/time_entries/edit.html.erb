@@ -1,19 +1,10 @@
 <h1>Edit Time Entry</h1>
 <%= render partial: "form", locals: {time_entry: @time_entry, matter: @matter} %>
-
-<br>
-<hr>
 <br>
 
-<div>
-    <% if current_user == @time_entry.matter.lawyer %>
-      <div style="float:left;">
-        <%= button_to "Delete Time Entry", @time_entry, method: 'delete' %>
-      </div>
-    <% end %>
-    <div style="float:left;">
-    <%= button_to "Go Back to Time Entries", time_entries_path, method: 'get' %>
-    </div>
-    <div style="clear:both;">
-    </div>
-</div>
+<% if current_user == @time_entry.matter.lawyer %>
+  <hr>
+  <br>
+  <%= button_to "Delete Time Entry", @time_entry, method: 'delete' %>
+  <br>
+<% end %>

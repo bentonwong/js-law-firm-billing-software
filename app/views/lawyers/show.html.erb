@@ -6,25 +6,13 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
 
 <br>
 
-<div>
-
-    <div style="float:left;">
-      <%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" if current_user == @lawyer %>
-    </div>
-    <div style="float:left;">
-      <%= button_to 'See All Lawyers', '/lawyers', method: "get" %>
-    </div>
-    <div style="float:left;">
-      <%= button_to 'See All Matters', '/matters', method: "get" %>
-    </div>
-    <div style="clear:both;">
-    </div>
-</div>
+<%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" if current_user == @lawyer %>
 
 <br>
 <hr>
 
 <% if !@lawyer.matters.blank? %>
+  <h4>Matters This Lawyer Is Supervising</h4>
   <table>
     <tr>
       <th>Client</th>
@@ -36,6 +24,8 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
       <td><%= link_to matter.name, matter_path(matter) %></td>
     </tr>
   <% end %>
+  </table>
 <% else %>
-  <br><%= "*This lawyer is not supervising any matters at this time." %>
-<% end %>
+  <br>
+  <p>*This lawyer is not supervising any matters at this time.</p>
+<% end %><br>
