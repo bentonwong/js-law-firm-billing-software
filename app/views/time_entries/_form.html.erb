@@ -16,15 +16,15 @@
   <%= f.label :matter %><br>
   <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, !matter.nil? ? {:selected => matter.id} : {include_blank: true} %><br>
   <%= f.label :date %><br>
-  <%= f.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br><br>
+  <%= f.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br>
   <%= f.label :duration %><br>
   <%= f.text_field :duration %><br>
   <%= f.label :rate %><br>
-  <%= f.text_field :rate %><br>
+  <%= f.text_field :rate, !matter.nil? ? {:value => matter.lawyer.rate} : {include_blank: true} %><br>
   <%= f.label :description %><br>
   <%= f.text_area :description %><br>
   <%= f.label :lawyer %><br>
-  <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, include_blank: true %><br><br>
+  <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, !matter.nil? ? {:selected => current_user.id} : {include_blank: true} %><br><br>
   <%= f.label :billable %>
   <%= f.check_box :billable %>
   <%= f.label :paid %>

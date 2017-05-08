@@ -9,19 +9,18 @@
 <p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
 <hr>
 <h4>Time Entries</h4>
-  <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
-  <% @matter.time_entries.each do |time_entry| %>
-    <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
-    <b>Description: </b><%= time_entry.description %>
-    <li>Duration: <%= time_entry.duration %> hrs. | Rate: <%= number_to_currency(time_entry.rate) %>/hr.</li>
-    <% if time_entry.lawyer %>
-      <li>Attorney: <%= link_to time_entry.lawyer.name, time_entry.lawyer %></li>
-    <% else %>
-      <li>Attorney: "N/A"</li>
-    <% end %>
-    <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
-  <% end %><br>
+  <div>
+      <div style="float:left;">
+        <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
+      </div>
+      <div style="float:left;">
+        <%= button_to 'View matter time entries', matter_time_entries_path(@matter), method: "get" %>
+      </div>
+      <div style="clear:both;">
+      </div>
+  </div>
 
+<br>
 <hr>
 
 <h4>Notes</h4>

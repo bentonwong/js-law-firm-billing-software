@@ -2,7 +2,7 @@ class TimeEntry < ApplicationRecord
   belongs_to :matter
   belongs_to :lawyer
   validates :date, :duration, :description, :matter_id, :lawyer_id, presence: :true
-  validates :duration, numericality: { greater_than_or_equal_to: 0 }
+  validates :duration, :rate, numericality: { greater_than_or_equal_to: 0 }
   validates :description, length: { in: 2..500 }
 
   def cost

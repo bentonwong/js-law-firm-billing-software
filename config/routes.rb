@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   resources :sessions, only: [:home, :new, :create, :destroy]
-  resources :lawyers
+  resources :lawyers, only: [:index, :new, :create, :edit, :update, :show]
   resources :clients, only: [:index, :new, :create, :edit, :update, :show]
   resources :matters, only: [:index, :new, :create, :edit, :update, :show]
-  resources :time_entries, only: [:index, :new, :create, :edit, :update, :show]
+  resources :time_entries
 
   get "clients/:id/invoice" => "clients#invoice", as: :client_invoice
   get "matters/:id/time_entries" =>  "matters#time_entries", as: :matter_time_entries

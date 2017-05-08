@@ -1,5 +1,5 @@
 class TimeEntriesController < ApplicationController
-  before_action :set_time_entry, only: [:show, :edit, :update]
+  before_action :set_time_entry, only: [:show, :edit, :update, :destroy]
   before_action :authorized?
 
   def index
@@ -13,7 +13,7 @@ class TimeEntriesController < ApplicationController
 
   def create
     @time_entry = TimeEntry.new(time_entry_params)
-    set_atty_rate
+    set_atty_rate if !time_entry_params[:lawyer_id].blank?
     save_time_entry
   end
 
@@ -21,7 +21,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def update
-    set_atty_rate
+    set_atty_rate if time_entry_params[:lawyer_id]
     @time_entry.update(time_entry_params)
     redirect_to @time_entry
   end
@@ -31,6 +31,8 @@ class TimeEntriesController < ApplicationController
   end
 
   def destroy
+    @time_entry.destroy
+    redirect_to time_entries_path
   end
 
   private
@@ -41,10 +43,6 @@ class TimeEntriesController < ApplicationController
 
     def set_time_entry
       @time_entry = TimeEntry.find_by(id: params[:id])
-    end
-
-    def set_atty_rate
-      @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
     end
 
 end

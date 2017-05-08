@@ -34,6 +34,10 @@ module ApplicationHelper
     end
   end
 
+  def set_atty_rate
+    @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
+  end
+
   def save_time_entry
     if @time_entry.save
       redirect_to time_entry_path(@time_entry)

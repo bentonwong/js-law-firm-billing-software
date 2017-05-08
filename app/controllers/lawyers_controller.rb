@@ -27,11 +27,6 @@ class LawyersController < ApplicationController
   def show
   end
 
-  def destroy
-    @lawyer.destroy
-    redirect_to matters_path
-  end
-
   private
 
     def lawyer_params
