@@ -1,18 +1,19 @@
-#goal: create a view that lists all the time entries for a particular matter accessible by the nested URL /matters/:id/time_entries
-#steps
-#1 create view
-#2 create controller action
-#3 set route
-#4 test and refactor
-
-<h4>Time Entries for <%= @matter.name %></hr>
+<h4>Time Entries for <%= @matter.name %></h4>
 
 <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
 
+<br>
+<hr>
+
 <% @matter.time_entries.each do |time_entry| %>
   <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
-  <b>Description: </b><%= time_entry.description %>
-  <li>Duration: </li><%= time_entry.duration %>
-  <li>Attorney: </li><%= time_entry.lawyer? ? (link_to time_entry.lawyer.name, time_entry.lawyer) : "N/A" %></li>
+  <li><b>Description: </b><%= time_entry.description %></li>
+  <li>Duration: <%= time_entry.duration %> hrs.</li>
+  <li>Attorney: <%= time_entry.lawyer.name %></li>
+  <li>Rate: <%= number_to_currency(time_entry.lawyer.rate) %>/hr.</li>
   <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
 <% end %>
+
+<br>
+
+<%= button_to 'Go Back to Matter', matter_path(@matter), method: "get" %>
