@@ -1,14 +1,17 @@
 <h3><%= @matter.name %></h3>
 <p>Name: <%= @matter.name %></p>
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
-<% if @matter.lawyer %>
-  <p>Supervising Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
-<% else %>
-  <li>Supervising Attorney: "N/A"</li>
+
+<p>Supervising Attorney: <%= !@matter.lawyer.nil? ? (link_to @matter.lawyer.name, lawyer_path(@matter.lawyer)) : "N/A" %></p>
+
+<% if current_user == @matter.lawyer %>
+  <p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
 <% end %>
-<p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
+
 <hr>
+
 <h4>Time Entries</h4>
+  <p>Number of entries: <%= @matter.time_entries.count %></p>
   <div>
       <div style="float:left;">
         <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
@@ -29,8 +32,8 @@
     <li><%= note.date %> -> <%= note.content %></li>
   <% end %></ol>
 <% else %>
-  <%= "N/A" %>
-<% end %><br>
+  <%= "N/A" %><br>
+<% end %>
 <hr>
 
 <h4>Outstanding balance: <%= number_to_currency(@matter.calculate_matter_invoice) %></h4>

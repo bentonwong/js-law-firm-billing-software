@@ -1,19 +1,7 @@
 <h3>Lawyers</h3>
 
+<hr>
+
 <ol><% @lawyers.order(:name).each do |lawyer| %>
   <li><%= link_to "#{lawyer.name}", lawyer_path(lawyer) %></li>
 <% end %></ol>
-
-<hr>
-<br>
-
-<div>
-  <div style="float:left;">
-    <%= button_to 'See All Matters', '/matters', method: "get" %>
-  </div>
-  <div style="float:left;">
-    <%= button_to 'See All Clients', '/clients', method: "get" %>
-  </div>
-  <div style="clear:both;">
-  </div>
-</div>

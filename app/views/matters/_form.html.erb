@@ -22,7 +22,7 @@
 
   <br><hr>
 
-  <h4><i>Add Note</i></h4>
+  <h4><i>Add Note (e.g. deadlines, comments)</i></h4>
     <%= f.fields_for :notes, matter.notes.build do |notes_field| %>
       <p><%= notes_field.label :date %></p>
       <%= notes_field.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br>
