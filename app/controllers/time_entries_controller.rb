@@ -21,9 +21,9 @@ class TimeEntriesController < ApplicationController
   end
 
   def update
-    set_atty_rate if time_entry_params[:lawyer_id]
-    @time_entry.update(time_entry_params)
-    redirect_to @time_entry
+    set_atty_rate if !time_entry_params[:lawyer_id].blank?
+    @time_entry.assign_attributes(time_entry_params)
+    save_time_entry
   end
 
   def show
