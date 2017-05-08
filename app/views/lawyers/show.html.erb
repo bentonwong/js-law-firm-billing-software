@@ -9,7 +9,7 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
 <div>
 
     <div style="float:left;">
-      <%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" %>
+      <%= button_to 'Edit Lawyer', edit_lawyer_path(@lawyer), method: "get" if current_user == @lawyer %>
     </div>
     <div style="float:left;">
       <%= button_to 'See All Lawyers', '/lawyers', method: "get" %>

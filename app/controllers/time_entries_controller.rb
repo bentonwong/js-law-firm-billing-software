@@ -14,11 +14,7 @@ class TimeEntriesController < ApplicationController
   def create
     @time_entry = TimeEntry.new(time_entry_params)
     set_atty_rate
-    if @time_entry.save
-      redirect_to time_entry_path(@time_entry)
-    else
-      render :new
-    end
+    save_time_entry
   end
 
   def edit

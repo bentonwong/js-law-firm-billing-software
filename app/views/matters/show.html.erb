@@ -1,7 +1,7 @@
 <h3><%= @matter.name %></h3>
 <p>Name: <%= @matter.name %></p>
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
-<% if time_entry.lawyer %>
+<% if @matter.lawyer %>
   <p>Supervising Attorney: <%= link_to @matter.lawyer.name, lawyer_path(@matter.lawyer) %></p>
 <% else %>
   <li>Supervising Attorney: "N/A"</li>

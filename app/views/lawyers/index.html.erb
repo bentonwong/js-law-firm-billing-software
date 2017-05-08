@@ -1,8 +1,8 @@
 <h3>Lawyers</h3>
 
-<ul><% @lawyers.each do |lawyer| %>
+<ol><% @lawyers.order(:name).each do |lawyer| %>
   <li><%= link_to "#{lawyer.name}", lawyer_path(lawyer) %></li>
-<% end %></ul>
+<% end %></ol>
 
 <hr>
 <br>
