@@ -1,5 +1,5 @@
 class MattersController < ApplicationController
-  before_action :set_matter, only: [:show, :edit, :update, :new_expense]
+  before_action :set_matter, only: [:show, :edit, :update, :time_entries]
   before_action :authorized?
 
   def index
@@ -23,6 +23,10 @@ class MattersController < ApplicationController
   end
 
   def show
+  end
+
+  def time_entries
+    render :time_entries
   end
 
   def destroy
