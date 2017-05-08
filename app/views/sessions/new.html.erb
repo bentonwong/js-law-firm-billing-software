@@ -10,8 +10,6 @@
   <%= f.label :password %><br>
   <%= f.password_field :password %><br><br>
 
-  <%= f.submit "Sign In"%>
+  <%= f.submit "Sign In"%><%= button_to "Go Back", root_path, method: "get" %>
 
 <% end %><br>
-
-<%= button_to "Go Back", root_path, method: "get" %><br>

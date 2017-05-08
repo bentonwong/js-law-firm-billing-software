@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def new
+    redirect_to current_user if signed_in?
     @error = nil
     @lawyer = Lawyer.new
   end

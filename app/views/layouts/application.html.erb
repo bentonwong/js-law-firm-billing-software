@@ -18,8 +18,9 @@
     </h3>
 
     <%= yield %>
-    <hr>
-    <%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %> | <%= link_to 'Time Entries', time_entries_path, method: "get" %>
-
+    <% if signed_in? %>
+      <hr>
+      <%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %> | <%= link_to 'Time Entries', time_entries_path, method: "get" %>
+    <% end %>
   </body>
 </html>

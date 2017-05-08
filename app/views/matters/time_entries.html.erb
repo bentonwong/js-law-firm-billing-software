@@ -7,7 +7,7 @@
 
 <% @matter.time_entries.each do |time_entry| %>
   <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
-  <li><b>Description: </b><%= time_entry.description %></li>
+  <b>Description: </b><%= time_entry.description %>
   <li>Duration: <%= time_entry.duration %> hrs.</li>
   <li>Attorney: <%= time_entry.lawyer.name %></li>
   <li>Rate: <%= number_to_currency(time_entry.lawyer.rate) %>/hr.</li>
