@@ -9,8 +9,8 @@
 
 <% @matter.time_entries.each do |time_entry| %>
   <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
-  <b>Description: </b>
-  <li>Duration: </li>
-  <li>Attorney: </li>
+  <b>Description: </b><%= time_entry.description %>
+  <li>Duration: </li><%= time_entry.duration %>
+  <li>Attorney: </li><%= time_entry.lawyer? ? (link_to time_entry.lawyer.name, time_entry.lawyer) : "N/A" %></li>
   <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
 <% end %>
