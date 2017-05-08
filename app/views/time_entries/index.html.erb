@@ -1,5 +1,17 @@
 <h3>Time Entries</h3>
-<%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
+
+<div>
+  <div style="float:left;">
+    <%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
+  </div>
+  <div style="float:left;">
+    <%= button_to "View all matters", matters_path, method: 'get' %>
+  </div>
+  <div style="clear:both;">
+  </div>
+</div>
+
+
 <table>
   <tr>
     <th>id.</th>
@@ -20,7 +32,7 @@
     <td><%= time_entry.date %></td>
     <td><%= time_entry.duration %> hrs.</td>
     <td><%= time_entry.rate %></td>
-    <td><%= time_entry.billable? ? "Billable" : "Non-billable" %></td>
+    <td><%= time_entry.billable? ? "Yes" : "No" %></td>
 
   </tr
 <% end %></ul>

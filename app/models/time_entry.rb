@@ -4,6 +4,7 @@ class TimeEntry < ApplicationRecord
   validates :date, :duration, :description, :matter_id, :lawyer_id, presence: :true
   validates :duration, :rate, numericality: { greater_than_or_equal_to: 0 }
   validates :description, length: { in: 2..500 }
+  validate :valid_date?
 
   def cost
     rate * duration
@@ -16,6 +17,10 @@ class TimeEntry < ApplicationRecord
   def self.outstanding_clients
     client_ids = Matter.all.map {|matter| matter.client_id if matter.time_entries.where("paid = ? AND billable = ?", false, true)}
     client_ids.uniq.map {|client_id| Client.find_by(id: client_id)}
+  end
+
+  def valid_date?
+    errors.add(:date, "cannot be in the future") if date > Date.today
   end
 
 end
