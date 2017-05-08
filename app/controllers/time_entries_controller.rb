@@ -21,8 +21,8 @@ class TimeEntriesController < ApplicationController
   end
 
   def update
-    set_atty_rate if !time_entry_params[:lawyer_id].blank?
     @time_entry.assign_attributes(time_entry_params)
+    set_atty_rate if !time_entry_params[:lawyer_id].blank?
     save_time_entry
   end
 
