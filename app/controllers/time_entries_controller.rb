@@ -13,8 +13,7 @@ class TimeEntriesController < ApplicationController
 
   def create
     @time_entry = TimeEntry.new(time_entry_params)
-    set_atty_rate if !time_entry_params[:lawyer_id].blank?
-    save_time_entry
+    set_rate_and_save
   end
 
   def edit
@@ -22,8 +21,7 @@ class TimeEntriesController < ApplicationController
 
   def update
     @time_entry.assign_attributes(time_entry_params)
-    set_atty_rate if !time_entry_params[:lawyer_id].blank?
-    save_time_entry
+    set_rate_and_save
   end
 
   def show

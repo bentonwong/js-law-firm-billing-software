@@ -29,9 +29,6 @@ class MattersController < ApplicationController
     render :time_entries
   end
 
-  def destroy
-  end
-
   private
 
     def set_matter

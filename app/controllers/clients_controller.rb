@@ -29,9 +29,6 @@ class ClientsController < ApplicationController
   def invoice
   end
 
-  def destroy
-  end
-
   private
 
     def client_params

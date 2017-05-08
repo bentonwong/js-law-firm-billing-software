@@ -12,7 +12,7 @@ module ApplicationHelper
     if @lawyer.save
       session.clear
       session[:lawyer_id] = @lawyer.id
-      redirect_to lawyer_path(@lawyer)
+      redirect_to @lawyer
     else
       render :new
     end
@@ -34,13 +34,18 @@ module ApplicationHelper
     end
   end
 
+  def set_rate_and_save
+    set_atty_rate if !time_entry_params[:lawyer_id].blank?
+    save_time_entry
+  end
+
   def set_atty_rate
     @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
   end
 
   def save_time_entry
     if @time_entry.save
-      redirect_to time_entry_path(@time_entry)
+      redirect_to @time_entry
     else
       render :new
     end
@@ -48,7 +53,7 @@ module ApplicationHelper
 
   def save_client
     if @client.save
-      redirect_to client_path(@client)
+      redirect_to @client
     else
       render :new
     end
@@ -57,7 +62,7 @@ module ApplicationHelper
   def start_new_session
     session.clear
     session[:lawyer_id] = @lawyer.id
-    redirect_to lawyer_path(@lawyer)
+    redirect_to @lawyer
   end
 
   def redirect_to_signin_form_with_errors
@@ -71,7 +76,7 @@ module ApplicationHelper
       start_new_session
     else
       @error = 'Alert: Invalid credentials!'
-      redirect_to_signin_form_with_errors
+      redirect_to signin_form_with_errors
     end
   end
 
@@ -81,7 +86,7 @@ module ApplicationHelper
       start_new_session
     else
       @error = 'ALERT: Email or password are incorrect!'
-      redirect_to_signin_form_with_errors
+      redirect_to signin_form_with_errors
     end
   end
 
