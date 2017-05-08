@@ -7,8 +7,7 @@ class Matter < ApplicationRecord
   validates :name, :lawyer_id, :client_id, presence: :true
 
   def calculate_matter_invoice
-    billable_entries = time_entries.select {|time_entry| time_entry[:billable] && !time_entry[:paid]}
-    billable_entries.sum {|time_entry| time_entry[:rate] * time_entry[:duration]}
+    time_entries.accounts_receivable
   end
 
   def notes_attributes=(notes_attributes)

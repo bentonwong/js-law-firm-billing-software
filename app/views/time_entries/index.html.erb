@@ -39,6 +39,6 @@
 <hr>
 
 <h4>Clients with outstanding balances:</h4>
-<ol><% TimeEntry.outstanding_clients.each do |client| %>
+<ol><% Client.outstanding_clients.each do |client| %>
   <li><%= link_to client.name, client_path(client) %></li>
 <% end %></ol>

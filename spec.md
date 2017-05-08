@@ -39,7 +39,7 @@ Rails Portfolio Project Requirements
 
     Method goes through all the time entries, selects the entries that are billable and unpaid, and the sums up the value of all those time entries to determine all fees due to the firm that the firm has yet to receive.
 
-    2) TimeEntry::outstanding_clients
+    2) Client::outstanding_clients
 
     Method goes through all the time entries, selects the entries that are billable and unpaid, and then returns a unique list of clients associated with those unpaid time entries.
 

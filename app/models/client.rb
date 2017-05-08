@@ -9,4 +9,8 @@ class Client < ApplicationRecord
     matters.sum {|matter| matter.calculate_matter_invoice}
   end
 
+  def self.outstanding_clients
+    select {|client| client.total_outstanding_balance > 0}
+  end
+
 end
