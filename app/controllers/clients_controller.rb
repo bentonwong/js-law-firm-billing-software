@@ -27,6 +27,7 @@ class ClientsController < ApplicationController
   end
 
   def invoice
+    @client_matters = @client.matters.select {|matter| matter.time_entries.accounts_receivable > 0}
   end
 
   private
@@ -45,6 +46,10 @@ class ClientsController < ApplicationController
       else
         render :new
       end
+    end
+
+    def unpaid_time_entries
+      time_entries.where("paid = ?", false)
     end
 
 end

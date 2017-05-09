@@ -8,32 +8,29 @@
   <%= @client.email %><br>
 </blockquote>
 
-<% @client.matters.each do |matter| %>
-  <% if matter.time_entries.accounts_receivable > 0%>
-    <h4>Matter: <%= matter.name %></h4>
-    <table>
+<% @client_matters.each do |matter| %>
+  <h4><u>Matter: <%= matter.name %></u></h4>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Duration (hrs.)</th>
+      <th>Rate ($/hr.)</th>
+      <th>Lawyer</th>
+      <th>Fee</th>
+    </tr>
+    <% matter.unpaid_time_entries.each do |time_entry| %>
       <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Duration (hrs.)</th>
-        <th>Rate ($/hr.)</th>
-        <th>Lawyer</th>
-        <th>Fee</th>
+        <td><%= time_entry.date %></td></td>
+        <td><%= time_entry.description %></td>
+        <td><%= time_entry.duration %></td>
+        <td><%= number_to_currency(time_entry.rate) %></td>
+        <td><%= time_entry.lawyer.name %></td>
+        <td><%= time_entry.display_billable_cost %></td>
       </tr>
-      <% matter.time_entries.each do |time_entry| %>
-        <% if !time_entry.paid? %>
-          <tr>
-            <td><%= time_entry.date %></td></td>
-            <td><%= time_entry.description %></td>
-            <td><%= time_entry.duration %></td>
-            <td><%= number_to_currency(time_entry.rate) %></td>
-            <td><%= time_entry.lawyer.name %></td>
-            <td><%= time_entry.billable? ? number_to_currency(time_entry.cost) : "(no charge)" %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-    <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
-  <% end %>
-<% end %><hr>
+    <% end %>
+  </table>
+  <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
+<% end %>
+<hr>
 <h4>Balance Due: <%= number_to_currency(@client.total_outstanding_balance) %></h4>

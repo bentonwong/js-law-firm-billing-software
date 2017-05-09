@@ -1,11 +1,11 @@
-<table>
+<table style="border-spacing: 0.5em 0;">
   <tr>
     <th>Matter ID</th>
     <th>Client</th>
     <th>Matter</th>
   </tr>
 <% matters.each do |matter| %>
-  <tr>
+  <tr align = "center" >
     <td><%= link_to matter.id, matter %>
     <td><%= link_to matter.client.name, client_path(matter.client) %></td>
     <td><%= link_to matter.name, matter %></td>

@@ -1,10 +1,10 @@
-<table>
+<table style="border-spacing: 0.5em 0;">
   <tr>
     <th>Client ID</th>
     <th>Client Name</th>
   </tr>
 <% clients.each do |client| %>
-  <tr>
+  <tr align = "center">
     <td><%= client.id %>
     <td><%= link_to client.name, client %></td>
   </tr>

@@ -10,6 +10,10 @@ class Matter < ApplicationRecord
     time_entries.accounts_receivable
   end
 
+  def unpaid_time_entries
+    time_entries.where("paid = ?", false)
+  end
+
   def notes_attributes=(notes_attributes)
     notes_attributes.values.each {|note_attributes| self.notes.build(note_attributes) if note_attributes.present? && note_attributes[:content].present?}
   end

@@ -3,7 +3,7 @@ class TimeEntry < ApplicationRecord
   belongs_to :lawyer
   validates :date, :duration, :description, :matter_id, :lawyer_id, presence: :true
   validates :duration, :rate, numericality: { greater_than_or_equal_to: 0 }
-  validates :description, length: { in: 2..500 }
+  validates :description, length: { in: 2..100 }
   validate :valid_date?
 
   def valid_date?
@@ -17,5 +17,10 @@ class TimeEntry < ApplicationRecord
   def self.accounts_receivable
     where("paid = ? AND billable = ?", false, true).sum {|time_entry| time_entry.cost}
   end
+
+  def display_billable_cost
+
+  end
+
 
 end
