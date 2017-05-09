@@ -26,7 +26,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def show
-    @client_name = Client.find(@time_entry.matter.client_id).name
+    @client_name = name_of_client_by_time_entry
   end
 
   def destroy
@@ -59,6 +59,10 @@ class TimeEntriesController < ApplicationController
       else
         render :new
       end
+    end
+
+    def name_of_client_by_time_entry
+      Client.find(@time_entry.matter.client_id).name
     end
 
 end

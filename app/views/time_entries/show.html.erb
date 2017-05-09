@@ -9,8 +9,8 @@
   <p>Attorney: <%= @time_entry.lawyer.name %></p>
   <p>Rate: <%= number_to_currency(@time_entry.rate) %>/hr.</p>
 <hr>
-  <p>Billable: <%= @time_entry.billable_status %></p>
-  <p>Paid: <%= @time_entry.paid_status %></p>
+  <p>Billable: <%= billable_status_of(@time_entry) %></p>
+  <p>Paid: <%= paid_status_of(@time_entry) %></p>
 <hr>
 
 <div>

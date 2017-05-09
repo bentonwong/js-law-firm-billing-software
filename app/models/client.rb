@@ -13,4 +13,8 @@ class Client < ApplicationRecord
     select {|client| client.total_outstanding_balance > 0}
   end
 
+  def outstanding_matters
+    matters.select {|matter| matter.time_entries.accounts_receivable > 0}
+  end
+
 end

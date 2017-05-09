@@ -27,7 +27,7 @@ class ClientsController < ApplicationController
   end
 
   def invoice
-    @client_matters = @client.matters.select {|matter| matter.time_entries.accounts_receivable > 0}
+    @client_matters = @client.outstanding_matters
   end
 
   private

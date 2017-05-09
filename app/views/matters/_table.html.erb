@@ -1,14 +1,16 @@
 <table style="border-spacing: 0.5em 0;">
   <tr>
     <th>Matter ID</th>
-    <th>Client</th>
     <th>Matter</th>
+    <th>Client</th>
+    <th>Supervising Lawyer</th>
   </tr>
 <% matters.each do |matter| %>
   <tr align = "center" >
     <td><%= link_to matter.id, matter %>
-    <td><%= link_to matter.client.name, client_path(matter.client) %></td>
     <td><%= link_to matter.name, matter %></td>
+    <td><%= link_to matter.client.name, matter.client %></td>
+    <td><%= link_to matter.lawyer.name, matter.lawyer %></td>
   </tr>
 <% end %>
 </table>

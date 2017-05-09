@@ -10,8 +10,8 @@
 
 <% @client_matters.each do |matter| %>
   <h4><u>Matter: <%= matter.name %></u></h4>
-  <table>
-    <tr>
+  <table style="border-spacing: 1.5em 0;">
+    <tr align = "center">
       <th>Date</th>
       <th>Description</th>
       <th>Duration (hrs.)</th>
@@ -20,7 +20,7 @@
       <th>Fee</th>
     </tr>
     <% matter.unpaid_time_entries.each do |time_entry| %>
-      <tr>
+      <tr align = "center" >
         <td><%= time_entry.date %></td></td>
         <td><%= time_entry.description %></td>
         <td><%= time_entry.duration %></td>
