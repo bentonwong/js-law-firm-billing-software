@@ -32,6 +32,14 @@ module ApplicationHelper
     time_entry.paid? ? "Yes" : "No"
   end
 
+  def new_lawyer_view_header
+    signed_in? ? "Add a Lawyer" : "Lawyer Sign Up"
+  end
+
+  def matters_not_blank_for_this(lawyer)
+    !lawyer.matters.blank?
+  end
+
   private
 
     def authorized?

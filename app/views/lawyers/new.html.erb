@@ -1,2 +1,2 @@
-<h1><%= signed_in? ? "Add a Lawyer" : "Lawyer Sign Up" %></h1>
+<h1><%= new_lawyer_view_header %></h1>
 <%= render partial: "form", locals: {lawyer: @lawyer} %>
