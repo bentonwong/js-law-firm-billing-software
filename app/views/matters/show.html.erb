@@ -2,9 +2,9 @@
 <p>Name: <%= @matter.name %></p>
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
 
-<p>Supervising Attorney: <%= matter_lawyer_exists? ? (link_to @matter.lawyer.name, lawyer_path(@matter.lawyer)) : "N/A" %></p>
+<p>Supervising Attorney: <%= matter_lawyer_exists? ? (link_to @lawyer.name, lawyer_path(@lawyer)) : "N/A" %></p>
 
-<% if current_user_is(@matter.lawyer) %>
+<% if current_user_is_lawyer %>
   <p><%= button_to 'Edit matter', edit_matter_path(@matter), method: "get" %></p>
 <% end %>
 

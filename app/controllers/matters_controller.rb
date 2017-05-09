@@ -23,6 +23,7 @@ class MattersController < ApplicationController
   end
 
   def show
+    @lawyer = @matter.lawyer
   end
 
   def time_entries

@@ -17,6 +17,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def edit
+    @lawyer = @time_entry.matter.lawyer
   end
 
   def update

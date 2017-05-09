@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def matter_lawyer_exists?
-    @matter.lawyer.nil?
+    !@lawyer.nil?
   end
 
   def matter_notes_not_blank
