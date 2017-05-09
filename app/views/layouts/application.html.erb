@@ -13,17 +13,18 @@
       <h3 style="width:100%; background-color:#09C200; margin: -2mm 0 0 -5mm; padding: 7mm 7mm;">
         <font color="white" size=4>Law Firm Billing Software</font>
       </h3>
+
         <% if signed_in? %>
           <p align="right"><font color="black" size=2>Welcome, <%= link_to current_user.name, current_user %>! (<a href=/logout>logout</a>)</font></p>
         <% end %>
-      </h3>
 
-      <%= yield %>
+        <%= yield %>
 
-      <% if signed_in? %>
-        <hr>
-        <p align = "center"><%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %> | <%= link_to 'Time Entries', time_entries_path, method: "get" %></p>
-      <% end %>
+        <% if signed_in? %>
+          <hr>
+          <p align = "center"><%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %> | <%= link_to 'Time Entries', time_entries_path, method: "get" %></p>
+        <% end %>
+
     </font>
   </body>
 </html>

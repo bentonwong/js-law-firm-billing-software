@@ -19,7 +19,11 @@ class TimeEntry < ApplicationRecord
   end
 
   def display_billable_cost
+    billable? ? number_to_currency(time_entry.cost) : "(nocharge)"
+  end
 
+  def billable_status
+    billable? ? "Yes" : "No"
   end
 
 
