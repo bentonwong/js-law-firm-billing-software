@@ -26,7 +26,7 @@
         <td><%= time_entry.duration %></td>
         <td><%= number_to_currency(time_entry.rate) %></td>
         <td><%= time_entry.lawyer.name %></td>
-        <td><%= time_entry.display_billable_cost %></td>
+        <td><%= display_billable_cost_of(time_entry) %></td>
       </tr>
     <% end %>
   </table>

@@ -18,13 +18,4 @@ class TimeEntry < ApplicationRecord
     where("paid = ? AND billable = ?", false, true).sum {|time_entry| time_entry.cost}
   end
 
-  def display_billable_cost
-    billable? ? number_to_currency(time_entry.cost) : "(nocharge)"
-  end
-
-  def billable_status
-    billable? ? "Yes" : "No"
-  end
-
-
 end

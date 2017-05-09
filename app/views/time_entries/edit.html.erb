@@ -2,7 +2,7 @@
 <%= render partial: "form", locals: {time_entry: @time_entry, matter: @matter} %>
 <br>
 
-<% if current_user == @time_entry.matter.lawyer %>
+<% if current_user_is(@time_entry.matter.lawyer) %>
   <hr>
   <br>
   <%= button_to "Delete Time Entry", @time_entry, method: 'delete' %>

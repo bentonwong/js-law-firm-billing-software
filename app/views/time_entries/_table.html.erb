@@ -20,8 +20,8 @@
     <td><%= time_entry.duration %> hrs.</td>
     <td><%= link_to time_entry.lawyer.name, time_entry.lawyer %></td>
     <td><%= number_to_currency(time_entry.rate) %>/hr.</td>
-    <td><%= time_entry.billable_status %></td>
-    <td><%= time_entry.paid? ? "Yes" : "No" %></td>
+    <td><%= billable_status_of(time_entry) %></td>
+    <td><%= paid_status_of(time_entry) %></td>
     <td><%= time_entry.description %></td>
   </tr>
 <% end %></ul>
