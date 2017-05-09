@@ -40,6 +40,10 @@ module ApplicationHelper
     !instance.matters.blank?
   end
 
+  def sum_of_unpaid_time_entries_for(matter)
+    matter.unpaid_time_entries.sum {|time_entry| time_entry.cost }
+  end
+
   private
 
     def authorized?

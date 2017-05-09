@@ -52,4 +52,5 @@ class ClientsController < ApplicationController
       time_entries.where("paid = ?", false)
     end
 
+    
 end

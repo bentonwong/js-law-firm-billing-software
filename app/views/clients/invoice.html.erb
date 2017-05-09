@@ -30,7 +30,9 @@
       </tr>
     <% end %>
   </table>
+  
   <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
+  <p><b>Subtotal: <%= number_to_currency(sum_of_unpaid_time_entries_for(matter)) %></b></p>
 <% end %>
 <hr>
 <h4>Balance Due: <%= number_to_currency(@client.total_outstanding_balance) %></h4>
