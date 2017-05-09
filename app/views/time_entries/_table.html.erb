@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>Time Entry ID</th>
+    <th>Date</th>
+    <th>Client</th>
+    <th>Matter</th>
+    <th>Duration</th>
+    <th>Lawyer</th>
+    <th>Rate</th>
+    <th>Billable?</th>
+    <th>Paid?</th>
+    <th>Description</th>
+  </tr>
+<ul><% time_entries.each do |time_entry| %>
+  <tr>
+    <td><%= link_to time_entry.id, time_entry_path(time_entry) %></td>
+    <td><%= time_entry.date %></td>
+    <td><%= link_to time_entry.matter.client.name, time_entry.matter.client %></td>
+    <td><%= link_to time_entry.matter.name, time_entry.matter %></td>
+    <td><%= time_entry.duration %> hrs.</td>
+    <td><%= link_to time_entry.lawyer.name, time_entry.lawyer %></td>
+    <td><%= number_to_currency(time_entry.rate) %>/hr.</td>
+    <td><%= time_entry.billable? ? "Yes" : "No" %></td>
+    <td><%= time_entry.paid? ? "Yes" : "No" %></td>
+    <td><%= time_entry.description %></td>
+  </tr
+<% end %></ul>
+</table>

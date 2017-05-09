@@ -7,7 +7,7 @@
 <hr>
   <p>Duration: <%= @time_entry.duration %> hours</p>
   <p>Attorney: <%= @time_entry.lawyer.name %></p>
-  <p>Rate: <%= @time_entry.rate %></p>
+  <p>Rate: <%= number_to_currency(@time_entry.rate) %>/hr.</p>
 <hr>
   <p>Billable: <%= @time_entry.billable? ? "Yes" : "No" %></p>
   <p>Paid: <%= @time_entry.paid? ? "PAID" : "UNPAID" %></p>

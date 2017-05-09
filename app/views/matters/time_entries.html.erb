@@ -1,18 +1,11 @@
-<h4>Time Entries for <%= @matter.name %></h4>
+<h4><%= @matter.name %> Time Entries</h4>
 
 <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
 
 <br>
 <hr>
 
-<% @matter.time_entries.each do |time_entry| %>
-  <p><%= link_to time_entry.date, time_entry_path(time_entry) %></p>
-  <b>Description: </b><%= time_entry.description %>
-  <li>Duration: <%= time_entry.duration %> hrs.</li>
-  <li>Attorney: <%= time_entry.lawyer.name %></li>
-  <li>Rate: <%= number_to_currency(time_entry.lawyer.rate) %>/hr.</li>
-  <li>Billable: <%= time_entry.billable? ? "Yes" : "No" %> | Paid: <%= time_entry.paid? ? "PAID" : "UNPAID" %></li>
-<% end %>
+<%= render partial: "time_entries/table", locals: {time_entries: @matter.time_entries} %>
 
 <br>
 

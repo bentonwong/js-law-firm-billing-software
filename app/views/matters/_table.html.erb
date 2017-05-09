@@ -6,9 +6,9 @@
   </tr>
 <% matters.each do |matter| %>
   <tr>
-    <td><%= matter.id %>
+    <td><%= link_to matter.id, matter %>
     <td><%= link_to matter.client.name, client_path(matter.client) %></td>
-    <td><%= link_to matter.name, matter_path(matter) %></td>
+    <td><%= link_to matter.name, matter %></td>
   </tr>
 <% end %>
 </table>

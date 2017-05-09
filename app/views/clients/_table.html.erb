@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Client ID</th>
+    <th>Client Name</th>
+  </tr>
+<% clients.each do |client| %>
+  <tr>
+    <td><%= client.id %>
+    <td><%= link_to client.name, client %></td>
+  </tr>
+<% end %>
+</table>

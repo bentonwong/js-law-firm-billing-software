@@ -5,31 +5,7 @@
 <br>
 <hr>
 
-<table>
-  <tr>
-    <th>id.</th>
-    <th>Lawyer</th>
-    <th>Client</th>
-    <th>Matter</th>
-    <th>Date</th>
-    <th>Duration</th>
-    <th>Rate</th>
-    <th>Billable?</th>
-  </tr>
-<ul><% @time_entries.each do |time_entry| %>
-  <tr>
-    <td><%= link_to time_entry.id, time_entry_path(time_entry) %></td>
-    <td><%= link_to time_entry.lawyer.name, time_entry.lawyer %></td>
-    <td><%= link_to time_entry.matter.client.name, time_entry.matter.client %></td>
-    <td><%= link_to time_entry.matter.name, time_entry.matter %></td>
-    <td><%= time_entry.date %></td>
-    <td><%= time_entry.duration %> hrs.</td>
-    <td><%= time_entry.rate %></td>
-    <td><%= time_entry.billable? ? "Yes" : "No" %></td>
-
-  </tr
-<% end %></ul>
-</table>
+<%= render partial: "table", locals: {time_entries: @time_entries} %>
 
 <br>
 <hr>
@@ -39,6 +15,5 @@
 <hr>
 
 <h4>Clients with outstanding balances:</h4>
-<ol><% Client.outstanding_clients.each do |client| %>
-  <li><%= link_to client.name, client_path(client) %></li>
-<% end %></ol>
+<%= render partial: "clients/table", locals: {clients: Client.outstanding_clients} %>
+<br>
