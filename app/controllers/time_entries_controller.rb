@@ -50,7 +50,7 @@ class TimeEntriesController < ApplicationController
     end
 
     def set_atty_rate
-      @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
+      @time_entry.rate ||= Lawyer.current_rate(time_entry_params[:lawyer_id])
     end
 
     def save_time_entry

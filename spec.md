@@ -25,9 +25,9 @@ Rails Portfolio Project Requirements
 
   Validations check forms before saving for the following:
   -presence of names, emails, passwords, dates, descriptions
-  -all numerical values are greater than 0
+  -all numerical values are equal or greater than 0
   -lawyer and client emails are unique and meet the format of an email address
-  -time entry descriptions are at least 2 to 500 characters in length
+  -time entry descriptions are at least 2 to 100 characters in length
   -client and lawyer ids are present to create the join table row
   -login email and passwords are valid and not blank
 
@@ -52,7 +52,7 @@ Rails Portfolio Project Requirements
     date(year): matter[notes_attributes][0][date_1i]
     content: matter[notes_attributes][0][content]
 
-  A method called notes_attributes= is in the Matters model as a custom write for creating the note and then adding it to the join table matter_notes.
+  A method called notes_attributes= is in the Matters model as a custom writer for creating the note and then adding it to the join table matter_notes.
 
 [x] Your application must provide a standard user authentication, including signup, login, logout, and passwords. You can use Devise but given the complexity of that system, you should also feel free to roll your own authentication logic.
 
@@ -79,5 +79,5 @@ Rails Portfolio Project Requirements
 [x] Your application must be, within reason, a DRY (Do-Not-Repeat-Yourself) rails app. Logic present in your controllers should be encapsulated as methods in your models. Your views should use helper methods and partials to be as logic-less as possible. Follow patterns in the Rails Style Guide and the Ruby Style Guide.
 
   -In views, forms have been made DRY through use of partials.
-  -In controllers, before_actions are used and controllers with complex actions are broken down into methods that have been moved to the ApplicationHelper.
+  -In controllers, before_actions are used and controllers with complex actions are broken down into methods that have been moved to the ApplicationHelper when appropriate.
   -In models, methods have been refactored extensively.

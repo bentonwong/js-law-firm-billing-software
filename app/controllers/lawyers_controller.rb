@@ -39,8 +39,10 @@ class LawyersController < ApplicationController
 
     def save_lawyer
       if @lawyer.save
-        session.clear
-        session[:lawyer_id] = @lawyer.id
+        if !signed_in?
+          session.clear
+          session[:lawyer_id] = @lawyer.id
+        end
         redirect_to @lawyer
       else
         render :new

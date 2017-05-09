@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       if @lawyer
         start_new_session
       else
-        redirect_to_signin_form_with_errors('Alert: Invalid credentials!')
+        redirect_to_signin_form_with_errors('Alert: Unable to login with those credentials!')
       end
     end
 

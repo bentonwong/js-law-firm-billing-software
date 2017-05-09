@@ -9,7 +9,8 @@
   <%= f.label :client %>
   <%= f.collection_select :client_id, Client.order(:name), :id, :name, include_blank: true %><br>
 
-  <br><hr>
+  <br>
+  <hr>
 
   <h4><i>Add Note (e.g. deadlines, comments)</i></h4>
     <%= f.fields_for :notes, matter.notes.build do |notes_field| %>
@@ -20,6 +21,8 @@
    <% end %>
 
    <br>
+   <br>
+   <hr>
    <br>
 
   <%= f.submit %>
