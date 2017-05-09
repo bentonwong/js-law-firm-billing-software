@@ -11,7 +11,7 @@
 
 <h4>Client Matters</h4>
 
-  <% if !@client.matters.blank? %>
+  <% if matters_not_blank_for_this(@client) %>
     <%= render partial: "matters/table", locals: {matters: @client.matters} %>
   <% else %>
     <%= "N/A" %><br>

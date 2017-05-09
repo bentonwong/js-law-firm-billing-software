@@ -8,8 +8,8 @@ module ApplicationHelper
     !!current_user
   end
 
-  def current_user_is(lawyer)
-    current_user == lawyer
+  def current_user_is_lawyer
+    current_user == @lawyer
   end
 
   def matter_lawyer_exists?
@@ -36,8 +36,8 @@ module ApplicationHelper
     signed_in? ? "Add a Lawyer" : "Lawyer Sign Up"
   end
 
-  def matters_not_blank_for_this(lawyer)
-    !lawyer.matters.blank?
+  def matters_not_blank_for_this(instance)
+    !instance.matters.blank?
   end
 
   private
