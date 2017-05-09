@@ -9,7 +9,7 @@
 </blockquote>
 
 <% @client.matters.each do |matter| %>
-  <% if !matter.time_entries.blank? || matter.time_entries.accounts_receivable != 0%>
+  <% if matter.time_entries.accounts_receivable > 0%>
     <h4>Matter: <%= matter.name %></h4>
     <table>
       <tr>
