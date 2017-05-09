@@ -9,10 +9,8 @@
 </blockquote>
 
 <% @client.matters.each do |matter| %>
-  <h4>Matter: <%= matter.name %></h4>
-  <% if matter.time_entries.blank? %>
-    <p>No entries</p>
-  <% else %>
+  <% if !matter.time_entries.blank? || matter.time_entries.accounts_receivable != 0%>
+    <h4>Matter: <%= matter.name %></h4>
     <table>
       <tr>
         <th>Date</th>
@@ -35,7 +33,5 @@
     </table>
     <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
   <% end %>
-  <hr>
-
-<% end %>
+<% end %><hr>
 <h4>Balance Due: <%= number_to_currency(@client.total_outstanding_balance) %></h4>
