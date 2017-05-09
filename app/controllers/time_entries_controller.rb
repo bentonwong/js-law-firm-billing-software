@@ -43,4 +43,21 @@ class TimeEntriesController < ApplicationController
       @time_entry = TimeEntry.find_by(id: params[:id])
     end
 
+    def set_rate_and_save
+      set_atty_rate if !time_entry_params[:lawyer_id].blank?
+      save_time_entry
+    end
+
+    def set_atty_rate
+      @time_entry.rate = Lawyer.current_rate(time_entry_params[:lawyer_id])
+    end
+
+    def save_time_entry
+      if @time_entry.save
+        redirect_to @time_entry
+      else
+        render :new
+      end
+    end
+
 end

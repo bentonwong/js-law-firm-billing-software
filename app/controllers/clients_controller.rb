@@ -39,4 +39,12 @@ class ClientsController < ApplicationController
       @client = Client.find_by(id: params[:id])
     end
 
+    def save_client
+      if @client.save
+        redirect_to @client
+      else
+        render :new
+      end
+    end
+
 end
