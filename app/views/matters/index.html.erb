@@ -5,6 +5,4 @@
 <br>
 <hr>
 
-<ol><% @matters.each do |matter| %>
-  <li><%= link_to matter.name, matter_path(matter) %> (Client: <%= link_to matter.client.name, client_path(matter.client) %>)</li>
-<% end %></ol>
+<%= render partial: "table", locals: {matters: @matters} %>

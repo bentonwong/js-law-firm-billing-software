@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   before_action :authorized?, only: [:destroy]
 
   def home
-    redirect_to matters_path if signed_in?
+    redirect_to current_user if signed_in?
   end
 
   def new
@@ -15,8 +15,7 @@ class SessionsController < ApplicationController
     if !params[:provider].nil?
       validate_oauth
     elsif params[:lawyer][:email].blank? || params[:lawyer][:password].blank?
-      @error = 'ALERT: Email or password cannot be left blank!'
-      redirect_to_signin_form_with_errors
+      redirect_to_signin_form_with_errors('ALERT: Email or password cannot be left blank!')
     else
       validate_signin
     end
@@ -34,8 +33,7 @@ class SessionsController < ApplicationController
       if @lawyer
         start_new_session
       else
-        @error = 'Alert: Invalid credentials!'
-        redirect_to_signin_form_with_errors
+        redirect_to_signin_form_with_errors('Alert: Invalid credentials!')
       end
     end
 
@@ -44,8 +42,7 @@ class SessionsController < ApplicationController
       if !!@lawyer && @lawyer.authenticate(params[:lawyer][:password])
         start_new_session
       else
-        @error = 'ALERT: Email or password are incorrect!'
-        redirect_to_signin_form_with_errors
+        redirect_to_signin_form_with_errors('ALERT: Email and/or password are incorrect!')
       end
     end
 
@@ -55,11 +52,10 @@ class SessionsController < ApplicationController
       redirect_to @lawyer
     end
 
-    def redirect_to_signin_form_with_errors
+    def redirect_to_signin_form_with_errors(msg)
+      @error = msg
       @lawyer = Lawyer.new
       render :new
     end
-
-
 
 end

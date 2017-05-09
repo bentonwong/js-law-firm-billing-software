@@ -12,9 +12,7 @@
 <h4>Client Matters</h4>
 
   <% if !@client.matters.blank? %>
-    <ol><% @client.matters.each do |matter| %>
-      <li><%= link_to matter.name, matter_path(matter) %></li>
-    <% end %></ol>
+    <%= render partial: "matters/table", locals: {matters: @client.matters} %>
   <% else %>
     <%= "N/A" %><br>
   <% end %><br>

@@ -13,18 +13,7 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
 
 <% if !@lawyer.matters.blank? %>
   <h4>Matters This Lawyer Is Supervising</h4>
-  <table>
-    <tr>
-      <th>Client</th>
-      <th>Matter</th>
-    </tr>
-  <% @lawyer.matters.each do |matter| %>
-    <tr>
-      <td><%= link_to matter.client.name, client_path(matter.client) %></td>
-      <td><%= link_to matter.name, matter_path(matter) %></td>
-    </tr>
-  <% end %>
-  </table>
+  <%= render partial: "matters/table", locals: {matters: @lawyer.matters} %>
 <% else %>
   <br>
   <p>*This lawyer is not supervising any matters at this time.</p>
