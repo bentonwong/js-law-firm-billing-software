@@ -1,6 +1,6 @@
 <%= form_for(matter) do |f| %>
 
-  <%= render partial: "layouts/errors", locals: {obj: matter} %>
+  <%= render partial: "layouts/errors", locals: {instance: matter} %>
 
   <%= f.label :name %>
   <%= f.text_field :name %><br><br>
