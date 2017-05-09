@@ -21,14 +21,16 @@
         <th>Fee</th>
       </tr>
       <% matter.time_entries.each do |time_entry| %>
-        <tr>
-          <td><%= time_entry.date %></td></td>
-          <td><%= time_entry.description %></td>
-          <td><%= time_entry.duration %></td>
-          <td><%= number_to_currency(time_entry.rate) %></td>
-          <td><%= time_entry.lawyer.name %></td>
-          <td><%= time_entry.billable? ? number_to_currency(time_entry.cost) : "(no charge)" %></td>
-        </tr>
+        <% if !time_entry.paid? %>
+          <tr>
+            <td><%= time_entry.date %></td></td>
+            <td><%= time_entry.description %></td>
+            <td><%= time_entry.duration %></td>
+            <td><%= number_to_currency(time_entry.rate) %></td>
+            <td><%= time_entry.lawyer.name %></td>
+            <td><%= time_entry.billable? ? number_to_currency(time_entry.cost) : "(no charge)" %></td>
+          </tr>
+        <% end %>
       <% end %>
     </table>
     <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
