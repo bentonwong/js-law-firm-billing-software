@@ -1,6 +1,6 @@
 # README
 
-Law Firm Billing Software v.1.0 by Benton Wong
+Law Firm Billing Software with jQuery Front End v.2.0 by Benton Wong
 
 This application is for lawyers to log their time for matters they are working on, create, view, and view activities of lawyers and matters, add and update clients, and view outstanding balances owed by particular clients.
 
@@ -26,7 +26,8 @@ Getting Started
 
 Development
 
-  See spec.md.
+  v.1.0 was built on Rails with ActiveRecord.
+  v.2.0 was built on top of v.1.0 with a jQuery front end with dynamic features.
 
 ## Contributing
 
