@@ -1,19 +1,19 @@
 class TimeEntriesController < ApplicationController
   before_action :set_time_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_post
   before_action :authorized?
 
   def index
-    @time_entries = TimeEntry.all
+    @time_entries = @matter.time_entries
   end
 
   def new
-    @time_entry = TimeEntry.new
     @matter = Matter.find_by(id: params[:id]) if params[:id]
   end
 
   def create
-    binding.pry
-    @time_entry = TimeEntry.new(time_entry_params)
+    @time_entry = @matter.time_entries.build(time_entry_params)
+    #@time_entry = TimeEntry.new(time_entry_params)
     set_rate_and_save
   end
 
@@ -39,6 +39,10 @@ class TimeEntriesController < ApplicationController
 
     def time_entry_params
       params.require(:time_entry).permit(:matter_id, :date, :duration, :description, :lawyer_id, :rate, :billable, :paid)
+    end
+
+    def set_matter
+      @matter = Matter.find_by(matter_id: params[:id])
     end
 
     def set_time_entry

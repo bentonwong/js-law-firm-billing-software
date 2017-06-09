@@ -1,17 +1,18 @@
 $(function(){
-  $('#time_entry_form_submit').on('click', function(e) {
+  $('form#new_time_entry.new_time_entry').submit(function(e) {
     e.preventDefault();
     saveTimeEntry();
   });
 })
 
 function saveTimeEntry(){
+  const matter_id = $("select#time_entry_matter_id option:selected").text()
   $.ajax({
-    url: '/time_entries',
+    url: '/matters/' + matter_id +'/time_entries',
     method: "POST",
     dataType: "JSON",
     data: { time_entry: {
-      matter_id: $("select#timße_entry_matter_id option:selected").text(),
+      matter_id: matter_id,
       date('2i'): $("select#time_entry_date_2i option:selected").text(),
       date('3i'): $("select#time_entry_date_3i option:selected").text(),
       date('1i'): $("select#time_entry_date_1i option:selected").text(),
