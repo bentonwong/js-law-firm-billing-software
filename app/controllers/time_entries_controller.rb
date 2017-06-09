@@ -12,6 +12,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def create
+    binding.pry
     @time_entry = TimeEntry.new(time_entry_params)
     set_rate_and_save
   end
