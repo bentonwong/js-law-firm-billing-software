@@ -24,13 +24,14 @@ $(function(){
       success: function(response){
         $(".new_time_entry").trigger("reset");
         $("input[type='submit']").removeAttr('disabled');
-        $("#show_matter_time_entries").append("<li>"+response.description+"</li>");
-      },
-      error: function(response){
-        $("input[type='submit']").removeAttr('disabled');
-        $(".new_time_entry").trigger("reset");
-      }
-    });
-    //e.preventDefault();
+          if ($.isPlainObject(response)) {
+            $("#errors").empty();
+            $("#show_matter_time_entries").append("<li>"+response.description+"</li>");
+          } else {
+            $("#errors").html(response);
+          }
+          $("input[type='submit']").removeAttr('disabled');
+       }
+     });
   });
 });

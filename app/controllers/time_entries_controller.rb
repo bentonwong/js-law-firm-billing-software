@@ -61,7 +61,7 @@ class TimeEntriesController < ApplicationController
       if @time_entry.save
         render json: @time_entry.to_json, :layout => false
       else
-        render :new
+        render :error, :layout => false
       end
     end
 

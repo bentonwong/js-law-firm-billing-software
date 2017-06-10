@@ -22,13 +22,12 @@
       <div style="clear:both;">
       </div>
       <br>
-      <u>Recent Time Entries</u>
-
       <ol><div id="show_matter_time_entries"></div></ol>
       <br>
       <hr>
       <div>
         <h4>Add a Time Entry</h4>
+        <div id="errors"></div>
         <%= render partial: "time_entries/form", locals: {time_entry: @time_entry, matter: @matter} %>
       </div>
   </div>
