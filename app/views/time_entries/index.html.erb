@@ -5,12 +5,3 @@
 <%= render partial: "table", locals: {time_entries: @time_entries} %>
 
 <br>
-<hr>
-
-<b>Current Accounts Receivable: <%= number_to_currency(TimeEntry.accounts_receivable) %></b><br>
-
-<hr>
-
-<h4>Clients with outstanding balances:</h4>
-<%= render partial: "clients/table", locals: {clients: Client.outstanding_clients} %>
-<br>
