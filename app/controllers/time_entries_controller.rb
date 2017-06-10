@@ -1,6 +1,6 @@
 class TimeEntriesController < ApplicationController
-  #before_action :set_time_entry, only: [:show, :edit, :update, :destroy]
   before_action :set_matter
+  before_action :set_time_entry, only: [:show, :edit, :update, :destroy]
   before_action :authorized?
 
   def index
@@ -13,28 +13,23 @@ class TimeEntriesController < ApplicationController
 
   def create
     @time_entry = @matter.time_entries.build(time_entry_params)
-    #@time_entry = TimeEntry.new(time_entry_params)
     set_rate_and_save
   end
 
   def edit
-    @time_entry = @matter.time_entries.find_by(id: params[:id])
     @lawyer = @matter.lawyer
   end
 
   def update
-    @time_entry = @matter.time_entries.find_by(id: params[:id])
     @time_entry.assign_attributes(time_entry_params)
     set_rate_and_save
   end
 
   def show
-    @time_entry = @matter.time_entries.find_by(id: params[:id])
     @client_name = name_of_client_by_time_entry
   end
 
   def destroy
-    @time_entry = @matter.time_entries.find_by(id: params[:id])
     @time_entry.destroy
     redirect_to matter_time_entries_path
   end
@@ -49,9 +44,9 @@ class TimeEntriesController < ApplicationController
       @matter = Matter.find_by(id: params[:matter_id])
     end
 
-    #def set_time_entry
-    #  @time_entry = TimeEntry.find_by(id: params[:id])
-    #end
+    def set_time_entry
+      @time_entry = @matter.time_entries.find_by(id: params[:id])
+    end
 
     def set_rate_and_save
       set_atty_rate if !time_entry_params[:lawyer_id].blank?

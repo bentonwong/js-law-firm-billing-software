@@ -8,7 +8,7 @@ $(function(){
 function saveTimeEntry(){
   const matter_id = $("select#time_entry_matter_id option:selected").text()
   $.ajax({
-    url: '/matters/' + matter_id +'/time_entries',
+    url: '/matters/' + matter_id +'/time_entries/new',
     method: "POST",
     dataType: "JSON",
     data: { time_entry: {
