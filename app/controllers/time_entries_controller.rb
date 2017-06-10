@@ -31,6 +31,7 @@ class TimeEntriesController < ApplicationController
 
   def show
     @client_name = name_of_client_by_time_entry
+    binding.pry
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @time_entry}
@@ -67,9 +68,15 @@ class TimeEntriesController < ApplicationController
 
     def save_time_entry
       if @time_entry.save
-        render json: @time_entry
+        respond_to do |format|
+          format.html {render :show}
+          format.json {render json: @time_entry}
+        end
       else
-        render :error, :layout => false
+        respond_to do |format|
+          format.html {render :new}
+          format.json {render :error, :layout => false}
+        end
       end
     end
 
