@@ -1,8 +1,5 @@
 <h3>Time Entries</h3>
 
-<%= button_to 'Add new time entry', new_time_entry_path, method: "get" %>
-
-<br>
 <hr>
 
 <%= render partial: "table", locals: {time_entries: @time_entries} %>

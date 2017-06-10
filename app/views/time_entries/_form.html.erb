@@ -1,4 +1,4 @@
-<%= form_for(time_entry, :url => matter_time_entries_path(matter.id)) do |f| %>
+<%= form_for [matter, time_entry] do |f| %>
 
   <%= render partial: "layouts/errors", locals: {instance: time_entry} %>
 

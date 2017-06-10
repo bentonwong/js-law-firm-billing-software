@@ -15,7 +15,7 @@
 
 <div>
     <div style="float:left;">
-      <%= button_to 'Edit Time Entry', edit_time_entry_path(@time_entry), method: "get" %>
+      <%= button_to 'Edit Time Entry', edit_matter_time_entry_path(@time_entry.matter, @time_entry), method: "get" %>
     </div>
     <div style="float:left;">
       <%= button_to 'See Parent Matter', matter_path(@time_entry.matter), method: "get" %>

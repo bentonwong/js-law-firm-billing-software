@@ -13,7 +13,7 @@
   </tr>
 <ul><% time_entries.each do |time_entry| %>
   <tr align = "center" >
-    <td ><%= link_to time_entry.id, time_entry_path(time_entry) %></td>
+    <td><%= link_to time_entry.id, matter_time_entry_path(time_entry.matter, time_entry) %></td>
     <td><%= time_entry.date %></td>
     <td><%= link_to time_entry.matter.client.name, time_entry.matter.client %></td>
     <td><%= link_to time_entry.matter.name, time_entry.matter %></td>
