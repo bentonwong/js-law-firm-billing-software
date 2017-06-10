@@ -34,4 +34,20 @@ $(function(){
        }
      });
   });
+  $("#show_matter_time_entries").ready(function(e){
+    const matter_id = $("#matter-name").attr("matter-id")
+    $.ajax({
+      url: '/matters/' + matter_id + '/time_entries',
+      method: "GET",
+      success: function(response){
+        var ol = $('#show_matter_time_entries').appendTo('body');
+        var json = response;
+        $(json.items).each(function(index, item) {
+          ul.append(
+            $(document.createElement('li')).text(item)
+          );
+        });
+      }
+    });
+  });
 });

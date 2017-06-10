@@ -5,6 +5,7 @@ class TimeEntriesController < ApplicationController
 
   def index
     @time_entries = @matter.time_entries
+    render json: @time_entries.to_json, :layout => false
   end
 
   def new

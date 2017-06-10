@@ -1,5 +1,4 @@
-<h3><%= @matter.name %></h3>
-<p>Name: <%= @matter.name %></p>
+<h3 id="matter-name" matter-id="<%= @matter.id %>"><%= @matter.name %></h3>
 <p>Client: <%= link_to @matter.client.name, client_path(@matter.client) %></p>
 
 <p>Supervising Attorney: <%= matter_lawyer_exists? ? (link_to @lawyer.name, lawyer_path(@lawyer)) : "N/A" %></p>
