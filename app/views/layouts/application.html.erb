@@ -6,7 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script type="text/javascript" src="assets/javascripts/matter.js"></script>
+
   </head>
 
   <body>
@@ -25,7 +25,6 @@
           <hr>
           <p align = "center"><%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %></p>
         <% end %>
-
     </font>
   </body>
 </html>

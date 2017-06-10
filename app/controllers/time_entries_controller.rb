@@ -59,14 +59,14 @@ class TimeEntriesController < ApplicationController
 
     def save_time_entry
       if @time_entry.save
-        redirect_to matter_time_entry_path(@matter, @time_entry)
+        render json: @time_entry.to_json, :layout => false
       else
         render :new
       end
     end
 
     def name_of_client_by_time_entry
-      Client.find(@time_entry.matter.client_id).name
+      Client.find_by(id: @matter.client_id).name
     end
 
 end
