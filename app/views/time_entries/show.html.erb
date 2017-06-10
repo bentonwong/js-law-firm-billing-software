@@ -1,6 +1,6 @@
 <h3>Time Entry</h3>
   <p>Matter: <%= link_to @time_entry.matter.name, matter_path(@time_entry.matter) %></p>
-  <p>Client: <%= link_to @client_name, client_path(@time_entry.matter.client_id) %></p>
+  <p>Client: <%= link_to @client.name, client_path(@time_entry.matter.client_id) %></p>
 <hr>
   <p>Date: <%= @time_entry.date %></p>
   <p>Description: <%= @time_entry.description %></p>

@@ -30,8 +30,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def show
-    @client_name = name_of_client_by_time_entry
-    binding.pry
+    @client = find_client_by_matter_client_id
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @time_entry}
@@ -80,8 +79,8 @@ class TimeEntriesController < ApplicationController
       end
     end
 
-    def name_of_client_by_time_entry
-      Client.find_by(id: @matter.client_id).name
+    def find_client_by_matter_client_id
+      Client.find_by(id: @matter.client_id)
     end
 
 end
