@@ -21,32 +21,35 @@ $(function(){
       url: url,
       method: "POST",
       data: data,
+      dataType: "JSON",
       success: function(response){
+        debugger
         $(".new_time_entry").trigger("reset");
         $("input[type='submit']").removeAttr('disabled');
-          if ($.isPlainObject(response)) {
-            $("#errors").empty();
-            $("#show_matter_time_entries").append("<li>"+response.description+"</li>");
-          } else {
-            $("#errors").html(response);
-          }
-          $("input[type='submit']").removeAttr('disabled');
+        $("#errors").empty();
+        $("#show_matter_time_entries ol").append("<li>"+response.description+"</li>");
+        $("input[type='submit']").removeAttr('disabled');
+       },
+       error: function(response){
+         $("input[type='submit']").removeAttr('disabled');
+         $("#errors").html(response.responseText);
        }
      });
+
   });
   $("#show_matter_time_entries").ready(function(e){
+    e.preventDefault();
     const matter_id = $("#matter-name").attr("matter-id")
     $.ajax({
       url: '/matters/' + matter_id + '/time_entries',
       method: "GET",
       success: function(response){
-        var ol = $('#show_matter_time_entries').appendTo('body');
         var json = response;
-        $(json.items).each(function(index, item) {
-          ul.append(
-            $(document.createElement('li')).text(item)
-          );
-        });
+        //debugger
+        //$(json.items).each(function(index, item) {
+          //debugger
+          //ol.append(
+            //$(document.createElement('li')).text(item)
       }
     });
   });

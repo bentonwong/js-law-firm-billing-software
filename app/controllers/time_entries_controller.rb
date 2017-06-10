@@ -5,7 +5,10 @@ class TimeEntriesController < ApplicationController
 
   def index
     @time_entries = @matter.time_entries
-    render json: @time_entries.to_json, :layout => false
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @time_entries}
+    end
   end
 
   def new
@@ -28,6 +31,10 @@ class TimeEntriesController < ApplicationController
 
   def show
     @client_name = name_of_client_by_time_entry
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @time_entry}
+    end
   end
 
   def destroy
@@ -60,7 +67,7 @@ class TimeEntriesController < ApplicationController
 
     def save_time_entry
       if @time_entry.save
-        render json: @time_entry.to_json, :layout => false
+        render json: @time_entry
       else
         render :error, :layout => false
       end

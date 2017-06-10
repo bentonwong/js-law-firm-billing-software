@@ -21,7 +21,9 @@
       <div style="clear:both;">
       </div>
       <br>
-      <ol><div id="show_matter_time_entries"></div></ol>
+        <ol>
+          <div id="show_matter_time_entries"><ol></ol></div>
+        </ol>
       <br>
       <hr>
       <div>
@@ -32,16 +34,6 @@
   </div>
 
 <br>
-<hr>
-
-<h4>Notes</h4>
-<% if matter_notes_not_blank %>
-  <ol><% @matter.notes.reverse.each do |note| %>
-    <li><%= note.date %> -> <%= note.content %></li>
-  <% end %></ol>
-<% else %>
-  <%= "N/A" %><br>
-<% end %>
 <hr>
 
 <h4>Outstanding balance: <%= number_to_currency(@matter.calculate_matter_invoice) %></h4>
