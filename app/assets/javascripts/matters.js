@@ -2,7 +2,7 @@ function addToTable(response) {
   var tr_item = undefined
   tr_item += "<tr>"
   tr_item += "<td>" + response.date + "</td>"
-  tr_item += "<td>" + response.description + "</td>"
+  tr_item += "<td><a href='/matters/" + response.matter_id + "/time_entries/" + response.id + "'>" + response.description + "</a></td>"
   tr_item += "<td>" + response.duration + "</td>"
   tr_item += "<td>" + response.lawyer.name + "</td>"
   tr_item += "</tr>"
