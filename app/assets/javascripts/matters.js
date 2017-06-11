@@ -1,3 +1,14 @@
+function addToTable(response) {
+  var tr_item = undefined
+  tr_item += "<tr>"
+  tr_item += "<td>" + response.date + "</td>"
+  tr_item += "<td>" + response.description + "</td>"
+  tr_item += "<td>" + response.duration + "</td>"
+  tr_item += "<td>" + response.lawyer.name + "</td>"
+  tr_item += "</tr>"
+  $('#show_matter_time_entries tbody').append(tr_item)
+}
+
 $(function(){
   if(!$('div#turn_off_event_handler').length){
     $("#new_time_entry").on("submit", function(e) {
@@ -27,14 +38,8 @@ $(function(){
           $(".new_time_entry").trigger("reset");
           $("input[type='submit']").removeAttr('disabled');
           $("#errors").empty();
-          var li_item = undefined
-          li_item += "<tr>"
-          li_item += "<td>" + response.date + "</td>"
-          li_item += "<td>" + response.description + "</td>"
-          li_item += "<td>" + response.duration + "</td>"
-          li_item += "<td>" + response.lawyer.name + "</td>"
-          li_item += "</tr>"
-          $('#show_matter_time_entries tbody').append(li_item)
+          addToTable(response)
+          $('#show_matter_time_entries tbody').append(tr_item)
           $("input[type='submit']").removeAttr('disabled');
          },
          error: function(response){
@@ -56,14 +61,7 @@ $(function(){
           const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th></tr>"
           $('#show_matter_time_entries').append(table_header)
           for (var i=0; i < response.length; i++){
-            var li_item = undefined
-            li_item += "<tr>"
-            li_item += "<td>" + response[i].date + "</td>"
-            li_item += "<td>" + response[i].description + "</td>"
-            li_item += "<td>" + response[i].duration + "</td>"
-            li_item += "<td>" + response[i].lawyer.name + "</td>"
-            li_item += "</tr>"
-            $('#show_matter_time_entries').append(li_item)
+            addToTable(response[i])
           }
         }
       });
