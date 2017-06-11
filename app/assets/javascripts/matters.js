@@ -27,7 +27,14 @@ $(function(){
           $(".new_time_entry").trigger("reset");
           $("input[type='submit']").removeAttr('disabled');
           $("#errors").empty();
-          $("#show_matter_time_entries ol").append("<li>"+response.description+"</li>");
+          var li_item = undefined
+          li_item += "<tr>"
+          li_item += "<td>" + response.date + "</td>"
+          li_item += "<td>" + response.description + "</td>"
+          li_item += "<td>" + response.duration + "</td>"
+          li_item += "<td>" + response.lawyer.name + "</td>"
+          li_item += "</tr>"
+          $('#show_matter_time_entries tbody').append(li_item)
           $("input[type='submit']").removeAttr('disabled');
          },
          error: function(response){
@@ -39,19 +46,26 @@ $(function(){
   }
   if (!!$('#show_matter_time_entries').length) {
     $("#show_matter_time_entries").ready(function(e){
-      e.preventDefault();
+      //e.preventDefault();
       const matter_id = $("#matter-name").attr("matter-id")
       $.ajax({
         url: '/matters/' + matter_id + '/time_entries',
         method: "GET",
+        dataType: "JSON",
         success: function(response){
-          var json = response;
-          //debugger
-          //$(json.items).each(function(index, item) {
-            //debugger
-            //ol.append(
-              //$(document.createElement('li')).text(item)
-
+          const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th></tr>"
+          $('#show_matter_time_entries').append(table_header)
+          for (var i=0; i < response.length; i++){
+            var li_item = undefined
+            li_item += "<tr>"
+            li_item += "<td>" + response[i].date + "</td>"
+            li_item += "<td>" + response[i].description + "</td>"
+            li_item += "<td>" + response[i].duration + "</td>"
+            li_item += "<td>" + response[i].lawyer.name + "</td>"
+            li_item += "</tr>"
+            $('#show_matter_time_entries').append(li_item)
+          }
+        }
       });
     });
   }

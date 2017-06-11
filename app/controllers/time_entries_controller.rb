@@ -72,10 +72,7 @@ class TimeEntriesController < ApplicationController
           format.json {render json: @time_entry}
         end
       else
-        respond_to do |format|
-          format.html {render :new}
-          format.json {render :error, :layout => false}
-        end
+        render :error, :layout => false
       end
     end
 
