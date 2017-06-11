@@ -9,6 +9,8 @@ function addToMattersShowTable(response) {
   $('#show_matter_time_entries tbody').append(tr_item)
 }
 
+for (var i=0; i < response.matters.length; i++){
+
 $(function(){
   if(!$('div#turn_off_event_handler').length){
     $("#new_time_entry").on("submit", function(e) {
@@ -76,11 +78,7 @@ $(function(){
         success: function(response){
           const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th></tr>"
           $('ol#show_lawyer_matters').append(table_header)
-          for (var i=0; i < response.length; i++){
-            debugger
-            //addToLawyersShowTable(response[i])
-          }
-          debugger
+          addToLawyersShowTable(response)
         }
       });
     });
