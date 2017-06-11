@@ -1,4 +1,4 @@
-function addToTable(response) {
+function addToMattersShowTable(response) {
   var tr_item = undefined
   tr_item += "<tr>"
   tr_item += "<td>" + response.date + "</td>"
@@ -38,7 +38,7 @@ $(function(){
           $(".new_time_entry").trigger("reset");
           $("input[type='submit']").removeAttr('disabled');
           $("#errors").empty();
-          addToTable(response)
+          addToMattersShowTable(response)
           $('#show_matter_time_entries tbody').append(tr_item)
           $("input[type='submit']").removeAttr('disabled');
          },
@@ -50,8 +50,7 @@ $(function(){
     });
   }
   if (!!$('#show_matter_time_entries').length) {
-    $("#show_matter_time_entries").ready(function(e){
-      //e.preventDefault();
+    $('#show_matter_time_entries').ready(function(e){
       const matter_id = $("#matter-name").attr("matter-id")
       $.ajax({
         url: '/matters/' + matter_id + '/time_entries',
@@ -61,8 +60,27 @@ $(function(){
           const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th></tr>"
           $('#show_matter_time_entries').append(table_header)
           for (var i=0; i < response.length; i++){
-            addToTable(response[i])
+            addToMattersShowTable(response[i])
           }
+        }
+      });
+    });
+  }
+  if (!!$('ol#show_lawyer_matters').length) {
+    $('ol#show_lawyer_matters').ready(function(e){
+      const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
+      $.ajax({
+        url: '/lawyers/' + lawyer_id,
+        method: "GET",
+        dataType: "JSON",
+        success: function(response){
+          const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th></tr>"
+          $('ol#show_lawyer_matters').append(table_header)
+          for (var i=0; i < response.length; i++){
+            debugger
+            //addToLawyersShowTable(response[i])
+          }
+          debugger
         }
       });
     });

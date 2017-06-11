@@ -1,4 +1,4 @@
-<h3>Lawyer Profile</h3>
+<h3 id="lawyer_show_header" lawyer-id="<%= @lawyer.id %>">Lawyer Profile</h3>
 
 Name: <%= @lawyer.name %><br>
 Email: <%= @lawyer.email %><br>
@@ -18,3 +18,8 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
   <br>
   <p>*This lawyer is not supervising any matters at this time.</p>
 <% end %><br>
+
+<hr>
+
+<h4>Matters This Lawyer Is Supervising</h4>
+<ol id="show_lawyer_matters"></ol>
