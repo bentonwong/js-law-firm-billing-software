@@ -155,7 +155,7 @@ $(document).on('turbolinks:load', function(){
       //e.preventDefault();
       const client_id = window.location.pathname.split("/").pop();
       $.ajax({
-        url: '/clients/' + client_id,
+        url: '/clients/' + client_id +'.json',
         method: "GET",
         dataType: "JSON",
         success: function(response){

@@ -1,38 +1,24 @@
-<h3>Client Profile</h3>
-
-  Name: <%= @client.name %><br>
-  Address: <%= @client.address %><br>
-  Phone: <%= @client.phone %><br>
-  Email: <%= @client.email %><br>
-
-  <br><%= button_to 'Edit Client', edit_client_path(@client), method: "get" %><br>
-
-<hr>
-
-<h4>Client Matters</h4>
-
-  <% if matters_not_blank_for_this(@client) %>
-    <%= render partial: "matters/table", locals: {matters: @client.matters} %>
-  <% else %>
-    <%= "N/A" %><br>
-  <% end %><br>
-
-<hr>
-
-<h4>Client Billing</h4>
-
-  <p>Outstanding Balance: <%= number_to_currency(@client.total_outstanding_balance) %></p>
-
-  <%= button_to 'View Current Invoice', client_invoice_path(@client), method: "get" %><br>
-
 <div id="client-show-page"></div>
+
 <script type="text/javascript" src="assets/javascripts/handlebars.js"></script>
 <script id="client-show-page-template" type="text/x-handlebars-template">
-  <div class="client-information">
-    <h3>Client Profile</h3>
-      Name: {{name}}<br>
-      Address: {{address}}<br>
-      Phone: {{phone}}<br>
-      Email: {{email}}<br>
-  </div>
+  <h3>Client Profile</h3>
+  Name: {{name}}<br>
+  Address: {{address}}<br>
+  Phone: {{phone}}<br>
+  Email: {{email}}<br><br>
+
+  <form action="/clients/{{id}}/edit">
+    <input type="submit" value="Edit Client" />
+  </form>
+  <br>
+  <hr>
+
+  <p>Outstanding Balance: <%= number_to_currency(@client.total_outstanding_balance) %></p>
+  <p>Outstanding Balance: <%= client_balance({{id}}) %></p>
+
+  <form action="/clients/{{id}}/invoice">
+    <input type="submit" value="View Current Invoice" />
+  </form>
+  <br>
 </script>
