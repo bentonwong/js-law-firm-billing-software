@@ -6,9 +6,9 @@ Each matter has many time entries that belong only to that matter.  All time ent
 
 [] Must render at least one show page (show resource - 'one specific thing') via jQuery and an Active Model Serialization JSON Backend. For example, in the blog domain, you might allow a user to sift through the posts by clicking a 'Next' button on the posts show page, with the next post being fetched and rendered via JQuery/AJAX.
 
-[] The rails API must reveal at least one has-many relationship in the JSON that is then rendered to the page. For example if each of those posts has many comments, you could render those comments as well on that show page.
+[x] The rails API must reveal at least one has-many relationship in the JSON that is then rendered to the page. For example if each of those posts has many comments, you could render those comments as well on that show page.
 
-A lawyer has many matters that they supervise. At '/lawyers.json', a JSON is rendered listing all the lawyers and all the matters they are supervising. (Render this to the lawyers index page to that lawyers have many case)
+A lawyer has many matters that they supervise and clients. At '/lawyers.json', a JSON is rendered listing all the lawyers and all the matters they are supervising and their clients. On each lawyer's show page, the cases that lawyer supervises is listed on that page.
 
 [x] Must use your Rails API and a form to create a resource and render the response without a page refresh. For example, a user might be able to add a comment to a post, and the comment would be serialized, and submitted via an AJAX POST request, with the response being the new object in JSON and then appending that new comment to the DOM using JavaScript (ES6 Template Literals, can help out a lot with this).
 

@@ -10,7 +10,7 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
 
 <br>
 <hr>
-
+<!--
 <% if matters_not_blank_for_this(@lawyer) %>
   <h4>Matters This Lawyer Is Supervising</h4>
   <%= render partial: "matters/table", locals: {matters: @lawyer.matters} %>
@@ -19,7 +19,8 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
   <p>*This lawyer is not supervising any matters at this time.</p>
 <% end %><br>
 
-<hr>
+<hr>-->
 
 <h4>Matters This Lawyer Is Supervising</h4>
 <table id="show_lawyer_matters"></table>
+<br>
