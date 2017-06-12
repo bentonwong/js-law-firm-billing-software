@@ -18,7 +18,7 @@ function addToLawyersShowTable(response) {
     });
     var tr_item = ""
     tr_item += "<tr>"
-    tr_item += "<td>" + response_matters[i].id + "</td>"
+    tr_item += "<td style='text-align:center'>" + response_matters[i].id + "</td>"
     tr_item += "<td><a href='/matters/" + response_matters[i].id + "'>" + response_matters[i].name + "</a></td>"
     tr_item += "<td><a href='/clients/" + response_matters[i].client_id + "'>" + client[0].name + "</a></td>"
     tr_item += "</tr>"
@@ -75,6 +75,7 @@ $(document).on('turbolinks:load', function(){
         method: "GET",
         dataType: "JSON",
         success: function(response){
+          //$('#show_matter_time_entries').empty();
           const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th></tr>"
           $('#show_matter_time_entries').append(table_header)
           for (var i=0; i < response.length; i++){
@@ -87,6 +88,7 @@ $(document).on('turbolinks:load', function(){
 
   if (!!$('#show_lawyer_matters').length) {
     $('table#show_lawyer_matters').ready(function(e){
+      $('#show_lawyer_matters').empty()
       const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
       $.ajax({
         url: '/lawyers/' + lawyer_id,
