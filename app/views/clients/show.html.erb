@@ -1,12 +1,16 @@
+<h3>Client Profile</h3>
+<a href="#" class="js-next" data-id="1">Next Client</a><br><br>
+
 <div id="client-show-page"></div>
 
 <script type="text/javascript" src="assets/javascripts/handlebars.js"></script>
 <script id="client-show-page-template" type="text/x-handlebars-template">
-  <h3>Client Profile</h3>
-  Name: {{name}}<br>
-  Address: {{address}}<br>
-  Phone: {{phone}}<br>
-  Email: {{email}}<br><br>
+
+
+  Name: <tag id="client_name">{{name}}</tag><br>
+  Address: <tag id="client_address">{{address}}</tag><br>
+  Phone: <tag id="client_phone">{{phone}}</tag><br>
+  Email: <tag id="client_email">{{email}}</tag><br><br>
 
   <form action="/clients/{{id}}/edit">
     <input type="submit" value="Edit Client" />

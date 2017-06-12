@@ -161,7 +161,7 @@ $(document).on('turbolinks:load', function(){
   };
 
   if (!!$('#client-show-page').length) {
-    $('#client-show-page-template-placeholder').ready(function(e){
+    $(document).ready(function(e){
       //e.preventDefault();
       const client_id = window.location.pathname.split("/").pop();
       $.ajax({
@@ -174,4 +174,25 @@ $(document).on('turbolinks:load', function(){
       });
     });
   };
+
+  $(".js-next").on("click", function() {
+    nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    url = "/clients/" + nextId + ".json"
+    $.ajax({
+      url: url,
+      method: "GET",
+      success: function(data){
+        $("#client_name").text(data["name"]);
+        $("#client_address").text(data["address"]);
+        $("#client_phone").text(data["phone"]);
+        $("#client_email").text(data["email"]);
+        // re-set the id to current on the link
+        $(".js-next").attr("data-id", data["id"]);
+      },
+      error: function(data){
+        debugger
+      }
+    });
+  });
+
 });
