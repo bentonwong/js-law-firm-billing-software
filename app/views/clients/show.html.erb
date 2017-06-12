@@ -13,10 +13,7 @@
   </form>
   <br>
   <hr>
-
-  <p>Outstanding Balance: <%= number_to_currency(@client.total_outstanding_balance) %></p>
-  <p>Outstanding Balance: <%= client_balance({{id}}) %></p>
-
+  <h4>Billing</h4>
   <form action="/clients/{{id}}/invoice">
     <input type="submit" value="View Current Invoice" />
   </form>

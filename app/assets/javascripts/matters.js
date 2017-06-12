@@ -1,3 +1,13 @@
+function clientBalance(id){
+  $.ajax({
+    url: '/clients/' + id +'/invoice',
+    method: "GET",
+    success: function(response){
+        debugger
+    }
+  });
+}
+
 function addToMattersShowTable(response) {
   var tr_item = ""
   tr_item += "<tr>"
