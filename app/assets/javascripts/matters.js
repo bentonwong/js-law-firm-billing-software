@@ -26,7 +26,7 @@ function addToLawyersShowTable(response) {
   }
 }
 
-$(function(){
+$(document).on('turbolinks:load', function(){
   if(!$('div#turn_off_event_handler').length){
     $("#new_time_entry").on("submit", function(e) {
       e.preventDefault();
@@ -65,7 +65,8 @@ $(function(){
          }
        });
     });
-  }
+  };
+
   if (!!$('#show_matter_time_entries').length) {
     $('#show_matter_time_entries').ready(function(e){
       const matter_id = $("#matter-name").attr("matter-id")
@@ -82,8 +83,9 @@ $(function(){
         }
       });
     });
-  }
-  if (!!$('table#show_lawyer_matters').length) {
+  };
+
+  if (!!$('#show_lawyer_matters').length) {
     $('table#show_lawyer_matters').ready(function(e){
       const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
       $.ajax({
@@ -97,5 +99,5 @@ $(function(){
         }
       });
     });
-  }
+  };
 });
