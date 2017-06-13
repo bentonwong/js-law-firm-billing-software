@@ -23,12 +23,13 @@ function Lawyer(data) {
 
 Lawyer.prototype.hoursByMatter = function(id) {
   var sum = 0;
+  debugger
   for (var i=0; i < this.time_entries.length; i++) {
-    if (this.time_entries[i].id === id) {
-      sum += this.timeEntry[i].duration;
+    if (this.time_entries[i].matter_id === id) {
+      sum = sum + parseFloat(this.time_entries[i].duration);
     }
   }
-  return hoursByMatter;
+  return sum;
 }
 
 function addToMattersShowTable(response) {
@@ -45,7 +46,7 @@ function addToMattersShowTable(response) {
 }
 
 function addToLawyersShowTable(response) {
-  debugger
+  var lawyerToShow = new Lawyer(response);
   const response_matters = response.matters
   for (var i=0; i < response_matters.length; i++) {
     var matter_client_id = response_matters[i].client_id
@@ -57,13 +58,14 @@ function addToLawyersShowTable(response) {
     tr_item += "<td style='text-align:center'>" + response_matters[i].id + "</td>"
     tr_item += "<td><a href='/matters/" + response_matters[i].id + "'>" + response_matters[i].name + "</a></td>"
     tr_item += "<td><a href='/clients/" + response_matters[i].client_id + "'>" + client[0].name + "</a></td>"
-    r_item += "<td style='text-align:center'>" + response_matters[i].id + "</td>"
+    tr_item += "<td style='text-align:center'>" + lawyerToShow.hoursByMatter(response_matters[i].id) + "</td>"
     tr_item += "</tr>"
     $('#show_lawyer_matters').append(tr_item)
   }
 }
 
 function loadClient(response) {
+  var client = new Client(response);
   var source = $("#client-show-page-template").html();
   var template = Handlebars.compile(source);
   var result = template(response);
@@ -140,7 +142,7 @@ $(document).on('turbolinks:load', function(){
         method: "GET",
         dataType: "JSON",
         success: function(response){
-          const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th></tr>"
+          const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed</th></tr>"
           $('table#show_lawyer_matters').append(table_header)
           addToLawyersShowTable(response)
         }
