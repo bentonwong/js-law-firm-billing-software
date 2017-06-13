@@ -10,17 +10,17 @@ Current Rate: <%= number_to_currency(@lawyer.rate) %>/hr.<br>
 
 <br>
 <hr>
-<!--
-<% if matters_not_blank_for_this(@lawyer) %>
-  <h4>Matters This Lawyer Is Supervising</h4>
-  <%= render partial: "matters/table", locals: {matters: @lawyer.matters} %>
-<% else %>
-  <br>
-  <p>*This lawyer is not supervising any matters at this time.</p>
-<% end %><br>
-
-<hr>-->
 
 <h4>Matters This Lawyer Is Supervising</h4>
 <table id="show_lawyer_matters"></table>
 <br>
+
+<script type="text/javascript" src="assets/javascripts/handlebars.js"></script>
+<script id="lawyer-matters-show-page-template" type="text/x-handlebars-template">
+  <tr>
+    <td style='text-align:center'>{{ matter_id }}</td>
+    <td><a href='/matters/{{ matter_id }}'>{{ matter_name }}</a></td>
+    <td><a href='/clients/{{ client_id }}'>{{ client_name }}</a></td>
+    <td style='text-align:center'>{{ hours_billed }}</td>
+  </tr>
+</script>

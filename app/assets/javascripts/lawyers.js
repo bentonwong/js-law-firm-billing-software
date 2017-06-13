@@ -16,24 +16,27 @@ Lawyer.prototype.hoursByMatter = function(id) {
   return sum;
 }
 
-function renderLawyersShowTable(response) {
+function renderLawyersShowTable(lawyer_data) {
+  //build new lawyer object
+  var lawyer = new Lawyer(lawyer_data);
+
+  //build table header
   const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed</th></tr>"
   $('table#show_lawyer_matters').append(table_header)
-  var lawyerToShow = new Lawyer(response);
-  const response_matters = response.matters
-  for (var i=0; i < response_matters.length; i++) {
-    var matter_client_id = response_matters[i].client_id
-    var client = response.clients.filter(function(o){
-      return o.id === matter_client_id;
-    });
-    var tr_item = ""
-    tr_item += "<tr>"
-    tr_item += "<td style='text-align:center'>" + response_matters[i].id + "</td>"
-    tr_item += "<td><a href='/matters/" + response_matters[i].id + "'>" + response_matters[i].name + "</a></td>"
-    tr_item += "<td><a href='/clients/" + response_matters[i].client_id + "'>" + client[0].name + "</a></td>"
-    tr_item += "<td style='text-align:center'>" + lawyerToShow.hoursByMatter(response_matters[i].id) + "</td>"
-    tr_item += "</tr>"
-    $('#show_lawyer_matters').append(tr_item)
+
+  //build table body
+  for (var i=0; i < lawyer.matters.length; i++) {
+    var template_data = {
+      matter_id: lawyer.matters[i].id,
+      matter_name: lawyer.matters[i].name,
+      cliend_id: lawyer.matters[i].client_id,
+      client_name: $.grep(lawyer.clients, function(client){ return client.id == lawyer.matters[i].client_id })[0].name,
+      hours_billed: lawyer.hoursByMatter(lawyer.matters[i].id)
+    }
+    var source = $("#lawyer-matters-show-page-template").html();
+    var template = Handlebars.compile(source);
+    var result = template(template_data);
+    $('#show_lawyer_matters').append(result)
   }
 }
 
