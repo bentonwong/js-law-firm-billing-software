@@ -16,7 +16,9 @@ Lawyer.prototype.hoursByMatter = function(id) {
   return sum;
 }
 
-function addToLawyersShowTable(response) {
+function renderLawyersShowTable(response) {
+  const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed</th></tr>"
+  $('table#show_lawyer_matters').append(table_header)
   var lawyerToShow = new Lawyer(response);
   const response_matters = response.matters
   for (var i=0; i < response_matters.length; i++) {
@@ -41,13 +43,11 @@ $(document).on('turbolinks:load', function(){
       $('#show_lawyer_matters').empty()
       const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
       $.ajax({
-        url: '/lawyers/' + lawyer_id,
+        url: '/lawyers/' + lawyer_id +".json",
         method: "GET",
-        dataType: "JSON",
+        //dataType: "JSON",
         success: function(response){
-          const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed</th></tr>"
-          $('table#show_lawyer_matters').append(table_header)
-          addToLawyersShowTable(response);
+          renderLawyersShowTable(response);
         }
       });
     });
