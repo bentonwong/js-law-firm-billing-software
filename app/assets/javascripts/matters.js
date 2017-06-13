@@ -30,7 +30,7 @@ Lawyer.prototype.hoursByMatter = function(id) {
   }
   return sum;
 }
-
+/*
 function Client(data) {
   this.id = data.id
   this.name = data.name;
@@ -42,7 +42,7 @@ function Client(data) {
 Client.prototype.concatPhEmail = function() {
   return "Phone: " + this.phone + " | Email: " + this.email;
 }
-
+*/
 function addToMattersShowTable(response) {
   var line_entry = new TimeEntry(response);
   var tr_item = ""
@@ -74,7 +74,7 @@ function addToLawyersShowTable(response) {
     $('#show_lawyer_matters').append(tr_item)
   }
 }
-
+/*
 function loadClient(response) {
   var client = new Client(response);
   client.quickContact = client.concatPhEmail()
@@ -83,7 +83,7 @@ function loadClient(response) {
   var result = template(client);
   $("#client-show-page").html(result);
 }
-
+*/
 $(document).on('turbolinks:load', function(){
   if(!$('div#turn_off_event_handler').length){
     $("#new_time_entry").on("submit", function(e) {
@@ -163,22 +163,22 @@ $(document).on('turbolinks:load', function(){
       });
     });
   };
-
+/*
   if (!!$('#client-show-page').length) {
     var client_id = window.location.pathname.split("/").pop();
     $.ajax({
-      url: '/clients/' + client_id,
+      url: '/clients/' + client_id + '.json',
       method: "GET",
-      dataType: "JSON",
+      //dataType: "JSON",
       success: function(response) {
         loadClient(response);
         attachNextClientListener();
       }
     });
   };
-
+*/
 });
-
+/*
 function getAdjacentClient(id){
   url = "/clients/" + id;
   $.ajax({
@@ -204,3 +204,4 @@ function attachNextClientListener(){
     getAdjacentClient(nextId)
   });
 }
+*/
