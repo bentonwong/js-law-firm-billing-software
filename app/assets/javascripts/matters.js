@@ -1,13 +1,3 @@
-function clientBalance(id){
-  $.ajax({
-    url: '/clients/' + id +'/invoice',
-    method: "GET",
-    success: function(response){
-        debugger
-    }
-  });
-}
-
 function addToMattersShowTable(response) {
   var tr_item = ""
   tr_item += "<tr>"
@@ -161,38 +151,85 @@ $(document).on('turbolinks:load', function(){
   };
 
   if (!!$('#client-show-page').length) {
-    $(document).ready(function(e){
-      //e.preventDefault();
-      const client_id = window.location.pathname.split("/").pop();
-      $.ajax({
-        url: '/clients/' + client_id +'.json',
-        method: "GET",
-        dataType: "JSON",
-        success: function(response){
-          loadClient(response);
-        }
-      });
+    var client_id = window.location.pathname.split("/").pop();
+    $.ajax({
+      url: '/clients/' + client_id,
+      method: "GET",
+      dataType: "JSON",
+      success: function(response) {
+        loadClient(response);
+        attachNextClientListener();
+      }
     });
   };
 
-  $(".js-next").on("click", function() {
-    nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    url = "/clients/" + nextId + ".json"
+});
+/*
+$(document).on('turbolinks:load', function(){
+  if (!!$('#client-show-page').length) {
+    var client_id = window.location.pathname.split("/").pop();
+    $.ajax({
+      url: '/clients/' + client_id,
+      method: "GET",
+      dataType: "JSON",
+      success: function(response) {
+        loadClient(response);
+        attachNextClientListener();
+      }
+    })
+  }
+})
+*/
+function getAdjacentClient(id){
+  url = "/clients/" + id;
+  $.ajax({
+    url: url,
+    method: "GET",
+    dataType: "JSON",
+    success: function(data){
+      if (data) {
+        loadClient(data);
+        attachNextClientListener();
+      }
+    }
+  });
+}
+
+function attachNextClientListener(){
+  $('.js-next').on('click', function(event){
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    getAdjacentClient(nextId)
+    /*
+    url = "/clients/" + nextId;
     $.ajax({
       url: url,
       method: "GET",
+      dataType: "JSON",
       success: function(data){
-        $("#client_name").text(data["name"]);
-        $("#client_address").text(data["address"]);
-        $("#client_phone").text(data["phone"]);
-        $("#client_email").text(data["email"]);
-        // re-set the id to current on the link
-        $(".js-next").attr("data-id", data["id"]);
-      },
-      error: function(data){
-        debugger
+        if (data) {
+          loadClient(data);
+          attachNextClientListener();
+        }
       }
     });
+    */
   });
-
-});
+  $('.js-previous').on('click', function(event){
+    var nextId = parseInt($(".js-next").attr("data-id")) - 1;
+    getAdjacentClient(nextId)
+    /*
+    url = "/clients/" + nextId;
+    $.ajax({
+      url: url,
+      method: "GET",
+      dataType: "JSON",
+      success: function(data){
+        if (data) {
+          loadClient(data);
+          attachNextClientListener();
+        }
+      }
+    });
+    */
+  });
+}
