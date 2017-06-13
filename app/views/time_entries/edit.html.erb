@@ -1,10 +1,10 @@
 <h1>Edit Time Entry</h1>
-<%= render partial: "form", locals: {time_entry: @time_entry, matter: @matter} %>
+<%= render partial: "form", locals: {matter: @matter, time_entry: @time_entry} %>
 <br>
 
 <% if current_user_is_lawyer %>
   <hr>
   <br>
-  <%= button_to "Delete Time Entry", @time_entry, method: 'delete' %>
+  <%= button_to "Delete Time Entry", [@matter, @time_entry], method: 'delete' %>
   <br>
 <% end %>

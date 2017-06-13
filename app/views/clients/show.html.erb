@@ -1,26 +1,24 @@
 <h3>Client Profile</h3>
 
-  Name: <%= @client.name %><br>
-  Address: <%= @client.address %><br>
-  Phone: <%= @client.phone %><br>
-  Email: <%= @client.email %><br>
+<div id="client-show-page"></div>
 
-  <br><%= button_to 'Edit Client', edit_client_path(@client), method: "get" %><br>
+<script type="text/javascript" src="assets/javascripts/handlebars.js"></script>
+<script id="client-show-page-template" type="text/x-handlebars-template">
+  <form action="/clients/{{id}}/edit">
+    <input type="submit" value="Edit Client" />
+  </form><br>
 
-<hr>
+  Name: <tag id="client_name">{{name}}</tag><br>
+  Address: <tag id="client_address">{{address}}</tag><br>
+  <tag id="quickContact">{{quickContact}}</tag><br><br>
 
-<h4>Client Matters</h4>
+  <button href="#" class="js-previous"  data-id="{{id}}">Previous Client</button> <button href="#" class="js-next" data-id="{{id}}">Next Client</button><br><br>
 
-  <% if matters_not_blank_for_this(@client) %>
-    <%= render partial: "matters/table", locals: {matters: @client.matters} %>
-  <% else %>
-    <%= "N/A" %><br>
-  <% end %><br>
-
-<hr>
-
-<h4>Client Billing</h4>
-
-  <p>Outstanding Balance: <%= number_to_currency(@client.total_outstanding_balance) %></p>
-
-  <%= button_to 'View Current Invoice', client_invoice_path(@client), method: "get" %><br>
+  <br>
+  <hr>
+  <h4>Billing</h4>
+  <form action="/clients/{{id}}/invoice">
+    <input type="submit" value="View Current Invoice" />
+  </form>
+  <br>
+</script>

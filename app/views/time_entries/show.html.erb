@@ -1,6 +1,6 @@
 <h3>Time Entry</h3>
   <p>Matter: <%= link_to @time_entry.matter.name, matter_path(@time_entry.matter) %></p>
-  <p>Client: <%= link_to @client_name, client_path(@time_entry.matter.client_id) %></p>
+  <p>Client: <%= link_to @client.name, client_path(@client) %></p>
 <hr>
   <p>Date: <%= @time_entry.date %></p>
   <p>Description: <%= @time_entry.description %></p>
@@ -15,7 +15,7 @@
 
 <div>
     <div style="float:left;">
-      <%= button_to 'Edit Time Entry', edit_time_entry_path(@time_entry), method: "get" %>
+      <%= button_to 'Edit Time Entry', edit_matter_time_entry_path(@time_entry.matter, @time_entry), method: "get" %>
     </div>
     <div style="float:left;">
       <%= button_to 'See Parent Matter', matter_path(@time_entry.matter), method: "get" %>

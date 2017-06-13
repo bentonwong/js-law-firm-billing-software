@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Law Firm Billing Software</title>
+    <title>Law Firm Billing Software JS</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+
     <font face = "Helvetica">
       <h3 style="width:100%; background-color:#09C200; margin: -2mm 0 0 -5mm; padding: 7mm 7mm;">
         <font color="white" size=4>Law Firm Billing Software</font>
@@ -22,9 +24,11 @@
 
         <% if signed_in? %>
           <hr>
-          <p align = "center"><%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %> | <%= link_to 'Time Entries', time_entries_path, method: "get" %></p>
+          <p align = "center"><%= link_to 'Matters', matters_path, method: "get" %> | <%= link_to 'Clients', clients_path, method: "get" %> | <%= link_to 'Lawyers', lawyers_path, method: "get" %></p>
         <% end %>
-
     </font>
+    <script type="text/javascript" src="assets/javascripts/clients.js"></script>
+    <script type="text/javascript" src="assets/javascripts/lawyers.js"></script>
+    <script type="text/javascript" src="assets/javascripts/matters.js"></script>
   </body>
 </html>

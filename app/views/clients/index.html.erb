@@ -1,5 +1,17 @@
 <h3>Clients</h3>
   <%= button_to 'Enter new client', new_client_path, method: "get" %><br>
 <hr>
+<br>
 
 <%= render partial: "table", locals: {clients: @clients} %>
+
+<br>
+<hr>
+
+<b>Current Accounts Receivable: <%= number_to_currency(TimeEntry.accounts_receivable) %></b><br>
+
+<hr>
+
+<h4>Clients with outstanding balances:</h4>
+<%= render partial: "table", locals: {clients: Client.outstanding_clients} %>
+<br>

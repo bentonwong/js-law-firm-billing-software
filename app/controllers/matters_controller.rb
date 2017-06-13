@@ -24,6 +24,7 @@ class MattersController < ApplicationController
 
   def show
     @lawyer = @matter.lawyer
+    @time_entry = @matter.time_entries.build
   end
 
   def time_entries
