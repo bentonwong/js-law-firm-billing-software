@@ -8,9 +8,27 @@ function TimeEntry(data) {
   this.rate = data.rate;
 }
 
-TimeEntry.prototype.calculate_atty_fee = function() {
+TimeEntry.prototype.calculateAttyFee = function() {
   var atty_fee = this.duration * this.rate;
   return '$' + atty_fee.toFixed(2);
+}
+
+function Lawyer(data) {
+  this.id = data.id;
+  this.name = data.name;
+  this.clients = data.clients;
+  this.matters = data.matters;
+  this.time_entries = data.time_entries;
+}
+
+Lawyer.prototype.hoursByMatter = function(id) {
+  var sum = 0;
+  for (var i=0; i < this.time_entries.length; i++) {
+    if (this.time_entries[i].id === id) {
+      sum += this.timeEntry[i].duration;
+    }
+  }
+  return hoursByMatter;
 }
 
 function addToMattersShowTable(response) {
@@ -21,12 +39,13 @@ function addToMattersShowTable(response) {
   tr_item += "<td><a href='/matters/" + line_entry.matter_id + "/time_entries/" + line_entry.id + "'>" + line_entry.description + "</a></td>"
   tr_item += "<td>" + line_entry.duration + "</td>"
   tr_item += "<td>" + line_entry.lawyer_name + "</td>"
-  tr_item += "<td align='center'>" + line_entry.calculate_atty_fee() + "</td>"
+  tr_item += "<td align='center'>" + line_entry.calculateAttyFee() + "</td>"
   tr_item += "</tr>"
   $('#show_matter_time_entries tbody').append(tr_item)
 }
 
 function addToLawyersShowTable(response) {
+  debugger
   const response_matters = response.matters
   for (var i=0; i < response_matters.length; i++) {
     var matter_client_id = response_matters[i].client_id
@@ -38,6 +57,7 @@ function addToLawyersShowTable(response) {
     tr_item += "<td style='text-align:center'>" + response_matters[i].id + "</td>"
     tr_item += "<td><a href='/matters/" + response_matters[i].id + "'>" + response_matters[i].name + "</a></td>"
     tr_item += "<td><a href='/clients/" + response_matters[i].client_id + "'>" + client[0].name + "</a></td>"
+    r_item += "<td style='text-align:center'>" + response_matters[i].id + "</td>"
     tr_item += "</tr>"
     $('#show_lawyer_matters').append(tr_item)
   }
@@ -91,6 +111,8 @@ $(document).on('turbolinks:load', function(){
     });
   };
 
+
+//objectified
   if (!!$('#show_matter_time_entries').length) {
     $('#show_matter_time_entries').ready(function(e){
       const matter_id = $("#matter-name").attr("matter-id")

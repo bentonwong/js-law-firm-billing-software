@@ -16,8 +16,11 @@ A lawyer has many matters that they supervise and clients. At '/lawyers.json', a
 
 A form to enter a new Time Entry is displayed on each Matter's show page allowing a lawyer to enter a new time entry directly on that page.  Valid entries are immediately appended to the displayed list of associated time entries.
 
-[] Must translate the JSON responses into Javascript Model Objects. The Model Objects must have at least one method on the prototype. Formatters work really well for this.
+[x] Must translate the JSON responses into Javascript Model Objects. The Model Objects must have at least one method on the prototype. Formatters work really well for this.
 Borrowing from the previous example, instead of plainly taking the JSON response of the newly created comment and appending it to the DOM, you would create a Comment prototype object and add a function to that prototype to perhaps concatenate (format) the comments authors first and last name. You would then use the object to append the comment information to the DOM.
+
+Each JSON response is translated into objects.
+Do this for all JSON (i.e. anything that does an AJAX get request) and give each one at least a prototype method.
 
 
 Rails Portfolio Project Requirements
