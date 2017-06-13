@@ -1,26 +1,27 @@
 function TimeEntry(data) {
+  this.id = data.id
   this.date = data.date;
-  this.duration = data.duration;
   this.description = data.description;
-  this.billable = data.billable;
-  this.paid = data.paid;
+  this.duration = data.duration;
+  this.lawyer_name = data.lawyer.name;
   this.matter_id = data.matter_id;
-  this.lawyer_id = data.lawyer_id;
   this.rate = data.rate;
 }
 
 TimeEntry.prototype.calculate_atty_fee = function() {
-  var atty_fee = this.duration * this.rate
-  return '$' + fee..format(2);
+  var atty_fee = this.duration * this.rate;
+  return '$' + atty_fee.toFixed(2);
 }
 
 function addToMattersShowTable(response) {
+  var line_entry = new TimeEntry(response);
   var tr_item = ""
   tr_item += "<tr>"
-  tr_item += "<td>" + response.date + "</td>"
-  tr_item += "<td><a href='/matters/" + response.matter_id + "/time_entries/" + response.id + "'>" + response.description + "</a></td>"
-  tr_item += "<td>" + response.duration + "</td>"
-  tr_item += "<td>" + response.lawyer.name + "</td>"
+  tr_item += "<td>" + line_entry.date + "</td>"
+  tr_item += "<td><a href='/matters/" + line_entry.matter_id + "/time_entries/" + line_entry.id + "'>" + line_entry.description + "</a></td>"
+  tr_item += "<td>" + line_entry.duration + "</td>"
+  tr_item += "<td>" + line_entry.lawyer_name + "</td>"
+  tr_item += "<td align='center'>" + line_entry.calculate_atty_fee() + "</td>"
   tr_item += "</tr>"
   $('#show_matter_time_entries tbody').append(tr_item)
 }
@@ -98,8 +99,7 @@ $(document).on('turbolinks:load', function(){
         method: "GET",
         dataType: "JSON",
         success: function(response){
-          //$('#show_matter_time_entries').empty();
-          const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th></tr>"
+          const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th><th>Fee</tr>"
           $('#show_matter_time_entries').append(table_header)
           for (var i=0; i < response.length; i++){
             addToMattersShowTable(response[i])
@@ -180,22 +180,7 @@ $(document).on('turbolinks:load', function(){
   };
 
 });
-/*
-$(document).on('turbolinks:load', function(){
-  if (!!$('#client-show-page').length) {
-    var client_id = window.location.pathname.split("/").pop();
-    $.ajax({
-      url: '/clients/' + client_id,
-      method: "GET",
-      dataType: "JSON",
-      success: function(response) {
-        loadClient(response);
-        attachNextClientListener();
-      }
-    })
-  }
-})
-*/
+
 function getAdjacentClient(id){
   url = "/clients/" + id;
   $.ajax({
@@ -215,37 +200,9 @@ function attachNextClientListener(){
   $('.js-next').on('click', function(event){
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     getAdjacentClient(nextId)
-    /*
-    url = "/clients/" + nextId;
-    $.ajax({
-      url: url,
-      method: "GET",
-      dataType: "JSON",
-      success: function(data){
-        if (data) {
-          loadClient(data);
-          attachNextClientListener();
-        }
-      }
-    });
-    */
   });
   $('.js-previous').on('click', function(event){
     var nextId = parseInt($(".js-next").attr("data-id")) - 1;
     getAdjacentClient(nextId)
-    /*
-    url = "/clients/" + nextId;
-    $.ajax({
-      url: url,
-      method: "GET",
-      dataType: "JSON",
-      success: function(data){
-        if (data) {
-          loadClient(data);
-          attachNextClientListener();
-        }
-      }
-    });
-    */
   });
 }
