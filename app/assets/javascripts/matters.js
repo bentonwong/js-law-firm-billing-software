@@ -23,13 +23,24 @@ function Lawyer(data) {
 
 Lawyer.prototype.hoursByMatter = function(id) {
   var sum = 0;
-  debugger
   for (var i=0; i < this.time_entries.length; i++) {
     if (this.time_entries[i].matter_id === id) {
       sum = sum + parseFloat(this.time_entries[i].duration);
     }
   }
   return sum;
+}
+
+function Client(data) {
+  this.id = data.id
+  this.name = data.name;
+  this.address = data.address;
+  this.phone = data.phone;
+  this.email = data.email;
+}
+
+Client.prototype.concatPhEmail = function() {
+  return "Phone: " + this.phone + " | Email: " + this.email;
 }
 
 function addToMattersShowTable(response) {
@@ -66,9 +77,10 @@ function addToLawyersShowTable(response) {
 
 function loadClient(response) {
   var client = new Client(response);
+  client.quickContact = client.concatPhEmail()
   var source = $("#client-show-page-template").html();
   var template = Handlebars.compile(source);
-  var result = template(response);
+  var result = template(client);
   $("#client-show-page").html(result);
 }
 
@@ -147,46 +159,6 @@ $(document).on('turbolinks:load', function(){
           addToLawyersShowTable(response)
         }
       });
-    });
-  };
-
-  if(!$('div#turn_off_event_handler').length){
-    $("#new_time_entry").on("submit", function(e) {
-      e.preventDefault();
-      url = this.action
-      data = {
-        'authenticity_token': $("input[name='authenticity_token']").val(),
-        'time_entry': {
-          'matter_id': $("select#time_entry_matter_id option:selected").val(),
-          'date(2i)': $("select#time_entry_date_2i option:selected").val(),
-          'date(3i)': $("select#time_entry_date_3i option:selected").val(),
-          'date(1i)': $("select#time_entry_date_1i option:selected").val(),
-          'duration': $("input#time_entry_duration").val(),
-          'rate': $("input#time_entry_rate").val(),
-          'description': $("textarea#time_entry_description").val(),
-          'lawyer_id': $("select#time_entry_lawyer_id option:selected").val(),
-          'billable': $("input#time_entry_billable").val(),
-          'paid': $("input#time_entry_paid").val()
-          }
-        };
-      $.ajax({
-        url: url,
-        method: "POST",
-        data: data,
-        dataType: "JSON",
-        success: function(response){
-          $(".new_time_entry").trigger("reset");
-          $("input[type='submit']").removeAttr('disabled');
-          $("#errors").empty();
-          addToMattersShowTable(response)
-          $('#show_matter_time_entries tbody').append(tr_item)
-          $("input[type='submit']").removeAttr('disabled');
-         },
-         error: function(response){
-           $("input[type='submit']").removeAttr('disabled');
-           $("#errors").html(response.responseText);
-         }
-       });
     });
   };
 
