@@ -21,7 +21,7 @@ function renderLawyersShowTable(lawyer_data) {
   var lawyer = new Lawyer(lawyer_data);
 
   //build table header
-  const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed</th></tr>"
+  const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed by Supervising Attorney</th></tr>"
   $('table#show_lawyer_matters').append(table_header)
 
   //build table body
@@ -32,7 +32,7 @@ function renderLawyersShowTable(lawyer_data) {
       cliend_id: lawyer.matters[i].client_id,
       client_name: $.grep(lawyer.clients, function(client){ return client.id == lawyer.matters[i].client_id })[0].name,
       hours_billed: lawyer.hoursByMatter(lawyer.matters[i].id)
-    }
+    };
     var source = $("#lawyer-matters-show-page-template").html();
     var template = Handlebars.compile(source);
     var result = template(template_data);
@@ -48,7 +48,6 @@ $(document).on('turbolinks:load', function(){
       $.ajax({
         url: '/lawyers/' + lawyer_id +".json",
         method: "GET",
-        //dataType: "JSON",
         success: function(response){
           renderLawyersShowTable(response);
         }
