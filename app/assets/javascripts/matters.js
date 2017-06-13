@@ -129,6 +129,8 @@ $(document).on('turbolinks:load', function(){
 //objectified
   if (!!$('#show_matter_time_entries').length) {
     $('#show_matter_time_entries').ready(function(e){
+      $('label[for=time_entry_matter],select#time_entry_matter_id').hide();
+      $('label[for=time_entry_lawyer],select#time_entry_lawyer_id').hide();
       const matter_id = $("#matter-name").attr("matter-id")
       $.ajax({
         url: '/matters/' + matter_id + '/time_entries',
