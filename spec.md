@@ -4,7 +4,9 @@ Rails App with a jQuery Front End
 
 Each matter has many time entries that belong only to that matter.  All time entries for a specific matter are listed on that matter's show page as a table.  The data for that table is obtained via jQuery/AJAX request and uses AMS to populate the time entry list with customized JSON containing relevant/helpful data. JQuery builds the table by parsing the JSON for each time entry, reformats it into an HTML string, and jQuery appends that HTML string to that table.
 
-[] Must render at least one show page (show resource - 'one specific thing') via jQuery and an Active Model Serialization JSON Backend. For example, in the blog domain, you might allow a user to sift through the posts by clicking a 'Next' button on the posts show page, with the next post being fetched and rendered via JQuery/AJAX.
+[x] Must render at least one show page (show resource - 'one specific thing') via jQuery and an Active Model Serialization JSON Backend. For example, in the blog domain, you might allow a user to sift through the posts by clicking a 'Next' button on the posts show page, with the next post being fetched and rendered via JQuery/AJAX.
+
+The client show page renders client profiles via jQuery, AMS JSON Backend.  A lawyer can sift through clients by clicking a 'Next Client' and a 'Previous Client' button on the clients show page with the adjacent client fetched and rendered via JQuery/AJAX.
 
 [x] The rails API must reveal at least one has-many relationship in the JSON that is then rendered to the page. For example if each of those posts has many comments, you could render those comments as well on that show page.
 
