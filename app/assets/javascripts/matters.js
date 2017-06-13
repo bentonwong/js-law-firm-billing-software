@@ -1,3 +1,19 @@
+function TimeEntry(data) {
+  this.date = data.date;
+  this.duration = data.duration;
+  this.description = data.description;
+  this.billable = data.billable;
+  this.paid = data.paid;
+  this.matter_id = data.matter_id;
+  this.lawyer_id = data.lawyer_id;
+  this.rate = data.rate;
+}
+
+TimeEntry.prototype.calculate_atty_fee = function() {
+  var atty_fee = this.duration * this.rate
+  return '$' + fee..format(2);
+}
+
 function addToMattersShowTable(response) {
   var tr_item = ""
   tr_item += "<tr>"

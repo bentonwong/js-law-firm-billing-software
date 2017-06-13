@@ -1,3 +1,7 @@
+<form action="/clients/<%= @client.id %>">
+  <input type="submit" value="Return to Client Profile" />
+</form>
+
 <h1>Client Invoice</h1>
 
 <h3>Bill to:</h3>
@@ -30,7 +34,7 @@
       </tr>
     <% end %>
   </table>
-  
+
   <p>*Supervising Attorney: <%= matter.lawyer.name %> (<%= matter.lawyer.email %>)</p>
   <p><b>Subtotal: <%= number_to_currency(sum_of_unpaid_time_entries_for(matter)) %></b></p>
 <% end %>
