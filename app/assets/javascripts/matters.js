@@ -1,5 +1,5 @@
 function TimeEntry(data) {
-  this.id = data.id
+  this.id = data.id;
   this.date = data.date;
   this.description = data.description;
   this.duration = data.duration;
@@ -14,19 +14,45 @@ TimeEntry.prototype.calculateAttyFee = function() {
 }
 
 function addToMattersShowTable(response) {
-  var line_entry = new TimeEntry(response);
-  var tr_item = ""
-  tr_item += "<tr>"
-  tr_item += "<td>" + line_entry.date + "</td>"
-  tr_item += "<td><a href='/matters/" + line_entry.matter_id + "/time_entries/" + line_entry.id + "'>" + line_entry.description + "</a></td>"
-  tr_item += "<td>" + line_entry.duration + "</td>"
-  tr_item += "<td>" + line_entry.lawyer_name + "</td>"
-  tr_item += "<td align='center'>" + line_entry.calculateAttyFee() + "</td>"
-  tr_item += "</tr>"
-  $('#show_matter_time_entries tbody').append(tr_item)
+  var time_entry = new TimeEntry(response);
+
+  var template_data = {
+    date: time_entry.date,
+    description: time_entry.description,
+    duration: time_entry.duration,
+    lawyer_name: time_entry.lawyer_name,
+    atty_fee: time_entry.calculateAttyFee()
+  };
+
+  var source = $("#matters-time-entries-show-page-template").html();
+  var template = Handlebars.compile(source);
+  var result = template(template_data);
+  $('#show_matter_time_entries tbody').append(result);
 }
 
 $(document).on('turbolinks:load', function(){
+  if (!!$('#show_matter_time_entries').length) {
+    $('form#new_time_entry.new_time_entry').ready(function(e){
+      $('label[for=time_entry_matter],select#time_entry_matter_id').hide();
+      $('label[for=time_entry_lawyer],select#time_entry_lawyer_id').hide();
+    })
+    $('#show_matter_time_entries').ready(function(e){
+      const matter_id = $("#matter-name").attr("matter-id")
+      $.ajax({
+        url: '/matters/' + matter_id + '/time_entries',
+        method: "GET",
+        dataType: "JSON",
+        success: function(response){
+          const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th><th>Fee</tr>"
+          $('#show_matter_time_entries').append(table_header)
+          for (var i=0; i < response.length; i++){
+            addToMattersShowTable(response[i]);
+          }
+        }
+      });
+    });
+  };
+
   if(!$('div#turn_off_event_handler').length){
     $("#new_time_entry").on("submit", function(e) {
       e.preventDefault();
@@ -55,8 +81,7 @@ $(document).on('turbolinks:load', function(){
           $(".new_time_entry").trigger("reset");
           $("input[type='submit']").removeAttr('disabled');
           $("#errors").empty();
-          addToMattersShowTable(response)
-          $('#show_matter_time_entries tbody').append(tr_item)
+          addToMattersShowTable(response);
           $("input[type='submit']").removeAttr('disabled');
          },
          error: function(response){
@@ -64,28 +89,6 @@ $(document).on('turbolinks:load', function(){
            $("#errors").html(response.responseText);
          }
        });
-    });
-  };
-
-
-//objectified
-  if (!!$('#show_matter_time_entries').length) {
-    $('#show_matter_time_entries').ready(function(e){
-      $('label[for=time_entry_matter],select#time_entry_matter_id').hide();
-      $('label[for=time_entry_lawyer],select#time_entry_lawyer_id').hide();
-      const matter_id = $("#matter-name").attr("matter-id")
-      $.ajax({
-        url: '/matters/' + matter_id + '/time_entries',
-        method: "GET",
-        dataType: "JSON",
-        success: function(response){
-          const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th><th>Fee</tr>"
-          $('#show_matter_time_entries').append(table_header)
-          for (var i=0; i < response.length; i++){
-            addToMattersShowTable(response[i])
-          }
-        }
-      });
     });
   };
 });

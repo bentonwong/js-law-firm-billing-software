@@ -10,7 +10,7 @@
 <hr>
 
 <h4>Time Entries</h4>
-  <p>Number of entries: <%= @matter.time_entries.count %></p>
+
   <div>
       <!--<div style="float:left;">
         <%= button_to 'Add new time entry', new_matter_time_entry_path(@matter), method: "get" %>
@@ -34,3 +34,14 @@
 <hr>
 
 <h4>Outstanding balance: <%= number_to_currency(@matter.calculate_matter_invoice) %></h4>
+
+<script type="text/javascript" src="assets/javascripts/handlebars.js"></script>
+<script id="matters-time-entries-show-page-template" type="text/x-handlebars-template">
+  <tr>
+    <td>{{ date }}</td>
+    <td>{{ description }}</td>
+    <td>{{ duration }}</td>
+    <td>{{ lawyer_name }}</td>
+    <td>{{ atty_fee }}</td>
+  </tr>
+</script>

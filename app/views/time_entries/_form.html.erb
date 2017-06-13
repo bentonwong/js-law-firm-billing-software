@@ -2,10 +2,11 @@
 
   <%= render partial: "layouts/errors", locals: {instance: time_entry} %>
 
-  <%= f.label :matter %><br>
-  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, !matter.nil? ? {:selected => matter.id} : {include_blank: true} %><br>
+
   <%= f.label :date %><br>
   <%= f.date_select :date, :order => [:month, :day, :year], :max => Date.today %><br>
+  <%= f.label :matter %><br>
+  <%= f.collection_select :matter_id, Matter.order(:name), :id, :name, !matter.nil? ? {:selected => matter.id} : {include_blank: true} %><br>
   <%= f.label :duration, "Duration (hrs.)"  %><br>
   <%= f.text_field :duration %><br>
   <%= f.label :rate, "Rate ($/hr.)" %><br>
