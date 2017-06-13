@@ -12,7 +12,7 @@ TimeEntry.prototype.calculateAttyFee = function() {
   var atty_fee = this.duration * this.rate;
   return '$' + atty_fee.toFixed(2);
 }
-
+/*
 function Lawyer(data) {
   this.id = data.id;
   this.name = data.name;
@@ -30,7 +30,7 @@ Lawyer.prototype.hoursByMatter = function(id) {
   }
   return sum;
 }
-/*
+
 function Client(data) {
   this.id = data.id
   this.name = data.name;
@@ -42,7 +42,7 @@ function Client(data) {
 Client.prototype.concatPhEmail = function() {
   return "Phone: " + this.phone + " | Email: " + this.email;
 }
-*/
+
 function addToMattersShowTable(response) {
   var line_entry = new TimeEntry(response);
   var tr_item = ""
@@ -74,7 +74,7 @@ function addToLawyersShowTable(response) {
     $('#show_lawyer_matters').append(tr_item)
   }
 }
-/*
+
 function loadClient(response) {
   var client = new Client(response);
   client.quickContact = client.concatPhEmail()
@@ -146,62 +146,4 @@ $(document).on('turbolinks:load', function(){
       });
     });
   };
-
-  if (!!$('#show_lawyer_matters').length) {
-    $('table#show_lawyer_matters').ready(function(e){
-      $('#show_lawyer_matters').empty()
-      const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
-      $.ajax({
-        url: '/lawyers/' + lawyer_id,
-        method: "GET",
-        dataType: "JSON",
-        success: function(response){
-          const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed</th></tr>"
-          $('table#show_lawyer_matters').append(table_header)
-          addToLawyersShowTable(response)
-        }
-      });
-    });
-  };
-/*
-  if (!!$('#client-show-page').length) {
-    var client_id = window.location.pathname.split("/").pop();
-    $.ajax({
-      url: '/clients/' + client_id + '.json',
-      method: "GET",
-      //dataType: "JSON",
-      success: function(response) {
-        loadClient(response);
-        attachNextClientListener();
-      }
-    });
-  };
-*/
 });
-/*
-function getAdjacentClient(id){
-  url = "/clients/" + id;
-  $.ajax({
-    url: url,
-    method: "GET",
-    dataType: "JSON",
-    success: function(data){
-      if (data) {
-        loadClient(data);
-        attachNextClientListener();
-      }
-    }
-  });
-}
-
-function attachNextClientListener(){
-  $('.js-next').on('click', function(event){
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    getAdjacentClient(nextId)
-  });
-  $('.js-previous').on('click', function(event){
-    var nextId = parseInt($(".js-next").attr("data-id")) - 1;
-    getAdjacentClient(nextId)
-  });
-}
-*/
