@@ -16,7 +16,7 @@ Lawyer.prototype.hoursByMatter = function(id) {
   return sum;
 }
 
-function buildTableBody(lawyer){
+function buildTableBody(lawyer) {
   for (var i=0; i < lawyer.matters.length; i++) {
     var template_data = {
       matter_id: lawyer.matters[i].id,
@@ -25,21 +25,25 @@ function buildTableBody(lawyer){
       client_name: $.grep(lawyer.clients, function(client){ return client.id == lawyer.matters[i].client_id })[0].name,
       hours_billed: lawyer.hoursByMatter(lawyer.matters[i].id)
     };
-    var source = $("#lawyer-matters-show-page-template").html();
-    var template = Handlebars.compile(source);
-    var result = template(template_data);
-    $('#show_lawyer_matters').append(result);
+    renderTableWithHandlebars(template_data);
   }
 }
 
-function createLawyerTableHeader() {
+function renderTableWithHandlebars(template_data) {
+  var source = $("#lawyer-matters-show-page-template").html();
+  var template = Handlebars.compile(source);
+  var result = template(template_data);
+  $('#show_lawyer_matters').append(result);
+}
+
+function buildLawyerTableHeader() {
   const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed by Supervising Attorney</th></tr>";
   $('table#show_lawyer_matters').append(table_header);
 }
 
 function renderLawyersShowTable(lawyer_data) {
   var lawyer = new Lawyer(lawyer_data);
-  createLawyerTableHeader();
+  buildLawyerTableHeader();
   buildTableBody(lawyer);
 }
 
