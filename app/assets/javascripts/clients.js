@@ -26,9 +26,11 @@ function getClientAjaxRequest(id){
     method: "GET",
     dataType: "JSON",
     success: function(client_data){
-      if (client_data) {
+      if (client_data !== undefined && client_data !== null) {
         loadClient(client_data);
         attachNextClientListener();
+      } else {
+        $("#client-show-page").html("<p>N/A<p>");
       }
     }
   });

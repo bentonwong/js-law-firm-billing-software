@@ -56,7 +56,11 @@ $(document).on('turbolinks:load', function(){
         url: '/lawyers/' + lawyer_id + ".json",
         method: "GET",
         success: function(lawyer_data) {
-          renderLawyersShowTable(lawyer_data);
+          if (lawyer_data.matters.length > 0) {
+            renderLawyersShowTable(lawyer_data);
+          } else {
+            $('table#show_lawyer_matters').html(">> None at this time.");
+          }
         }
       });
     });

@@ -43,6 +43,9 @@ class LawyersController < ApplicationController
 
     def set_lawyer
       @lawyer = Lawyer.find_by(id: params[:id])
+      if !@lawyer
+        redirect_to lawyers_path
+      end
     end
 
     def save_lawyer

@@ -35,6 +35,9 @@ class MattersController < ApplicationController
 
     def set_matter
       @matter = Matter.find_by(id: params[:id])
+      if !@matter
+        redirect_to matters_path
+      end
     end
 
     def matter_params
