@@ -15,8 +15,9 @@ TimeEntry.prototype.calculateAttyFee = function() {
 
 function addToMattersShowTable(response) {
   var time_entry = new TimeEntry(response);
-
   var template_data = {
+    te_id: time_entry.id,
+    matter_id: time_entry.matter_id,
     date: time_entry.date,
     description: time_entry.description,
     duration: time_entry.duration,
@@ -59,6 +60,7 @@ $(document).on('turbolinks:load', function(){
         dataType: "JSON",
         success: function(response) {
           if (response.length > 0) {
+            $('#show_matter_time_entries').empty();
             const table_header = $("#matters-time-entries-show-page-header-template").html();
             $('#show_matter_time_entries').append(table_header);
             for (var i=0; i < response.length; i++){

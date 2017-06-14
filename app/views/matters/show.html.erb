@@ -37,7 +37,7 @@
 <script id="matters-time-entries-show-page-template" type="text/x-handlebars-template">
   <tr>
     <td>{{ date }}</td>
-    <td>{{ description }}</td>
+    <td><a href="/matters/{{matter_id}}/time_entries/{{te_id}}">{{ description }}</a></td>
     <td>{{ duration }}</td>
     <td>{{ lawyer_name }}</td>
     <td>{{ atty_fee }}</td>

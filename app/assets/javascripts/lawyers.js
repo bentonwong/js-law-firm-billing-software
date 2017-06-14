@@ -37,6 +37,7 @@ function renderTableWithHandlebars(template_data) {
 }
 
 function buildLawyerTableHeader() {
+  $('#show_lawyer_matters').empty();
   const table_header = $("#lawyer-matters-show-page-header-template").html();
   $('table#show_lawyer_matters').append(table_header);
 }
@@ -51,7 +52,6 @@ function renderLawyersShowTable(lawyer_data) {
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_lawyer_matters').length) {
     $('table#show_lawyer_matters').ready(function(e){
-      $('#show_lawyer_matters').empty();
       const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
       $.ajax({
         url: '/lawyers/' + lawyer_id + ".json",
