@@ -10,16 +10,16 @@ The client show page renders client profiles via jQuery, AMS JSON Backend.  A la
 
 [x] The rails API must reveal at least one has-many relationship in the JSON that is then rendered to the page. For example if each of those posts has many comments, you could render those comments as well on that show page.
 
-A lawyer has many matters that they supervise and clients. At '/lawyers.json', a JSON is rendered listing all the lawyers and all the matters they are supervising and their clients. On each lawyer's show page, the cases that lawyer supervises is listed on that page.
+A lawyer has many matters that they supervise and clients. At '/lawyers.json', a JSON is rendered listing a lawyer and all the matters that lawyer supervises. On each lawyer's show page, the cases that lawyer supervises is listed on that page.
 
 [x] Must use your Rails API and a form to create a resource and render the response without a page refresh. For example, a user might be able to add a comment to a post, and the comment would be serialized, and submitted via an AJAX POST request, with the response being the new object in JSON and then appending that new comment to the DOM using JavaScript (ES6 Template Literals, can help out a lot with this).
 
-A form to enter a new Time Entry is displayed on each Matter's show page allowing a lawyer to enter a new time entry directly on that page.  Valid entries are immediately appended to the displayed list of associated time entries.
+A form to enter a new time entry is displayed on each matter's show page allowing a lawyer to enter a new time entry for that matter directly on that page.  Valid entries are immediately appended to the displayed list of other time entries for that same matter.
 
 [x] Must translate the JSON responses into Javascript Model Objects. The Model Objects must have at least one method on the prototype. Formatters work really well for this. Borrowing from the previous example, instead of plainly taking the JSON response of the newly created comment and appending it to the DOM, you would create a Comment prototype object and add a function to that prototype to perhaps concatenate (format) the comments authors first and last name. You would then use the object to append the comment information to the DOM.
 
 AJAX GET JSON responses for lawyers, time entries, and clients are translated into Objects to build data_templates to be rendered in the DOM.  In addition, each of these models have at least 1 prototype:
 
-  Lawyers = calculate hours billed
-  Clients = concatenate and format the display of the client's phone and email contact information into one line and add appropriate labels
-  Time Entries = calculate the attorney fee for a time entry (i.e. the billing lawyer's rate x the duration)
+  Lawyers = calculates hours billed
+  Clients = concatenates and formats the display of the client's phone and email contact information into one line and add appropriate labels
+  Time Entries = calculates the attorney fee for a time entry (i.e. the billing lawyer's rate x the duration)

@@ -52,7 +52,7 @@ function readForm() {
 function setupHeader() {
   $('#show_matter_time_entries').empty();
   const table_header = $("#matters-time-entries-show-page-header-template").html();
-  $('#show_matter_time_entries').append(table_header);
+  $('#show_matter_time_entries').html(table_header);
 }
 
 $(document).on('turbolinks:load', function(){
