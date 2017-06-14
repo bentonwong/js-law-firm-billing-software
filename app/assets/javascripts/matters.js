@@ -55,6 +55,12 @@ function setupHeader() {
   $('#show_matter_time_entries').html(table_header);
 }
 
+function resetForm() {
+  $(".new_time_entry").trigger('reset');
+  $("#errors").empty();
+  $("input[type='submit']").removeAttr('disabled');
+}
+
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
 
@@ -90,19 +96,16 @@ $(document).on('turbolinks:load', function(){
             data: data,
             dataType: "JSON",
             success: function(response){
-              $(".new_time_entry").trigger('reset');
-              $("input[type='submit']").removeAttr('disabled');
-              $("#errors").empty();
-              if ($('#show_matter_time_entries').text() === ">> This matter does not have any time entries.") {
-                setupHeader();
-              }
-              addToMattersShowTable(response);
-              $("input[type='submit']").removeAttr('disabled');
-             },
+             if ($('#show_matter_time_entries').text() === ">> This matter does not have any time entries.") {
+                setupHeader(); //puts in a header if no prior time entries
+             }
+             addToMattersShowTable(response);
+             resetForm();
+            },
              error: function(response){
                $("input[type='submit']").removeAttr('disabled');
                $("#errors").html(response.responseText);
-             }
+            }
            });
         });
       }; //end of this if statement
