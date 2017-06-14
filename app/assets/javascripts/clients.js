@@ -10,8 +10,8 @@ Client.prototype.concatPhEmail = function() {
   return "Phone: " + this.phone + " | Email: " + this.email;
 }
 
-function loadClient(response) {
-  var client = new Client(response);
+function loadClient(client_data) {
+  var client = new Client(client_data);
   client.quickContact = client.concatPhEmail()
   var source = $("#client-show-page-template").html();
   var template = Handlebars.compile(source);
@@ -19,8 +19,8 @@ function loadClient(response) {
   $("#client-show-page").html(result);
 }
 
-function getAdjacentClient(id){
-  url = "/clients/" + id;
+function getClientAjaxRequest(id){
+  url = "/clients/" + id + '.json';
   $.ajax({
     url: url,
     method: "GET",
@@ -37,23 +37,16 @@ function getAdjacentClient(id){
 function attachNextClientListener(){
   var nextId = parseInt($(".js-next").attr("data-id"));
   $('.js-next').on('click', function(event){
-    getAdjacentClient(nextId + 1);
+    getClientAjaxRequest(nextId + 1);
   });
   $('.js-previous').on('click', function(event){
-    getAdjacentClient(nextId - 1);
+    getClientAjaxRequest(nextId - 1);
   });
 }
 
 $(document).on('turbolinks:load', function(){
   if (!!$('#client-show-page').length) {
     var client_id = window.location.pathname.split("/").pop();
-    $.ajax({
-      url: '/clients/' + client_id + '.json',
-      method: "GET",
-      success: function(response) {
-        loadClient(response);
-        attachNextClientListener();
-      }
-    });
+    getClientAjaxRequest(client_id);
   };
 });
