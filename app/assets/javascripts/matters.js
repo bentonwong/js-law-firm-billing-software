@@ -30,12 +30,32 @@ function addToMattersShowTable(response) {
   $('#show_matter_time_entries tbody').append(result);
 }
 
+function readForm() {
+  return {
+    'authenticity_token': $("input[name='authenticity_token']").val(),
+    'time_entry': {
+      'matter_id': $("select#time_entry_matter_id option:selected").val(),
+      'date(2i)': $("select#time_entry_date_2i option:selected").val(),
+      'date(3i)': $("select#time_entry_date_3i option:selected").val(),
+      'date(1i)': $("select#time_entry_date_1i option:selected").val(),
+      'duration': $("input#time_entry_duration").val(),
+      'rate': $("input#time_entry_rate").val(),
+      'description': $("textarea#time_entry_description").val(),
+      'lawyer_id': $("select#time_entry_lawyer_id option:selected").val(),
+      'billable': $("input#time_entry_billable").val(),
+      'paid': $("input#time_entry_paid").val()
+      }
+    };
+}
+
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
+
     $('form#new_time_entry.new_time_entry').ready(function(e){
       $('label[for=time_entry_matter],select#time_entry_matter_id').hide();
       $('label[for=time_entry_lawyer],select#time_entry_lawyer_id').hide();
     })
+
     $('#show_matter_time_entries').ready(function(e){
       const matter_id = $("#matter-name").attr("matter-id")
       $.ajax({
@@ -57,21 +77,7 @@ $(document).on('turbolinks:load', function(){
     $("#new_time_entry").on("submit", function(e) {
       e.preventDefault();
       url = this.action
-      data = {
-        'authenticity_token': $("input[name='authenticity_token']").val(),
-        'time_entry': {
-          'matter_id': $("select#time_entry_matter_id option:selected").val(),
-          'date(2i)': $("select#time_entry_date_2i option:selected").val(),
-          'date(3i)': $("select#time_entry_date_3i option:selected").val(),
-          'date(1i)': $("select#time_entry_date_1i option:selected").val(),
-          'duration': $("input#time_entry_duration").val(),
-          'rate': $("input#time_entry_rate").val(),
-          'description': $("textarea#time_entry_description").val(),
-          'lawyer_id': $("select#time_entry_lawyer_id option:selected").val(),
-          'billable': $("input#time_entry_billable").val(),
-          'paid': $("input#time_entry_paid").val()
-          }
-        };
+      data = readForm()
       $.ajax({
         url: url,
         method: "POST",
