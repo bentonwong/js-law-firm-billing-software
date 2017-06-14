@@ -51,11 +51,6 @@ function readForm() {
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
 
-    $('form#new_time_entry.new_time_entry').ready(function(e){
-      $('label[for=time_entry_matter],select#time_entry_matter_id').hide();
-      $('label[for=time_entry_lawyer],select#time_entry_lawyer_id').hide();
-    })
-
     $('#show_matter_time_entries').ready(function(e){
       const matter_id = $("#matter-name").attr("matter-id")
       $.ajax({
@@ -74,31 +69,35 @@ $(document).on('turbolinks:load', function(){
           }
         }
       });
-    });
-  };
+    }); //end of this function
 
-  if(!$('div#turn_off_event_handler').length){
-    $("#new_time_entry").on("submit", function(e) {
-      e.preventDefault();
-      url = this.action
-      data = readForm()
-      $.ajax({
-        url: url,
-        method: "POST",
-        data: data,
-        dataType: "JSON",
-        success: function(response){
-          $(".new_time_entry").trigger("reset");
-          $("input[type='submit']").removeAttr('disabled');
-          $("#errors").empty();
-          addToMattersShowTable(response);
-          $("input[type='submit']").removeAttr('disabled');
-         },
-         error: function(response){
-           $("input[type='submit']").removeAttr('disabled');
-           $("#errors").html(response.responseText);
-         }
-       });
-    });
-  };
+    $('form#new_time_entry.new_time_entry').ready(function(e){
+
+      if(!$('div#turn_off_event_handler').length){
+        $("#new_time_entry").on("submit", function(e) {
+          e.preventDefault();
+          url = this.action
+          data = readForm()
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: data,
+            dataType: "JSON",
+            success: function(response){
+              $(".new_time_entry").trigger("reset");
+              $("input[type='submit']").removeAttr('disabled');
+              $("#errors").empty();
+              addToMattersShowTable(response);
+              $("input[type='submit']").removeAttr('disabled');
+             },
+             error: function(response){
+               $("input[type='submit']").removeAttr('disabled');
+               $("#errors").html(response.responseText);
+             }
+           });
+        });
+      }; //end of this if statement
+
+    }); //end of $('form#new_time_entry.new_time_entry').ready(function(e){})
+  }; //end of if statement
 });
