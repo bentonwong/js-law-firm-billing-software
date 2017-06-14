@@ -18,8 +18,8 @@ A form to enter a new time entry is displayed on each matter's show page allowin
 
 [x] Must translate the JSON responses into Javascript Model Objects. The Model Objects must have at least one method on the prototype. Formatters work really well for this. Borrowing from the previous example, instead of plainly taking the JSON response of the newly created comment and appending it to the DOM, you would create a Comment prototype object and add a function to that prototype to perhaps concatenate (format) the comments authors first and last name. You would then use the object to append the comment information to the DOM.
 
-AJAX GET JSON responses for lawyers, time entries, and clients are translated into Objects to build data_templates to be rendered in the DOM.  In addition, each of these models have at least 1 prototype:
+AJAX GET JSON responses for lawyers, time entries, and clients are translated into Objects upon either an AJAX GET or POST request to build data templates to be rendered in the DOM.  In addition, each of these models have at least 1 method on the prototype:
 
-  Lawyers = calculates hours billed
-  Clients = concatenates and formats the display of the client's phone and email contact information into one line and add appropriate labels
-  Time Entries = calculates the attorney fee for a time entry (i.e. the billing lawyer's rate x the duration)
+  Lawyers (.hoursByMatter) = calculates hours billed
+  Clients (.concatPhEmail) = concatenates and formats the display of the client's phone and email contact information into one line and add appropriate labels
+  Time Entries (.calculateAttyFee) = calculates the attorney fee for a time entry (i.e. the billing lawyer's rate x the duration)
