@@ -16,15 +16,7 @@ Lawyer.prototype.hoursByMatter = function(id) {
   return sum;
 }
 
-function renderLawyersShowTable(lawyer_data) {
-  //build new lawyer object
-  var lawyer = new Lawyer(lawyer_data);
-
-  //build table header
-  const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed by Supervising Attorney</th></tr>"
-  $('table#show_lawyer_matters').append(table_header)
-
-  //build table body
+function buildTableBody(lawyer){
   for (var i=0; i < lawyer.matters.length; i++) {
     var template_data = {
       matter_id: lawyer.matters[i].id,
@@ -36,8 +28,19 @@ function renderLawyersShowTable(lawyer_data) {
     var source = $("#lawyer-matters-show-page-template").html();
     var template = Handlebars.compile(source);
     var result = template(template_data);
-    $('#show_lawyer_matters').append(result)
+    $('#show_lawyer_matters').append(result);
   }
+}
+
+function createLawyerTableHeader() {
+  const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed by Supervising Attorney</th></tr>";
+  $('table#show_lawyer_matters').append(table_header);
+}
+
+function renderLawyersShowTable(lawyer_data) {
+  var lawyer = new Lawyer(lawyer_data);
+  createLawyerTableHeader();
+  buildTableBody(lawyer);
 }
 
 $(document).on('turbolinks:load', function(){
@@ -46,10 +49,10 @@ $(document).on('turbolinks:load', function(){
       $('#show_lawyer_matters').empty()
       const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
       $.ajax({
-        url: '/lawyers/' + lawyer_id +".json",
+        url: '/lawyers/' + lawyer_id + ".json",
         method: "GET",
-        success: function(response){
-          renderLawyersShowTable(response);
+        success: function(lawyer_data) {
+          renderLawyersShowTable(lawyer_data);
         }
       });
     });
