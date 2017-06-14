@@ -21,7 +21,7 @@ function buildTableBody(lawyer) {
     var template_data = {
       matter_id: lawyer.matters[i].id,
       matter_name: lawyer.matters[i].name,
-      cliend_id: lawyer.matters[i].client_id,
+      client_id: lawyer.matters[i].client_id,
       client_name: $.grep(lawyer.clients, function(client){ return client.id == lawyer.matters[i].client_id })[0].name,
       hours_billed: lawyer.hoursByMatter(lawyer.matters[i].id)
     };
@@ -43,6 +43,7 @@ function buildLawyerTableHeader() {
 
 function renderLawyersShowTable(lawyer_data) {
   var lawyer = new Lawyer(lawyer_data);
+  $('#show_lawyer_matters').empty();
   buildLawyerTableHeader();
   buildTableBody(lawyer);
 }
