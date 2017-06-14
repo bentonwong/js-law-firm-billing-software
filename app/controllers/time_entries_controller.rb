@@ -67,6 +67,7 @@ class TimeEntriesController < ApplicationController
 
     def save_time_entry
       if @time_entry.save
+        @client ||= find_client_by_matter_client_id
         respond_to do |format|
           format.html {render :show}
           format.json {render json: @time_entry}
