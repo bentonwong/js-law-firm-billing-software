@@ -62,7 +62,7 @@ $(document).on('turbolinks:load', function(){
         url: '/matters/' + matter_id + '/time_entries',
         method: "GET",
         dataType: "JSON",
-        success: function(response){
+        success: function(response) {
           const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th><th>Fee</tr>"
           $('#show_matter_time_entries').append(table_header)
           for (var i=0; i < response.length; i++){
