@@ -63,10 +63,14 @@ $(document).on('turbolinks:load', function(){
         method: "GET",
         dataType: "JSON",
         success: function(response) {
-          const table_header = $("#matters-time-entries-show-page-template").html();
-          $('#show_matter_time_entries').append(table_header)
-          for (var i=0; i < response.length; i++){
-            addToMattersShowTable(response[i]);
+          if (response.length > 0) {
+            const table_header = $("#matters-time-entries-show-page-template").html();
+            $('#show_matter_time_entries').append(table_header)
+            for (var i=0; i < response.length; i++){
+              addToMattersShowTable(response[i]);
+            }
+          } else {
+            $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
           }
         }
       });
