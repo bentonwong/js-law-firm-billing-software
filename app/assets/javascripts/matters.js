@@ -43,8 +43,8 @@ function readForm() {
       'rate': $("input#time_entry_rate").val(),
       'description': $("textarea#time_entry_description").val(),
       'lawyer_id': $("select#time_entry_lawyer_id option:selected").val(),
-      'billable': $("input#time_entry_billable").val(),
-      'paid': $("input#time_entry_paid").val()
+      'billable': $("input#time_entry_billable").is(':checked') ? "1" : "0",
+      'paid': $("input#time_entry_paid").is(':checked') ? "1" : "0"
       }
     };
 }
