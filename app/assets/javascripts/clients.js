@@ -12,7 +12,7 @@ Client.prototype.concatPhEmail = function() {
 
 function loadClient(client_data) {
   var client = new Client(client_data);
-  client.quickContact = client.concatPhEmail()
+  client.quickContact = client.concatPhEmail();
   var source = $("#client-show-page-template").html();
   var template = Handlebars.compile(source);
   var result = template(client);
@@ -30,7 +30,7 @@ function getClientAjaxRequest(id){
         loadClient(client_data);
         attachNextClientListener();
       } else {
-        $("#client-show-page").html("<p>N/A<p>");
+        alert("N/A")
       }
     }
   });

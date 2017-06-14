@@ -50,7 +50,7 @@ function renderLawyersShowTable(lawyer_data) {
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_lawyer_matters').length) {
     $('table#show_lawyer_matters').ready(function(e){
-      $('#show_lawyer_matters').empty()
+      $('#show_lawyer_matters').empty();
       const lawyer_id = $("#lawyer_show_header").attr("lawyer-id");
       $.ajax({
         url: '/lawyers/' + lawyer_id + ".json",
