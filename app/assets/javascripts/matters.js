@@ -90,10 +90,12 @@ $(document).on('turbolinks:load', function(){
             data: data,
             dataType: "JSON",
             success: function(response){
-              $(".new_time_entry").trigger("reset");
+              $(".new_time_entry").trigger('reset');
               $("input[type='submit']").removeAttr('disabled');
               $("#errors").empty();
-              setupHeader();
+              if ($('#show_matter_time_entries').text() === ">> This matter does not have any time entries.") {
+                setupHeader();
+              }
               addToMattersShowTable(response);
               $("input[type='submit']").removeAttr('disabled');
              },
