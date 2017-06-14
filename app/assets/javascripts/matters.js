@@ -88,8 +88,8 @@ $(document).on('turbolinks:load', function(){
       if(!$('div#turn_off_event_handler').length){
         $("#new_time_entry").on("submit", function(e) {
           e.preventDefault();
-          url = this.action
-          data = readForm()
+          url = this.action;
+          data = readForm();
           $.ajax({
             url: url,
             method: "POST",

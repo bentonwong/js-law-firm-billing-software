@@ -1,5 +1,5 @@
 function Client(data) {
-  this.id = data.id
+  this.id = data.id;
   this.name = data.name;
   this.address = data.address;
   this.phone = data.phone;
@@ -30,7 +30,7 @@ function getClientAjaxRequest(id){
         loadClient(client_data);
         attachNextClientListener();
       } else {
-        alert("N/A")
+        alert("N/A");
       }
     }
   });
