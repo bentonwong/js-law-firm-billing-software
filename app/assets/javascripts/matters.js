@@ -27,7 +27,7 @@ function addToMattersShowTable(response) {
   var source = $("#matters-time-entries-show-page-template").html();
   var template = Handlebars.compile(source);
   var result = template(template_data);
-  $('#show_matter_time_entries tbody').append(result);
+  $('table#show_matter_time_entries').append(result);
 }
 
 function readForm() {
@@ -59,8 +59,8 @@ $(document).on('turbolinks:load', function(){
         dataType: "JSON",
         success: function(response) {
           if (response.length > 0) {
-            const table_header = $("#matters-time-entries-show-page-template").html();
-            $('#show_matter_time_entries').append(table_header)
+            const table_header = $("#matters-time-entries-show-page-header-template").html();
+            $('#show_matter_time_entries').append(table_header);
             for (var i=0; i < response.length; i++){
               addToMattersShowTable(response[i]);
             }

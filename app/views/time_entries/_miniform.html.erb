@@ -11,7 +11,8 @@
  <%= f.text_field :rate, !matter.nil? ? {:value => matter.lawyer.rate} : {include_blank: true} %><br>
  <%= f.label :description, "Description (100 chars. max)" %><br>
  <%= f.text_area :description, cols: "50", rows: "3"  %><br>
- <%= f.hidden_field :lawyer_id, :value => current_user.id %>
+ <%= f.label :lawyer %><br>
+ <%= f.collection_select :lawyer_id, Lawyer.order(:name), :id, :name, :selected => current_user.id %><br><br>
  <%= f.label :billable %>
  <%= f.check_box :billable, :checked => true %>
  <%= f.label :paid %>
