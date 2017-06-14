@@ -49,6 +49,12 @@ function readForm() {
     };
 }
 
+function setupHeader() {
+  $('#show_matter_time_entries').empty();
+  const table_header = $("#matters-time-entries-show-page-header-template").html();
+  $('#show_matter_time_entries').append(table_header);
+}
+
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
 
@@ -60,9 +66,7 @@ $(document).on('turbolinks:load', function(){
         dataType: "JSON",
         success: function(response) {
           if (response.length > 0) {
-            $('#show_matter_time_entries').empty();
-            const table_header = $("#matters-time-entries-show-page-header-template").html();
-            $('#show_matter_time_entries').append(table_header);
+            setupHeader();
             for (var i=0; i < response.length; i++){
               addToMattersShowTable(response[i]);
             }
@@ -89,6 +93,7 @@ $(document).on('turbolinks:load', function(){
               $(".new_time_entry").trigger("reset");
               $("input[type='submit']").removeAttr('disabled');
               $("#errors").empty();
+              setupHeader();
               addToMattersShowTable(response);
               $("input[type='submit']").removeAttr('disabled');
              },
