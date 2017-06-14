@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function(){
         method: "GET",
         dataType: "JSON",
         success: function(response) {
-          const table_header = "<tr><th>Date</th><th>Description</th><th>Duration</th><th>Lawyer</th><th>Fee</tr>"
+          const table_header = $("#matters-time-entries-show-page-template").html();
           $('#show_matter_time_entries').append(table_header)
           for (var i=0; i < response.length; i++){
             addToMattersShowTable(response[i]);

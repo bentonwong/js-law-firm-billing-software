@@ -37,7 +37,7 @@ function renderTableWithHandlebars(template_data) {
 }
 
 function buildLawyerTableHeader() {
-  const table_header = "<tr><th>Matter ID</th><th>Matter</th><th>Client</th><th>Hours Billed by Supervising Attorney</th></tr>";
+  const table_header = $("#lawyer-matters-show-page-header-template").html();
   $('table#show_lawyer_matters').append(table_header);
 }
 
