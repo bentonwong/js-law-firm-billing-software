@@ -70,9 +70,13 @@ function deleteTimeEntry(matterId, timeEntryId){
     success: function(response){
       selector = 'tr.time-entry-row#' + response.id
       $(selector).remove();
-      attachDeleteTimeEntryListener();
+      if ($('#show_matter_time_entries tr.time-entry-row').length === 0) {
+        $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
+      }
+      attachDeleteTimeEntryListener()
     },
-    error: function(response){
+    error: function(){
+      console.log("Deletion error")
     }
   })
 }
@@ -88,7 +92,6 @@ function attachDeleteTimeEntryListener(){
 
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
-
     $('#show_matter_time_entries').ready(function(e){
       const matter_id = $("#matter-name").attr("matter-id")
       $.ajax({
@@ -126,6 +129,7 @@ $(document).on('turbolinks:load', function(){
                 setupHeader(); //puts in a header if no prior time entries
              }
              addToMattersShowTable(response);
+             attachDeleteTimeEntryListener();
              resetForm();
             },
              error: function(response){
