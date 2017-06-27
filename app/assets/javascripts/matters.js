@@ -29,6 +29,7 @@ function addToMattersShowTable(response) {
   var template = Handlebars.compile(source);
   var result = template(template_data);
   $('table#show_matter_time_entries').append(result);
+  attachDeleteTimeEntryListener()
 }
 
 function readForm() {
@@ -73,7 +74,6 @@ function deleteTimeEntry(matterId, timeEntryId){
       if ($('#show_matter_time_entries tr.time-entry-row').length === 0) {
         $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
       }
-      attachDeleteTimeEntryListener()
     },
     error: function(){
       console.log("Deletion error")
@@ -104,7 +104,6 @@ $(document).on('turbolinks:load', function(){
             for (var i=0; i < response.length; i++){
               addToMattersShowTable(response[i]);
             }
-            attachDeleteTimeEntryListener();
           } else {
             $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
           }
@@ -113,7 +112,6 @@ $(document).on('turbolinks:load', function(){
     }); //end of this function
 
     $('form#new_time_entry.new_time_entry').ready(function(e){
-
       if(!$('div#turn_off_event_handler').length){
         $("#new_time_entry").on("submit", function(e) {
           e.preventDefault();
@@ -129,7 +127,6 @@ $(document).on('turbolinks:load', function(){
                 setupHeader(); //puts in a header if no prior time entries
              }
              addToMattersShowTable(response);
-             attachDeleteTimeEntryListener();
              resetForm();
             },
              error: function(response){
@@ -139,7 +136,6 @@ $(document).on('turbolinks:load', function(){
            });
         });
       }; //end of this if statement
-
     }); //end of $('form#new_time_entry.new_time_entry').ready(function(e){})
   }; //end of if statement
 });
