@@ -63,15 +63,17 @@ function resetForm() {
 
 function deleteTimeEntry(matterId, timeEntryId){
   url = "/matters/" + matterId + "/time_entries/" + timeEntryId
-  console.log(url)
-  /*$.ajax({
+  $.ajax({
     url: url,
     method: "DELETE",
+    dataType: "JSON",
     success: function(response){
+      debugger
+      console.log("ajax delete complete")
     },
     error: function(response){
     }
-  })*/
+  })
 }
 
 function attachDeleteTimeEntryListener(){

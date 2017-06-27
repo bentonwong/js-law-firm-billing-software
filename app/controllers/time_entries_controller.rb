@@ -39,7 +39,7 @@ class TimeEntriesController < ApplicationController
 
   def destroy
     @time_entry.destroy
-    redirect_to matter_time_entries_path
+    #redirect_to matter_time_entries_path
   end
 
   private
