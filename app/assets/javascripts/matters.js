@@ -29,7 +29,6 @@ function addToMattersShowTable(response) {
   var template = Handlebars.compile(source);
   var result = template(template_data);
   $('table#show_matter_time_entries').append(result);
-  attachDeleteTimeEntryListener()
 }
 
 function readForm() {
@@ -90,6 +89,11 @@ function attachDeleteTimeEntryListener(){
   })
 }
 
+function enableDeleteTimeEntry(){
+  $('button.delete-time-entry-button').unbind('click', attachDeleteTimeEntryListener())
+  attachDeleteTimeEntryListener()
+}
+
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
     $('#show_matter_time_entries').ready(function(e){
@@ -104,9 +108,11 @@ $(document).on('turbolinks:load', function(){
             for (var i=0; i < response.length; i++){
               addToMattersShowTable(response[i]);
             }
+            enableDeleteTimeEntry();
           } else {
             $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
           }
+
         }
       });
     }); //end of this function
@@ -127,6 +133,7 @@ $(document).on('turbolinks:load', function(){
                 setupHeader(); //puts in a header if no prior time entries
              }
              addToMattersShowTable(response);
+             enableDeleteTimeEntry();
              resetForm();
             },
              error: function(response){
