@@ -32,6 +32,7 @@
     <th>Duration</th>
     <th>Lawyer</th>
     <th>Fee</th>
+    <th>Delete Time Entry</th>
   </tr>
 </script>
 <script id="matters-time-entries-show-page-template" type="text/x-handlebars-template">
@@ -41,5 +42,6 @@
     <td>{{ duration }}</td>
     <td>{{ lawyer_name }}</td>
     <td>{{ atty_fee }}</td>
+    <td align="center" time-entry-id="{{ te_id }}"><button>X</button></td>
   </tr>
 </script>

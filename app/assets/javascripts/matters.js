@@ -61,6 +61,10 @@ function resetForm() {
   $("input[type='submit']").removeAttr('disabled');
 }
 
+function enableDeleteTimeEntry() {
+  if 
+}
+
 $(document).on('turbolinks:load', function(){
   if (!!$('#show_matter_time_entries').length) {
 
@@ -76,6 +80,7 @@ $(document).on('turbolinks:load', function(){
             for (var i=0; i < response.length; i++){
               addToMattersShowTable(response[i]);
             }
+            enableDeleteTimeEntry();
           } else {
             $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
           }
