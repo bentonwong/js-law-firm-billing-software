@@ -36,7 +36,7 @@
   </tr>
 </script>
 <script id="matters-time-entries-show-page-template" type="text/x-handlebars-template">
-  <tr>
+  <tr class="time-entry-row" id="{{ te_id }}">
     <td>{{ date }}</td>
     <td><a href="/matters/{{matter_id}}/time_entries/{{te_id}}">{{ description }}</a></td>
     <td>{{ duration }}</td>

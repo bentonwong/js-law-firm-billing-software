@@ -68,8 +68,9 @@ function deleteTimeEntry(matterId, timeEntryId){
     method: "DELETE",
     dataType: "JSON",
     success: function(response){
-      debugger
-      console.log("ajax delete complete")
+      selector = 'tr.time-entry-row#' + response.id
+      $(selector).remove();
+      attachDeleteTimeEntryListener();
     },
     error: function(response){
     }
@@ -83,10 +84,6 @@ function attachDeleteTimeEntryListener(){
     var timeEntryToBeDeleteId = event.target.id;
     deleteTimeEntry(matterId, timeEntryToBeDeleteId);
   })
-}
-
-function enableDeleteTimeEntry(){
-  attachDeleteTimeEntryListener()
 }
 
 $(document).on('turbolinks:load', function(){
@@ -104,7 +101,7 @@ $(document).on('turbolinks:load', function(){
             for (var i=0; i < response.length; i++){
               addToMattersShowTable(response[i]);
             }
-            enableDeleteTimeEntry();
+            attachDeleteTimeEntryListener();
           } else {
             $('#show_matter_time_entries').html(">> This matter does not have any time entries.");
           }

@@ -39,7 +39,10 @@ class TimeEntriesController < ApplicationController
 
   def destroy
     @time_entry.destroy
-    #redirect_to matter_time_entries_path
+    respond_to do |format|
+      format.html {redirect_to matter_time_entries_path}
+      format.json {render json: @time_entry}
+    end
   end
 
   private
