@@ -61,8 +61,30 @@ function resetForm() {
   $("input[type='submit']").removeAttr('disabled');
 }
 
-function enableDeleteTimeEntry() {
-  if 
+function deleteTimeEntry(matterId, timeEntryId){
+  url = "/matters/" + matterId + "/time_entries/" + timeEntryId
+  console.log(url)
+  /*$.ajax({
+    url: url,
+    method: "DELETE",
+    success: function(response){
+    },
+    error: function(response){
+    }
+  })*/
+}
+
+function attachDeleteTimeEntryListener(){
+  $('button.delete-time-entry-button').on('click', function(event){
+    event.preventDefault();
+    var matterId = $('h3#matter-name').attr('matter-id');
+    var timeEntryToBeDeleteId = event.target.id;
+    deleteTimeEntry(matterId, timeEntryToBeDeleteId);
+  })
+}
+
+function enableDeleteTimeEntry(){
+  attachDeleteTimeEntryListener()
 }
 
 $(document).on('turbolinks:load', function(){
