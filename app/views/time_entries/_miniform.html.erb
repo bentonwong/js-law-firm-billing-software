@@ -8,7 +8,7 @@
  <%= f.label :duration, "Duration (hrs.)"  %><br>
  <%= f.text_field :duration %><br>
  <%= f.label :rate, "Rate ($/hr.)" %><br>
- <%= f.text_field :rate, !matter.nil? ? {:value => matter.lawyer.rate} : {include_blank: true} %><br>
+ <%= f.text_field :rate, !matter.nil? ? {:value => current_user.rate} : {include_blank: true} %><br>
  <%= f.label :description, "Description (100 chars. max)" %><br>
  <%= f.text_area :description, cols: "50", rows: "3"  %><br>
  <%= f.label :lawyer %><br>
