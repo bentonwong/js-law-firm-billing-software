@@ -122,6 +122,7 @@ $(document).on('turbolinks:load', function(){
           e.preventDefault();
           url = this.action;
           data = readForm();
+          debugger
           $.ajax({
             url: url,
             method: "POST",
