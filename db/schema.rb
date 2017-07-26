@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170507221544) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -26,11 +23,11 @@ ActiveRecord::Schema.define(version: 20170507221544) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.decimal  "rate",             precision: 8, scale: 2, default: "0.0"
+    t.decimal  "rate",                       precision: 8, scale: 2, default: "0.0"
     t.string   "provider"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.integer  "uid"
+    t.integer  "uid",              limit: 8
   end
 
   create_table "matter_notes", force: :cascade do |t|
