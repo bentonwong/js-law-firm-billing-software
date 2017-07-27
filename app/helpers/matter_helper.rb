@@ -3,10 +3,6 @@ module MatterHelper
     !@lawyer.nil?
   end
 
-  def matter_notes_not_blank
-    !@matter.notes.blank?
-  end
-
   def matters_not_blank_for_this(instance)
     !instance.matters.blank?
   end
