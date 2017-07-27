@@ -7,7 +7,7 @@ class CreateLawyers < ActiveRecord::Migration[5.0]
       t.string :provider
       t.string :oauth_token
       t.datetime :oauth_expires_at
-      t.integer :uid
+      t.integer :uid, :limit => 16
       t.decimal :rate, :default => 0
     end
   end
