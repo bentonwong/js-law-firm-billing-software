@@ -38,6 +38,7 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'omniauth'
 gem 'figaro'
 gem 'active_model_serializers'
+#gem 'tzinfo-data'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

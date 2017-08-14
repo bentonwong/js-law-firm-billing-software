@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727075026) do
+ActiveRecord::Schema.define(version: 20170727083707) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -26,24 +26,14 @@ ActiveRecord::Schema.define(version: 20170727075026) do
     t.string   "provider"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.integer  "uid",              limit: 16
-    t.decimal  "rate"
-  end
-
-  create_table "matter_notes", force: :cascade do |t|
-    t.integer "matter_id"
-    t.integer "note_id"
+    t.string   "uid"
+    t.decimal  "rate",             default: "0.0"
   end
 
   create_table "matters", force: :cascade do |t|
     t.integer "lawyer_id"
     t.integer "client_id"
     t.string  "name"
-  end
-
-  create_table "notes", force: :cascade do |t|
-    t.date "date"
-    t.text "content"
   end
 
   create_table "time_entries", force: :cascade do |t|
@@ -54,9 +44,9 @@ ActiveRecord::Schema.define(version: 20170727075026) do
     t.boolean  "paid"
     t.integer  "matter_id"
     t.integer  "lawyer_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.decimal  "rate",        precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "rate"
   end
 
 end
